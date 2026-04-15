@@ -1,0 +1,2209 @@
+{
+  "events": [
+    {
+      "id": "2026-09-07_opening_ceremony_concert",
+      "title": "Opening Ceremony + Concert",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "09:00",
+      "end_time": "10:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_black_student_welcome_2026",
+      "title": "Black Student Welcome 2026",
+      "venue_id": "somerville_great_hall",
+      "raw_location_label": "Great Hall, Somerville House",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_1_up_with_a_pup",
+      "title": "1-Up With a Pup",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "10:30",
+      "end_time": "12:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_hucsc_101",
+      "title": "HUCSC 101",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "11:30",
+      "end_time": "13:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-07_cultural_fair",
+      "title": "Cultural Fair",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-07_indigenous_beading_workshop",
+      "title": "Indigenous Beading Workshop",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-07_unlock_the_world",
+      "title": "Unlock the World",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "12:30",
+      "end_time": "14:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_henna_station",
+      "title": "Henna Station",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "14:00",
+      "end_time": "15:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-07_muslim_student_welcome_2026",
+      "title": "Muslim Student Welcome 2026",
+      "venue_id": "alumni_commons",
+      "raw_location_label": "Alumni Commons, Ronald D. Schmeichel Building",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "15:00",
+      "end_time": "16:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_just_dance",
+      "title": "Just Dance!",
+      "venue_id": "medline_commons",
+      "raw_location_label": "Medline Student Commons",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "16:00",
+      "end_time": "17:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_king_s_oc_meet_up",
+      "title": "King's OC Meet-Up",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "18:00",
+      "end_time": "19:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-07_king_s_oc_tie_dye",
+      "title": "King's OC Tie-Dye",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "18:30",
+      "end_time": "20:00",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-07_residence_rally",
+      "title": "Residence Rally",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage / UC Hill",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "19:30",
+      "end_time": "20:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-07_inflatable_palooza",
+      "title": "Inflatable Palooza",
+      "venue_id": "ontario_courtyard",
+      "raw_location_label": "Ontario Hall Backyard",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "SOUTH"
+      ]
+    },
+    {
+      "id": "2026-09-07_saugeen_glow_carnival",
+      "title": "Saugeen Glow Carnival",
+      "venue_id": "saugeen_side_fields",
+      "raw_location_label": "Saugeen Side Fields",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-07_glow_in_the_dark_basketball_competition",
+      "title": "Glow in the Dark Basketball Competition",
+      "venue_id": "saugeen_basketball",
+      "raw_location_label": "Saugeen Basketball Courts",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-07_glow_with_the_flow_crafts_station",
+      "title": "Glow with the Flow Crafts Station",
+      "venue_id": "clare",
+      "raw_location_label": "Clare Hall",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "NORTH"
+      ]
+    },
+    {
+      "id": "2026-09-07_oc_chill_room",
+      "title": "OC Chill Room",
+      "venue_id": "ucc_community_room",
+      "raw_location_label": "UCC Community Room (269)",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "23:00",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-07_trivia_time",
+      "title": "Trivia Time",
+      "venue_id": "lambton_main_lounge",
+      "raw_location_label": "Lambton Hall Main Lounge",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-07_mocktails_and_bracelet_making",
+      "title": "Mocktails and Bracelet Making",
+      "venue_id": "sydenham_lounge",
+      "raw_location_label": "Sydenham Lounge",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "MDSYD"
+      ]
+    },
+    {
+      "id": "2026-09-07_bubble_soccer",
+      "title": "Bubble Soccer",
+      "venue_id": "perth_backyard",
+      "raw_location_label": "Perth Backyard",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "PERTH"
+      ]
+    },
+    {
+      "id": "2026-09-07_paint_authority",
+      "title": "Paint Authority",
+      "venue_id": "delaware",
+      "raw_location_label": "Delaware Backyard",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "DEL"
+      ]
+    },
+    {
+      "id": "2026-09-07_bubble_soccer_2",
+      "title": "Bubble Soccer",
+      "venue_id": "essex_backyard",
+      "raw_location_label": "Essex Backyard",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ESSX"
+      ]
+    },
+    {
+      "id": "2026-09-07_mario_kart_night",
+      "title": "Mario Kart Night",
+      "venue_id": "elgin_main_lounge",
+      "raw_location_label": "Elgin Hall Main Lounge",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ELG"
+      ]
+    },
+    {
+      "id": "2026-09-07_elgin_s_barnyard_bash_petting_zoo",
+      "title": "Elgin's Barnyard Bash Petting Zoo",
+      "venue_id": "elgin_backyard",
+      "raw_location_label": "Elgin Hall Backyard",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ELG"
+      ]
+    },
+    {
+      "id": "2026-09-07_bonfire_s_mores",
+      "title": "Bonfire & S'mores",
+      "venue_id": "huron_quad",
+      "raw_location_label": "Brough House",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-07_line_dancing",
+      "title": "Line Dancing",
+      "venue_id": "clare",
+      "raw_location_label": "Mercato",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "22:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "CLARE"
+      ]
+    },
+    {
+      "id": "2026-09-07_neon_karaoke",
+      "title": "Neon Karaoke",
+      "venue_id": "medway_formal_lounge",
+      "raw_location_label": "Medway Formal Lounge (Flounge)",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "MDSYD"
+      ]
+    },
+    {
+      "id": "2026-09-07_bondfire_trivia",
+      "title": "Bondfire + Trivia",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-07",
+      "day_label": "Monday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-08_yoga_session_1",
+      "title": "Yoga Session 1",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "09:30",
+      "end_time": "11:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_cycle_class",
+      "title": "Cycle Class",
+      "venue_id": "rec_centre",
+      "raw_location_label": "Recreation Centre",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_pilates_class",
+      "title": "Pilates Class",
+      "venue_id": "rec_centre",
+      "raw_location_label": "Recreation Centre",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_dunk_your_soph",
+      "title": "Dunk your Soph",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_faculty_home_base_major_meetup_block",
+      "title": "Faculty Home Base / Major Meetup Block",
+      "venue_id": "ucc",
+      "raw_location_label": "Multiple Home Buildings",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_science_home_base_major_meetup",
+      "title": "Science Home Base + Major Meetup",
+      "venue_id": "health_sci",
+      "raw_location_label": "Natural Sciences Centre",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "SCI"
+      ]
+    },
+    {
+      "id": "2026-09-08_music_home_base_first_year_welcome",
+      "title": "Music Home Base + First-Year Welcome",
+      "venue_id": "talbot",
+      "raw_location_label": "Talbot College",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "MUSIC"
+      ]
+    },
+    {
+      "id": "2026-09-08_engineering_faculty_check_in",
+      "title": "Engineering Faculty Check-In",
+      "venue_id": "aceb",
+      "raw_location_label": "Amit Chakma Engineering Building",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "ENG"
+      ]
+    },
+    {
+      "id": "2026-09-08_social_science_home_base_session",
+      "title": "Social Science Home Base Session",
+      "venue_id": "ucc",
+      "raw_location_label": "Social Science Centre",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "SS"
+      ]
+    },
+    {
+      "id": "2026-09-08_health_sciences_home_base",
+      "title": "Health Sciences Home Base",
+      "venue_id": "health_sci",
+      "raw_location_label": "Health Sciences Building",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "HELSC"
+      ]
+    },
+    {
+      "id": "2026-09-08_fims_home_base",
+      "title": "FIMS Home Base",
+      "venue_id": "ucc",
+      "raw_location_label": "FIMS and Nursing Building",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "FIMS"
+      ]
+    },
+    {
+      "id": "2026-09-08_arts_and_humanities_home_base",
+      "title": "Arts and Humanities Home Base",
+      "venue_id": "ucc",
+      "raw_location_label": "University College",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "ARTS"
+      ]
+    },
+    {
+      "id": "2026-09-08_king_s_home_base_meetup",
+      "title": "King's Home Base Meetup",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-08_huron_home_base_meetup",
+      "title": "Huron Home Base Meetup",
+      "venue_id": "huron_quad",
+      "raw_location_label": "Huron Quad area",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-08_usc_clubs_fair",
+      "title": "USC Clubs Fair",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "11:30",
+      "end_time": "14:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_camp_charlies_cabin_crawl",
+      "title": "Camp Charlies Cabin Crawl",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "UCC / Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_free_food",
+      "title": "Free Food",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_chalk_and_art",
+      "title": "Chalk and Art",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_inflatables",
+      "title": "Inflatables",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_picnic_with_live_music_and_lawn_games",
+      "title": "Picnic with Live Music and Lawn Games",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "12:30",
+      "end_time": "14:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_social_sci_destress",
+      "title": "Social Sci Destress",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "13:00",
+      "end_time": "14:30",
+      "audience_tags": [
+        "SS"
+      ]
+    },
+    {
+      "id": "2026-09-08_games_gains",
+      "title": "Games & Gains",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "13:30",
+      "end_time": "15:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_paint_the_sciences",
+      "title": "Paint the Sciences",
+      "venue_id": "renaissance_square",
+      "raw_location_label": "Renaissance Square",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "14:00",
+      "end_time": "15:30",
+      "audience_tags": [
+        "SCI"
+      ]
+    },
+    {
+      "id": "2026-09-08_music_trivia_and_games_night",
+      "title": "Music Trivia and Games Night",
+      "venue_id": "talbot",
+      "raw_location_label": "Talbot College",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "14:30",
+      "end_time": "16:00",
+      "audience_tags": [
+        "MUSIC"
+      ]
+    },
+    {
+      "id": "2026-09-08_eng_pull",
+      "title": "ENG Pull",
+      "venue_id": "aceb_loading_dock",
+      "raw_location_label": "ACEB Loading Dock",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "15:00",
+      "end_time": "16:30",
+      "audience_tags": [
+        "ENG"
+      ]
+    },
+    {
+      "id": "2026-09-08_final_boss_practice_round",
+      "title": "Final Boss: Practice Round",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "15:30",
+      "end_time": "17:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-08_artists_in_the_atrium",
+      "title": "Artists in the Atrium",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "16:00",
+      "end_time": "17:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_global_village",
+      "title": "Global Village",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "16:30",
+      "end_time": "18:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_famjam",
+      "title": "FAMJAM",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "17:30",
+      "end_time": "19:00",
+      "audience_tags": [
+        "ARTS",
+        "FIMS",
+        "MUSIC"
+      ]
+    },
+    {
+      "id": "2026-09-08_eng_video_game_truck_and_ice_cream",
+      "title": "ENG Video Game Truck and Ice Cream",
+      "venue_id": "aceb_loading_dock",
+      "raw_location_label": "ACEB Loading Dock",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "18:00",
+      "end_time": "19:30",
+      "audience_tags": [
+        "ENG"
+      ]
+    },
+    {
+      "id": "2026-09-08_ready_player_watch",
+      "title": "Ready Player Watch",
+      "venue_id": "medline_commons",
+      "raw_location_label": "Medline Student Commons",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "18:30",
+      "end_time": "20:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-08_perth_social_free_treats",
+      "title": "Perth Social + Free Treats",
+      "venue_id": "perth_cafeteria",
+      "raw_location_label": "Perth Hall / Perth Dining Hall",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "PERTH"
+      ]
+    },
+    {
+      "id": "2026-09-08_saugeen_night_kickoff_snacks",
+      "title": "Saugeen Night Kickoff + Snacks",
+      "venue_id": "saugeen_main_lounge",
+      "raw_location_label": "Saugeen Main Lounge / Side Fields",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-08_ontario_hall_courtyard_social",
+      "title": "Ontario Hall Courtyard Social",
+      "venue_id": "ontario_courtyard",
+      "raw_location_label": "Ontario Hall Courtyard",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "OHALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_lambton_lounge_night",
+      "title": "Lambton Lounge Night",
+      "venue_id": "lambton_main_lounge",
+      "raw_location_label": "Lambton Hall Main Lounge",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-08_sydenham_quad_hangout",
+      "title": "Sydenham Quad Hangout",
+      "venue_id": "sydenham_quad",
+      "raw_location_label": "Sydenham Quad",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "MDSYD"
+      ]
+    },
+    {
+      "id": "2026-09-08_elgin_backyard_social",
+      "title": "Elgin Backyard Social",
+      "venue_id": "elgin_backyard",
+      "raw_location_label": "Elgin Hall Backyard",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "ELG"
+      ]
+    },
+    {
+      "id": "2026-09-08_essex_social_free_food",
+      "title": "Essex Social + Free Food",
+      "venue_id": "essex_cafeteria",
+      "raw_location_label": "Essex Cafeteria / Backyard",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "ESSX"
+      ]
+    },
+    {
+      "id": "2026-09-08_delaware_main_lounge_social",
+      "title": "Delaware Main Lounge Social",
+      "venue_id": "delaware_main_lounge",
+      "raw_location_label": "Delaware Main Lounge",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "DEL"
+      ]
+    },
+    {
+      "id": "2026-09-08_clare_community_night",
+      "title": "Clare Community Night",
+      "venue_id": "clare",
+      "raw_location_label": "Mercato / Clare area",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "CLARE"
+      ]
+    },
+    {
+      "id": "2026-09-08_craft_night",
+      "title": "Craft Night",
+      "venue_id": "ucc_56",
+      "raw_location_label": "UCC 56",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_oc_chill_room",
+      "title": "OC Chill Room",
+      "venue_id": "ucc_community_room",
+      "raw_location_label": "UCC Community Room (269)",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "21:00",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-08_low_sensory_room",
+      "title": "Low Sensory Room",
+      "venue_id": "hsb_room9",
+      "raw_location_label": "Health Sciences Building Room 9",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "19:00",
+      "end_time": "21:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_film_on_the_field_powered_by_amazon_prime",
+      "title": "Film on the Field powered by Amazon Prime",
+      "venue_id": "alumni_stadium",
+      "raw_location_label": "Western Alumni Stadium",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "20:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_photo_booth",
+      "title": "Photo Booth",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_mini_putt_game_lounge_arcade",
+      "title": "Mini Putt / Game Lounge / Arcade",
+      "venue_id": "mustang_lounge_east",
+      "raw_location_label": "Mustang Lounge East",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_wayne_hoffman_show",
+      "title": "Wayne Hoffman Show",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_silent_disco",
+      "title": "Silent Disco",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_led_swings",
+      "title": "LED Swings",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_movie_night_in_mckellar_theatre_la_la_land",
+      "title": "Movie Night in McKellar Theatre: La La Land",
+      "venue_id": "mckellar",
+      "raw_location_label": "McKellar Theatre",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "21:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_art_class",
+      "title": "Art Class",
+      "venue_id": "the_wave",
+      "raw_location_label": "The Wave",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_science_karaoke",
+      "title": "Science Karaoke",
+      "venue_id": "the_spoke",
+      "raw_location_label": "The Spoke",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "SCI"
+      ]
+    },
+    {
+      "id": "2026-09-08_wigged_out_night",
+      "title": "Wigged Out Night",
+      "venue_id": "the_wave",
+      "raw_location_label": "The Wave",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "22:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_dj_night",
+      "title": "DJ Night",
+      "venue_id": "the_wave",
+      "raw_location_label": "The Wave",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "22:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_late_night_free_food_dippin_dots_snacks",
+      "title": "Late-Night Free Food: Dippin Dots + Snacks",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-08_sex_toy_bingo_session_2",
+      "title": "Sex Toy Bingo Session 2",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-08",
+      "day_label": "Tuesday",
+      "start_time": "23:30",
+      "end_time": "01:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_2slgbtqia_student_welcome_2026",
+      "title": "2SLGBTQIA+ Student Welcome 2026",
+      "venue_id": "alumni_commons",
+      "raw_location_label": "Alumni Commons, Ronald D. Schmeichel Building",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_first_week_check_in_drop_in_lounge",
+      "title": "First Week Check-In: Drop-In Lounge",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_king_s_wellness_resource_fair",
+      "title": "King's Wellness Resource Fair",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "13:00",
+      "end_time": "14:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_king_s_student_wellness_panel",
+      "title": "King's Student Wellness Panel",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "13:00",
+      "end_time": "14:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_pride_panel",
+      "title": "Pride Panel",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "14:30",
+      "end_time": "16:00",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_brdrless_dance_class",
+      "title": "BRDRLESS Dance Class",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "15:00",
+      "end_time": "16:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_oc_bring_me_the_champion",
+      "title": "OC Bring Me The Champion",
+      "venue_id": "ucc_41",
+      "raw_location_label": "UCC 41",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "16:00",
+      "end_time": "17:30",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-09_oc_trivia",
+      "title": "OC Trivia",
+      "venue_id": "ucc_37",
+      "raw_location_label": "UCC 37",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "16:00",
+      "end_time": "17:30",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-09_oc_101",
+      "title": "OC 101",
+      "venue_id": "ucc_210",
+      "raw_location_label": "UCC 210",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "17:00",
+      "end_time": "18:30",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-09_petting_zoo",
+      "title": "Petting Zoo",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "17:30",
+      "end_time": "19:00",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_king_s_oc_pictionary_meet_up",
+      "title": "King's OC Pictionary + Meet-Up",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "18:00",
+      "end_time": "19:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-09_the_ultimate_obstacle_course",
+      "title": "The Ultimate Obstacle Course",
+      "venue_id": "huron_quad",
+      "raw_location_label": "Huron Quad",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "18:30",
+      "end_time": "20:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_low_sensory_room",
+      "title": "Low Sensory Room",
+      "venue_id": "hsb_room9",
+      "raw_location_label": "Health Sciences Building Room 9",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "19:00",
+      "end_time": "21:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_eastside_eighties",
+      "title": "Eastside Eighties",
+      "venue_id": "elgin_backyard",
+      "raw_location_label": "Elgin Backyard / Elgin Cafeteria / Delaware Backyard",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "EAST"
+      ]
+    },
+    {
+      "id": "2026-09-09_sex_toy_bingo",
+      "title": "Sex Toy Bingo",
+      "venue_id": "perth_cafeteria",
+      "raw_location_label": "Perth Dining Hall",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "PERTH"
+      ]
+    },
+    {
+      "id": "2026-09-09_saugeen_bubble_soccer",
+      "title": "Saugeen Bubble Soccer",
+      "venue_id": "saugeen_side_fields",
+      "raw_location_label": "Saugeen Side Fields",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-09_artists_in_the_atrium",
+      "title": "Artists in the Atrium",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "19:30",
+      "end_time": "21:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_oc_chill_room",
+      "title": "OC Chill Room",
+      "venue_id": "ucc_community_room",
+      "raw_location_label": "UCC Community Room (269)",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "20:00",
+      "end_time": "22:00",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-09_crafts",
+      "title": "Crafts",
+      "venue_id": "perth_cafeteria",
+      "raw_location_label": "Perth Dining Hall",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "PERTH"
+      ]
+    },
+    {
+      "id": "2026-09-09_cool_crafts",
+      "title": "Cool Crafts",
+      "venue_id": "lambton_5th_lounge",
+      "raw_location_label": "Lambton Hall 5th Floor Lounge",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-09_bubble_painting",
+      "title": "Bubble Painting",
+      "venue_id": "saugeen_main_lounge",
+      "raw_location_label": "Saugeen Main Lounge",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-09_drag_show",
+      "title": "Drag Show",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:00",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_bubble_soccer",
+      "title": "Bubble Soccer",
+      "venue_id": "alumni_stadium",
+      "raw_location_label": "North Field",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_laser_tag",
+      "title": "Laser Tag",
+      "venue_id": "thames_atrium",
+      "raw_location_label": "Thames Hall Atrium",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_mini_putt_game_lounge_arcade",
+      "title": "Mini Putt / Game Lounge / Arcade",
+      "venue_id": "mustang_lounge_east",
+      "raw_location_label": "Mustang Lounge East",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_art_cade_mode",
+      "title": "Art-cade Mode",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_silent_disco_dance_revolution",
+      "title": "Silent Disco Dance Revolution",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-09_led_swings",
+      "title": "LED Swings",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-09_paint_the_sciences",
+      "title": "Paint the Sciences",
+      "venue_id": "renaissance_square",
+      "raw_location_label": "Renaissance Square",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "SCI"
+      ]
+    },
+    {
+      "id": "2026-09-09_saugeen_bubble_beats_and_bball",
+      "title": "Saugeen Bubble Beats and Bball",
+      "venue_id": "saugeen_basketball",
+      "raw_location_label": "Saugeen Basketball Courts",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "SAUG"
+      ]
+    },
+    {
+      "id": "2026-09-09_health_sci_sex_trivia",
+      "title": "Health Sci Sex Trivia",
+      "venue_id": "mckellar",
+      "raw_location_label": "McKellar Theatre",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "22:30",
+      "end_time": "23:30",
+      "audience_tags": [
+        "HELSC"
+      ]
+    },
+    {
+      "id": "2026-09-09_essex_sex_toy_bingo",
+      "title": "Essex Sex Toy Bingo",
+      "venue_id": "essex_cafeteria",
+      "raw_location_label": "Essex Cafeteria",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "ESSX"
+      ]
+    },
+    {
+      "id": "2026-09-09_b_i_n_g_ohhh_sex_toy_bingo",
+      "title": "B-I-N-G-Ohhh: Sex Toy Bingo!",
+      "venue_id": "elgin_cafeteria",
+      "raw_location_label": "Elgin Hall Cafeteria",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "ELG"
+      ]
+    },
+    {
+      "id": "2026-09-09_line_dancing",
+      "title": "Line Dancing",
+      "venue_id": "ontario_courtyard",
+      "raw_location_label": "Ontario Hall Courtyard",
+      "date": "2026-09-09",
+      "day_label": "Wednesday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "OHALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_cultural_fair_reloaded",
+      "title": "Cultural Fair Reloaded",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-10_petting_zoo",
+      "title": "Petting Zoo",
+      "venue_id": "lambton_main_lounge",
+      "raw_location_label": "Lambton Hall Main Lounge",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "10:30",
+      "end_time": "12:00",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-10_lawn_games",
+      "title": "Lawn Games",
+      "venue_id": "lambton_front_yard",
+      "raw_location_label": "Lambton Hall Front Yard",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-10_bonfire",
+      "title": "Bonfire",
+      "venue_id": "sydenham_quad",
+      "raw_location_label": "Sydenham Quad",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "11:30",
+      "end_time": "13:00",
+      "audience_tags": [
+        "MDSYD"
+      ]
+    },
+    {
+      "id": "2026-09-10_sex_toy_bingo",
+      "title": "Sex Toy Bingo",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "12:00",
+      "end_time": "13:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_oserves_giving_mode_activated",
+      "title": "OServes: Giving Mode Activated",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "12:30",
+      "end_time": "14:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-10_unlock_the_world",
+      "title": "Unlock the World",
+      "venue_id": "huron_quad_tent",
+      "raw_location_label": "Huron Quad - Tent",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "13:30",
+      "end_time": "15:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_social_sci_fun_fest",
+      "title": "Social Sci Fun Fest",
+      "venue_id": "back_of_main_stage",
+      "raw_location_label": "Back of Main Stage",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "14:00",
+      "end_time": "15:30",
+      "audience_tags": [
+        "SS"
+      ]
+    },
+    {
+      "id": "2026-09-10_arts_and_humanities_campfire",
+      "title": "Arts and Humanities Campfire",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "15:00",
+      "end_time": "16:30",
+      "audience_tags": [
+        "ARTS"
+      ]
+    },
+    {
+      "id": "2026-09-10_just_dance",
+      "title": "Just Dance!",
+      "venue_id": "medline_commons",
+      "raw_location_label": "Medline Student Commons",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "16:00",
+      "end_time": "17:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_oc_chill_room",
+      "title": "OC Chill Room",
+      "venue_id": "ucc_community_room",
+      "raw_location_label": "UCC Community Room (269)",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "17:00",
+      "end_time": "19:00",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-10_global_village",
+      "title": "Global Village",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "18:00",
+      "end_time": "19:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_craft_night",
+      "title": "Craft Night",
+      "venue_id": "ucc_56",
+      "raw_location_label": "UCC 56",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "19:00",
+      "end_time": "20:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_inflatable_palooza",
+      "title": "Inflatable Palooza",
+      "venue_id": "ontario_courtyard",
+      "raw_location_label": "Ontario Hall Backyard",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "19:30",
+      "end_time": "21:00",
+      "audience_tags": [
+        "SOUTH"
+      ]
+    },
+    {
+      "id": "2026-09-10_photo_booth",
+      "title": "Photo Booth",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_fims_n_friendship_bracelets",
+      "title": "FIMS'N Friendship Bracelets",
+      "venue_id": "ucc",
+      "raw_location_label": "FIMS and Nursing Building",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "20:00",
+      "end_time": "21:30",
+      "audience_tags": [
+        "FIMS"
+      ]
+    },
+    {
+      "id": "2026-09-10_ready_player_watch",
+      "title": "Ready Player Watch",
+      "venue_id": "medline_commons",
+      "raw_location_label": "Medline Student Commons",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "HURON"
+      ]
+    },
+    {
+      "id": "2026-09-10_silent_disco",
+      "title": "Silent Disco",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_mini_putt_game_lounge_arcade",
+      "title": "Mini Putt / Game Lounge / Arcade",
+      "venue_id": "mustang_lounge_east",
+      "raw_location_label": "Mustang Lounge East",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_wayne_hoffman_show",
+      "title": "Wayne Hoffman Show",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_artists_in_the_atrium",
+      "title": "Artists in the Atrium",
+      "venue_id": "ucc_atrium",
+      "raw_location_label": "UCC Atrium",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_silent_disco_2",
+      "title": "Silent Disco",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-10_acoustic_artist_snacks",
+      "title": "Acoustic Artist + Snacks",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_board_games",
+      "title": "Board Games",
+      "venue_id": "the_spoke",
+      "raw_location_label": "The Spoke",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-10_neon_karaoke",
+      "title": "Neon Karaoke",
+      "venue_id": "perth_fireside",
+      "raw_location_label": "Perth Fireside Lounge",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "22:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "PERTH"
+      ]
+    },
+    {
+      "id": "2026-09-10_neon_karaoke_2",
+      "title": "Neon Karaoke",
+      "venue_id": "medway_formal_lounge",
+      "raw_location_label": "Medway Formal Lounge (Flounge)",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "22:30",
+      "end_time": "00:00",
+      "audience_tags": [
+        "MDSYD"
+      ]
+    },
+    {
+      "id": "2026-09-10_dough_re_mi_pizza_and_karaoke_party",
+      "title": "Dough-Re-Mi: Pizza and Karaoke Party",
+      "venue_id": "clare",
+      "raw_location_label": "Mercato",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "CLARE"
+      ]
+    },
+    {
+      "id": "2026-09-10_bayton_pizza_karaoke_night",
+      "title": "Bayton Pizza Karaoke Night",
+      "venue_id": "lambton_front_yard",
+      "raw_location_label": "Lambton Hall Front Yard",
+      "date": "2026-09-10",
+      "day_label": "Thursday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "BAY",
+        "LAMB"
+      ]
+    },
+    {
+      "id": "2026-09-11_black_student_welcome_2026_follow_up_mixer",
+      "title": "Black Student Welcome 2026 Follow-Up Mixer",
+      "venue_id": "somerville_great_hall",
+      "raw_location_label": "Great Hall, Somerville House",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "10:00",
+      "end_time": "11:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_drop_in_wellness_activities",
+      "title": "Drop-In Wellness Activities",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "11:00",
+      "end_time": "12:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-11_usc_clubs_fair",
+      "title": "USC Clubs Fair",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "12:00",
+      "end_time": "14:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_king_s_oserves_brunch",
+      "title": "King's OServes Brunch",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "13:00",
+      "end_time": "14:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-11_king_s_closing_ceremonies",
+      "title": "King's Closing Ceremonies",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "14:00",
+      "end_time": "15:30",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-11_football_game_load_in_dinner",
+      "title": "Football Game Load In & Dinner",
+      "venue_id": "alumni_stadium",
+      "raw_location_label": "Western Alumni Stadium",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "15:00",
+      "end_time": "16:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_football_game_western_vs_ottawa",
+      "title": "Football Game: Western vs Ottawa",
+      "venue_id": "alumni_stadium",
+      "raw_location_label": "Western Alumni Stadium",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "16:00",
+      "end_time": "19:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_closing_concert_pre_show",
+      "title": "Closing Concert Pre-Show",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "17:30",
+      "end_time": "20:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_closing_concert",
+      "title": "Closing Concert",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "19:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_oc_chill_room",
+      "title": "OC Chill Room",
+      "venue_id": "ucc_community_room",
+      "raw_location_label": "UCC Community Room (269)",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "20:00",
+      "end_time": "22:00",
+      "audience_tags": [
+        "OC"
+      ]
+    },
+    {
+      "id": "2026-09-11_inflatables",
+      "title": "Inflatables",
+      "venue_id": "top_of_uc_hill",
+      "raw_location_label": "Top of UC Hill",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "20:30",
+      "end_time": "22:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_dj_night_ft_matroda_beau_cruz",
+      "title": "DJ Night ft. Matroda & Beau Cruz",
+      "venue_id": "main_stage",
+      "raw_location_label": "Main Stage",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "21:00",
+      "end_time": "23:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_inflatables_2",
+      "title": "Inflatables",
+      "venue_id": "uc_hill",
+      "raw_location_label": "UC Hill",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_got_game",
+      "title": "Got Game",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_mini_putt_game_lounge_arcade",
+      "title": "Mini Putt / Game Lounge / Arcade",
+      "venue_id": "mustang_lounge_east",
+      "raw_location_label": "Mustang Lounge East",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "21:00",
+      "end_time": "22:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_king_s_paint_night",
+      "title": "King's Paint Night",
+      "venue_id": "kings",
+      "raw_location_label": "King's",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "21:30",
+      "end_time": "23:00",
+      "audience_tags": [
+        "KINGS"
+      ]
+    },
+    {
+      "id": "2026-09-11_silent_disco",
+      "title": "Silent Disco",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_led_swings",
+      "title": "LED Swings",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_eng_karaoke",
+      "title": "Eng Karaoke",
+      "venue_id": "the_wave",
+      "raw_location_label": "The Wave",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "22:00",
+      "end_time": "23:30",
+      "audience_tags": [
+        "ENG"
+      ]
+    },
+    {
+      "id": "2026-09-11_movie_night_in_mckellar_theatre_ferris_bueller_s_day_off",
+      "title": "Movie Night in McKellar Theatre: Ferris Bueller's Day Off",
+      "venue_id": "mckellar",
+      "raw_location_label": "McKellar Theatre",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "22:30",
+      "end_time": "00:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_free_food",
+      "title": "Free Food",
+      "venue_id": "concrete_beach",
+      "raw_location_label": "Concrete Beach",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "23:00",
+      "end_time": "00:30",
+      "audience_tags": [
+        "ALL"
+      ]
+    },
+    {
+      "id": "2026-09-11_eric_leclerc",
+      "title": "Eric Leclerc",
+      "venue_id": "mustang_lounge_west",
+      "raw_location_label": "Mustang Lounge West",
+      "date": "2026-09-11",
+      "day_label": "Friday",
+      "start_time": "23:30",
+      "end_time": "01:00",
+      "audience_tags": [
+        "ALL"
+      ]
+    }
+  ]
+}

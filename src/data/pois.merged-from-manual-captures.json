@@ -1,0 +1,1071 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "aceb",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2762446,
+          43.0043154
+        ]
+      },
+      "properties": {
+        "id": "aceb",
+        "name": "Amit Chakma Engineering Building",
+        "short_code": "ACEB",
+        "category": "academic",
+        "osm_ref": "way/confirmed-Mapcarta",
+        "description": "Western's newest engineering building on the Western Road edge of campus.",
+        "captured_name": "ACEB",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "concrete_beach",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2753312,
+          43.0085059
+        ]
+      },
+      "properties": {
+        "id": "concrete_beach",
+        "name": "Concrete Beach",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/237301679",
+        "description": "The open paved square outside the UCC. A central hangout and event space.",
+        "captured_name": "concrete Beach",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "health_sci",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2727657,
+          43.0054075
+        ]
+      },
+      "properties": {
+        "id": "health_sci",
+        "name": "Health Sciences Building",
+        "short_code": "HSB",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to Western's health sciences programs on the north end of central campus.",
+        "captured_name": "health sci",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "huron_quad",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2783697,
+          43.0087131
+        ]
+      },
+      "properties": {
+        "id": "huron_quad",
+        "name": "Huron Quad",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/confirmed-Huron-UC",
+        "description": "The outdoor quad at Huron University College. A common OWeek event space."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kings",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2572377,
+          43.0116092
+        ]
+      },
+      "properties": {
+        "id": "kings",
+        "name": "King's University College",
+        "short_code": "King's",
+        "category": "affiliated",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "An affiliated Catholic liberal arts college at the south edge of campus.",
+        "captured_name": "KING'S",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mckellar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2706,
+          43.0074
+        ]
+      },
+      "properties": {
+        "id": "mckellar",
+        "name": "McKellar Theatre",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": "way/confirmed-Talbot-area",
+        "description": "A theatre venue in Talbot College used for performances and OWeek events."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rec_centre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2754026,
+          43.0032312
+        ]
+      },
+      "properties": {
+        "id": "rec_centre",
+        "name": "Recreation Centre",
+        "short_code": "WSRC",
+        "category": "athletics",
+        "osm_ref": "way/confirmed-OSM-WSRC",
+        "description": "Western's main rec facility. Pool, gyms, fitness classes, intramurals.",
+        "captured_name": "Rec centre",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "schmeichel",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.276249,
+          43.0074194
+        ]
+      },
+      "properties": {
+        "id": "schmeichel",
+        "name": "Ronald D. Schmeichel Building",
+        "short_code": "SEIB",
+        "category": "academic",
+        "osm_ref": "way/310131574",
+        "description": "Western's entrepreneurship and innovation hub. Maker spaces, flexible learning, central campus location.",
+        "captured_name": "Entrepreneurship Building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "somerville",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2740712,
+          43.0077321
+        ]
+      },
+      "properties": {
+        "id": "somerville",
+        "name": "Somerville House",
+        "short_code": "SH",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to the Great Hall and Green Leaf Cafe. Used for large formal events.",
+        "captured_name": "Sommervile house",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "talbot",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2705147,
+          43.007443
+        ]
+      },
+      "properties": {
+        "id": "talbot",
+        "name": "Talbot College",
+        "short_code": "TC",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to the Don Wright Faculty of Music and Kenny Theatre.",
+        "captured_name": "Talbot College",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "thames",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2743239,
+          43.0069335
+        ]
+      },
+      "properties": {
+        "id": "thames",
+        "name": "Thames Hall",
+        "short_code": "TH",
+        "category": "academic",
+        "osm_ref": "way/118764095",
+        "description": "Central academic building next to Concrete Beach and the UCC.",
+        "captured_name": "Thames Hall",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "uc_hill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2723301,
+          43.0083049
+        ]
+      },
+      "properties": {
+        "id": "uc_hill",
+        "name": "UC Hill",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/confirmed-OSM-grassland",
+        "description": "The grassy hill on campus. A key gathering spot and OWeek landmark.",
+        "captured_name": "UCC hill",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ucc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.27603,
+          43.0087187
+        ]
+      },
+      "properties": {
+        "id": "ucc",
+        "name": "University Community Centre",
+        "short_code": "UCC",
+        "category": "academic",
+        "osm_ref": "way/182649262",
+        "description": "Western's student hub. The Spoke, The Wave, USC offices, and most student services are here.",
+        "_note": "The Spoke and The Wave resolve to this pin.",
+        "captured_name": "UCC",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "alumni_stadium",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2738862,
+          42.9998662
+        ]
+      },
+      "properties": {
+        "id": "alumni_stadium",
+        "name": "Western Alumni Stadium",
+        "short_code": null,
+        "category": "athletics",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Main outdoor stadium. Home of Mustang football and large OWeek concerts."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bayfield",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2786528,
+          43.0127136
+        ]
+      },
+      "properties": {
+        "id": "bayfield",
+        "name": "Bayfield Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668520",
+        "description": "Hybrid-style residence in the Glenmore complex near Saugeen and Lambton.",
+        "captured_name": "Bayfield",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "clare",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2827931,
+          43.0034706
+        ]
+      },
+      "properties": {
+        "id": "clare",
+        "name": "Clare Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Hybrid-style newer residence on the south end of campus.",
+        "captured_name": "CLARE HALL",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "delaware",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2689569,
+          43.0086576
+        ]
+      },
+      "properties": {
+        "id": "delaware",
+        "name": "Delaware Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/141710478",
+        "description": "Traditional-style first-year residence on the east side of campus.",
+        "captured_name": "dellaware",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "elgin",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2649267,
+          43.0084104
+        ]
+      },
+      "properties": {
+        "id": "elgin",
+        "name": "Elgin Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/142286099",
+        "description": "Suite-style residence on the far east side of campus near Delaware.",
+        "captured_name": "Elgin",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "essex",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2756582,
+          43.0013572
+        ]
+      },
+      "properties": {
+        "id": "essex",
+        "name": "Essex Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM-EHR",
+        "description": "Suite-style residence in the south-central area of campus.",
+        "captured_name": "essex",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lambton",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2775501,
+          43.0135686
+        ]
+      },
+      "properties": {
+        "id": "lambton",
+        "name": "Lambton Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668341",
+        "description": "Suite-style residence on Western Road near the university hospital.",
+        "captured_name": "Lambton",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "medsyd",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2643504,
+          43.007688
+        ]
+      },
+      "properties": {
+        "id": "medsyd",
+        "name": "Medway-Sydenham Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM-SYHR",
+        "description": "Traditional-style residence on University Drive. Third largest on campus.",
+        "captured_name": "med-syd",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ontario",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2792971,
+          43.000814
+        ]
+      },
+      "properties": {
+        "id": "ontario",
+        "name": "Ontario Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/310134768",
+        "description": "Newer hybrid-style residence in the south end of campus.",
+        "captured_name": "O hall",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "perth",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2770294,
+          42.9999657
+        ]
+      },
+      "properties": {
+        "id": "perth",
+        "name": "Perth Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/310135962",
+        "description": "Hybrid-style residence in the south campus near Platt's Lane.",
+        "captured_name": "perth",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "saugeen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.279077,
+          43.0114439
+        ]
+      },
+      "properties": {
+        "id": "saugeen",
+        "name": "Saugeen Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668347",
+        "description": "The largest residence on campus. Traditional-style, 1,252 students, Windermere Road.",
+        "captured_name": "Saugeen",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "spencer_engineering_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2759383,
+          43.0055918
+        ]
+      },
+      "properties": {
+        "id": "spencer_engineering_building",
+        "name": "Spencer Engineering Building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Spencer Engineering Building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "law_school",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2760485,
+          43.0066688
+        ]
+      },
+      "properties": {
+        "id": "law_school",
+        "name": "Law School",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Law School",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "social_science_center",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2751355,
+          43.0095537
+        ]
+      },
+      "properties": {
+        "id": "social_science_center",
+        "name": "Social Science Center",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Social Science Center",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "medical_science_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2744992,
+          43.0103968
+        ]
+      },
+      "properties": {
+        "id": "medical_science_building",
+        "name": "Medical Science Building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Medical Science Building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "nat_sci_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2730765,
+          43.0105561
+        ]
+      },
+      "properties": {
+        "id": "nat_sci_building",
+        "name": "Nat Sci building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Nat Sci building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "taylor_libary",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2733748,
+          43.0112534
+        ]
+      },
+      "properties": {
+        "id": "taylor_libary",
+        "name": "Taylor Libary",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Taylor Libary",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bio_and_geo_scie",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2721612,
+          43.0107574
+        ]
+      },
+      "properties": {
+        "id": "bio_and_geo_scie",
+        "name": "Bio & Geo Scie",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Bio & Geo Scie",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "western_science_centre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2714547,
+          43.0099961
+        ]
+      },
+      "properties": {
+        "id": "western_science_centre",
+        "name": "Western Science Centre",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Western Science Centre",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "visual_art_centre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2698505,
+          43.0108837
+        ]
+      },
+      "properties": {
+        "id": "visual_art_centre",
+        "name": "Visual Art Centre",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Visual Art Centre",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "north_campus",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2694488,
+          43.0104063
+        ]
+      },
+      "properties": {
+        "id": "north_campus",
+        "name": "North Campus",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "North Campus",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "middlesex",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2701908,
+          43.0094395
+        ]
+      },
+      "properties": {
+        "id": "middlesex",
+        "name": "Middlesex",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Middlesex",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "music_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2710022,
+          43.0067833
+        ]
+      },
+      "properties": {
+        "id": "music_building",
+        "name": "Music Building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Music Building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "art_n_humanitites",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2728375,
+          43.0074463
+        ]
+      },
+      "properties": {
+        "id": "art_n_humanitites",
+        "name": "Art n humanitites",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Art n humanitites",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "int_and_grad_affairs_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2720099,
+          43.0074833
+        ]
+      },
+      "properties": {
+        "id": "int_and_grad_affairs_building",
+        "name": "Int & grad affairs building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Int & grad affairs building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "weldon",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2755792,
+          43.007907
+        ]
+      },
+      "properties": {
+        "id": "weldon",
+        "name": "Weldon",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Weldon",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "physics_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2725332,
+          43.0098522
+        ]
+      },
+      "properties": {
+        "id": "physics_building",
+        "name": "Physics Building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Physics Building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "university_college",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2730507,
+          43.0084419
+        ]
+      },
+      "properties": {
+        "id": "university_college",
+        "name": "university college",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "university college",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "stevenson_hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2740953,
+          43.0085804
+        ]
+      },
+      "properties": {
+        "id": "stevenson_hall",
+        "name": "Stevenson Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Stevenson Hall",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lawson_hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2739749,
+          43.0091644
+        ]
+      },
+      "properties": {
+        "id": "lawson_hall",
+        "name": "Lawson Hall",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Lawson Hall",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ivey",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.277418,
+          43.004593
+        ]
+      },
+      "properties": {
+        "id": "ivey",
+        "name": "ivey",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "ivey",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "thompson_eng",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2751759,
+          43.0044869
+        ]
+      },
+      "properties": {
+        "id": "thompson_eng",
+        "name": "Thompson Eng",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Thompson Eng",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "alumni_hall",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2744377,
+          43.0060363
+        ]
+      },
+      "properties": {
+        "id": "alumni_hall",
+        "name": "Alumni Hall",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Alumni Hall",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "fims",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2725509,
+          43.0060721
+        ]
+      },
+      "properties": {
+        "id": "fims",
+        "name": "Fims",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Fims",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "health_sci_fields",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2720571,
+          43.0044571
+        ]
+      },
+      "properties": {
+        "id": "health_sci_fields",
+        "name": "health sci fields",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "health sci fields",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "london",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2756874,
+          43.0003699
+        ]
+      },
+      "properties": {
+        "id": "london",
+        "name": "london",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "london",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "education_building",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2781783,
+          42.9992349
+        ]
+      },
+      "properties": {
+        "id": "education_building",
+        "name": "Education building",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "Education building",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mcintosh_art",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2733952,
+          43.0095702
+        ]
+      },
+      "properties": {
+        "id": "mcintosh_art",
+        "name": "mcintosh art",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": null,
+        "description": null,
+        "captured_name": "mcintosh art",
+        "coordinate_source": "manual_capture_2026_04_14"
+      }
+    }
+  ]
+}

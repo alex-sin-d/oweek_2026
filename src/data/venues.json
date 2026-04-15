@@ -1,0 +1,1381 @@
+{
+  "venues": [
+    {
+      "id": "aceb",
+      "poi_id": "aceb",
+      "name": "Amit Chakma Engineering Building",
+      "short_code": "ACEB",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "ACEB",
+        "Engineering Building"
+      ],
+      "raw_labels": [
+        "Amit Chakma Engineering Building",
+        "ACEB"
+      ],
+      "search_terms": [
+        "amit chakma engineering building",
+        "aceb",
+        "engineering building"
+      ]
+    },
+    {
+      "id": "aceb_loading_dock",
+      "poi_id": "aceb",
+      "parent_name": "Amit Chakma Engineering Building",
+      "name": "ACEB Loading Dock",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Loading Dock"
+      ],
+      "raw_labels": [
+        "ACEB Loading Dock"
+      ],
+      "search_terms": [
+        "aceb loading dock",
+        "loading dock"
+      ],
+      "location_hint": "Loading dock, exterior"
+    },
+    {
+      "id": "health_sci",
+      "poi_id": "health_sci",
+      "name": "Health Sciences Building",
+      "short_code": "HSB",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "HSB",
+        "Health Sci"
+      ],
+      "raw_labels": [
+        "Health Sciences Building",
+        "HSB"
+      ],
+      "search_terms": [
+        "health sciences building",
+        "hsb",
+        "health sci"
+      ]
+    },
+    {
+      "id": "hsb_room9",
+      "poi_id": "health_sci",
+      "parent_name": "Health Sciences Building",
+      "name": "Health Sciences Building Room 9",
+      "display_label": "Room 9, HSB",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "HSB Room 9",
+        "HSB 9"
+      ],
+      "raw_labels": [
+        "Health Sciences Building Room 9",
+        "HSB Room 9",
+        "HSB 9"
+      ],
+      "search_terms": [
+        "health sciences building room 9",
+        "hsb room 9",
+        "hsb 9"
+      ],
+      "location_hint": "Room 9"
+    },
+    {
+      "id": "schmeichel",
+      "poi_id": "schmeichel",
+      "name": "Ronald D. Schmeichel Building",
+      "short_code": "Schmeichel",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Schmeichel Building",
+        "Schmeichel"
+      ],
+      "raw_labels": [
+        "Ronald D. Schmeichel Building",
+        "Ronald D. Schmeichel Building for Entrepreneurship and Innovation",
+        "Schmeichel Building",
+        "Schmeichel"
+      ],
+      "search_terms": [
+        "ronald d schmeichel building",
+        "schmeichel building",
+        "schmeichel",
+        "entrepreneurship and innovation building"
+      ]
+    },
+    {
+      "id": "somerville",
+      "poi_id": "somerville",
+      "name": "Somerville House",
+      "short_code": "SH",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Somerville"
+      ],
+      "raw_labels": [
+        "Somerville House",
+        "Somerville"
+      ],
+      "search_terms": [
+        "somerville house",
+        "somerville"
+      ]
+    },
+    {
+      "id": "somerville_great_hall",
+      "poi_id": "somerville",
+      "parent_name": "Somerville House",
+      "name": "Great Hall, Somerville House",
+      "display_label": "Great Hall",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Great Hall",
+        "Somerville Great Hall"
+      ],
+      "raw_labels": [
+        "Great Hall, Somerville House",
+        "Great Hall Somerville",
+        "Great Hall"
+      ],
+      "search_terms": [
+        "great hall somerville house",
+        "great hall somerville",
+        "great hall"
+      ],
+      "location_hint": "Great Hall, main floor"
+    },
+    {
+      "id": "medline_commons",
+      "poi_id": "somerville",
+      "parent_name": "Somerville House",
+      "name": "Medline Student Commons",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Medline Commons"
+      ],
+      "raw_labels": [
+        "Medline Student Commons",
+        "Medline Commons"
+      ],
+      "search_terms": [
+        "medline student commons",
+        "medline commons"
+      ],
+      "location_hint": "Inside Somerville House"
+    },
+    {
+      "id": "talbot",
+      "poi_id": "talbot",
+      "name": "Talbot College",
+      "short_code": "TC",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Talbot"
+      ],
+      "raw_labels": [
+        "Talbot College",
+        "Talbot"
+      ],
+      "search_terms": [
+        "talbot college",
+        "talbot"
+      ]
+    },
+    {
+      "id": "kenny_theatre",
+      "poi_id": "talbot",
+      "parent_name": "Talbot College",
+      "name": "Kenny Theatre",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "McKellar Theatre"
+      ],
+      "raw_labels": [
+        "Kenny Theatre",
+        "McKellar Theatre"
+      ],
+      "search_terms": [
+        "kenny theatre",
+        "mckellar theatre"
+      ],
+      "location_hint": "Inside Talbot College"
+    },
+    {
+      "id": "thames",
+      "poi_id": "thames",
+      "name": "Thames Hall",
+      "short_code": "TH",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Thames"
+      ],
+      "raw_labels": [
+        "Thames Hall",
+        "Thames"
+      ],
+      "search_terms": [
+        "thames hall",
+        "thames"
+      ]
+    },
+    {
+      "id": "thames_atrium",
+      "poi_id": "thames",
+      "parent_name": "Thames Hall",
+      "name": "Thames Hall Atrium",
+      "display_label": "Thames Hall Atrium",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Thames Atrium"
+      ],
+      "raw_labels": [
+        "Thames Hall Atrium",
+        "Thames Atrium"
+      ],
+      "search_terms": [
+        "thames hall atrium",
+        "thames atrium"
+      ],
+      "location_hint": "Atrium, main floor"
+    },
+    {
+      "id": "ucc",
+      "poi_id": "ucc",
+      "name": "University Community Centre",
+      "short_code": "UCC",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "UCC"
+      ],
+      "raw_labels": [
+        "University Community Centre",
+        "UCC"
+      ],
+      "search_terms": [
+        "university community centre",
+        "ucc"
+      ]
+    },
+    {
+      "id": "ucc_37",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC 37",
+      "display_label": "Room 37, UCC",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Room 37, UCC"
+      ],
+      "raw_labels": [
+        "UCC 37"
+      ],
+      "search_terms": [
+        "ucc 37",
+        "room 37 ucc"
+      ],
+      "location_hint": "Room 37"
+    },
+    {
+      "id": "ucc_41",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC 41",
+      "display_label": "Room 41, UCC",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Room 41, UCC"
+      ],
+      "raw_labels": [
+        "UCC 41"
+      ],
+      "search_terms": [
+        "ucc 41",
+        "room 41 ucc"
+      ],
+      "location_hint": "Room 41"
+    },
+    {
+      "id": "ucc_56",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC 56",
+      "display_label": "Room 56, UCC",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Room 56, UCC"
+      ],
+      "raw_labels": [
+        "UCC 56"
+      ],
+      "search_terms": [
+        "ucc 56",
+        "room 56 ucc"
+      ],
+      "location_hint": "Room 56"
+    },
+    {
+      "id": "ucc_210",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC 210",
+      "display_label": "Room 210, UCC",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Room 210, UCC"
+      ],
+      "raw_labels": [
+        "UCC 210"
+      ],
+      "search_terms": [
+        "ucc 210",
+        "room 210 ucc"
+      ],
+      "location_hint": "Room 210, 2nd floor"
+    },
+    {
+      "id": "ucc_atrium",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC Atrium",
+      "display_label": "UCC Atrium",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "UCC Main Atrium"
+      ],
+      "raw_labels": [
+        "UCC Atrium"
+      ],
+      "search_terms": [
+        "ucc atrium"
+      ],
+      "location_hint": "Main atrium"
+    },
+    {
+      "id": "ucc_community_room",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "UCC Community Room (269)",
+      "display_label": "Community Room 269, UCC",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Community Room 269",
+        "UCC 269"
+      ],
+      "raw_labels": [
+        "UCC Community Room (269)",
+        "UCC Community Room",
+        "Community Room 269",
+        "UCC 269"
+      ],
+      "search_terms": [
+        "ucc community room",
+        "ucc 269",
+        "community room 269"
+      ],
+      "location_hint": "Room 269, 2nd floor"
+    },
+    {
+      "id": "mustang_lounge_east",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "Mustang Lounge East",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Mustang East"
+      ],
+      "raw_labels": [
+        "Mustang Lounge East",
+        "Mustang East"
+      ],
+      "search_terms": [
+        "mustang lounge east",
+        "mustang east"
+      ],
+      "location_hint": "Mustang Lounge, east side"
+    },
+    {
+      "id": "mustang_lounge_west",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "Mustang Lounge West",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Mustang West"
+      ],
+      "raw_labels": [
+        "Mustang Lounge West",
+        "Mustang West"
+      ],
+      "search_terms": [
+        "mustang lounge west",
+        "mustang west"
+      ],
+      "location_hint": "Mustang Lounge, west side"
+    },
+    {
+      "id": "renaissance_square",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "Renaissance Square",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Ren Square"
+      ],
+      "raw_labels": [
+        "Renaissance Square",
+        "Ren Square"
+      ],
+      "search_terms": [
+        "renaissance square",
+        "ren square"
+      ],
+      "location_hint": "Inside UCC"
+    },
+    {
+      "id": "alumni_commons",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "Alumni Commons",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [],
+      "raw_labels": [
+        "Alumni Commons"
+      ],
+      "search_terms": [
+        "alumni commons"
+      ]
+    },
+    {
+      "id": "the_spoke",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "The Spoke",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Spoke",
+        "The Spoke & Rim Tavern"
+      ],
+      "raw_labels": [
+        "The Spoke",
+        "Spoke",
+        "The Spoke & Rim Tavern"
+      ],
+      "search_terms": [
+        "the spoke",
+        "spoke",
+        "spoke and rim tavern"
+      ],
+      "location_hint": "The Spoke, main floor, UCC"
+    },
+    {
+      "id": "the_wave",
+      "poi_id": "ucc",
+      "parent_name": "University Community Centre",
+      "name": "The Wave",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Wave"
+      ],
+      "raw_labels": [
+        "The Wave",
+        "Wave"
+      ],
+      "search_terms": [
+        "the wave",
+        "wave"
+      ],
+      "location_hint": "The Wave, 2nd floor, UCC"
+    },
+    {
+      "id": "rec_centre",
+      "poi_id": "rec_centre",
+      "name": "Recreation Centre",
+      "short_code": "WSRC",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Rec Centre",
+        "WSRC",
+        "Western Student Recreation Centre"
+      ],
+      "raw_labels": [
+        "Recreation Centre",
+        "Rec Centre",
+        "WSRC",
+        "Western Student Recreation Centre"
+      ],
+      "search_terms": [
+        "recreation centre",
+        "rec centre",
+        "wsrc",
+        "western student recreation centre"
+      ]
+    },
+    {
+      "id": "alumni_stadium",
+      "poi_id": "alumni_stadium",
+      "name": "Western Alumni Stadium",
+      "short_code": "Stadium",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Alumni Stadium",
+        "TD Stadium"
+      ],
+      "raw_labels": [
+        "Western Alumni Stadium",
+        "Alumni Stadium",
+        "TD Stadium"
+      ],
+      "search_terms": [
+        "western alumni stadium",
+        "alumni stadium",
+        "td stadium"
+      ]
+    },
+    {
+      "id": "main_stage",
+      "poi_id": "alumni_stadium",
+      "parent_name": "Western Alumni Stadium",
+      "name": "Main Stage",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [],
+      "raw_labels": [
+        "Main Stage"
+      ],
+      "search_terms": [
+        "main stage"
+      ],
+      "location_hint": "Main Stage, Alumni Stadium"
+    },
+    {
+      "id": "back_of_main_stage",
+      "poi_id": "alumni_stadium",
+      "parent_name": "Western Alumni Stadium",
+      "name": "Back of Main Stage",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [],
+      "raw_labels": [
+        "Back of Main Stage"
+      ],
+      "search_terms": [
+        "back of main stage"
+      ],
+      "location_hint": "Behind the main stage"
+    },
+    {
+      "id": "concrete_beach",
+      "poi_id": "concrete_beach",
+      "name": "Concrete Beach",
+      "kind": "landmark",
+      "is_parent": true,
+      "is_outdoor": true,
+      "aliases": [
+        "Concrete Beach UCC"
+      ],
+      "raw_labels": [
+        "Concrete Beach",
+        "Concrete Beach (UCC)"
+      ],
+      "search_terms": [
+        "concrete beach",
+        "concrete beach ucc"
+      ]
+    },
+    {
+      "id": "huron_quad",
+      "poi_id": "huron_quad",
+      "name": "Huron Quad",
+      "kind": "landmark",
+      "is_parent": true,
+      "is_outdoor": true,
+      "aliases": [],
+      "raw_labels": [
+        "Huron Quad"
+      ],
+      "search_terms": [
+        "huron quad"
+      ]
+    },
+    {
+      "id": "huron_quad_tent",
+      "poi_id": "huron_quad",
+      "parent_name": "Huron Quad",
+      "name": "Huron Quad - Tent",
+      "display_label": "Tent, Huron Quad",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Huron Tent"
+      ],
+      "raw_labels": [
+        "Huron Quad - Tent",
+        "Huron Quad Tent",
+        "Huron Tent"
+      ],
+      "search_terms": [
+        "huron quad tent",
+        "huron tent"
+      ],
+      "location_hint": "Tent structure in Huron Quad"
+    },
+    {
+      "id": "uc_hill",
+      "poi_id": "uc_hill",
+      "name": "UC Hill",
+      "kind": "landmark",
+      "is_parent": true,
+      "is_outdoor": true,
+      "aliases": [
+        "University College Hill"
+      ],
+      "raw_labels": [
+        "UC Hill",
+        "University College Hill"
+      ],
+      "search_terms": [
+        "uc hill",
+        "university college hill"
+      ]
+    },
+    {
+      "id": "top_of_uc_hill",
+      "poi_id": "uc_hill",
+      "parent_name": "UC Hill",
+      "name": "Top of UC Hill",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [],
+      "raw_labels": [
+        "Top of UC Hill"
+      ],
+      "search_terms": [
+        "top of uc hill"
+      ],
+      "location_hint": "Top of UC Hill"
+    },
+    {
+      "id": "kings",
+      "poi_id": "kings",
+      "name": "King's University College",
+      "short_code": "King's",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "Kings",
+        "King's College"
+      ],
+      "raw_labels": [
+        "King's University College",
+        "King's",
+        "Kings"
+      ],
+      "search_terms": [
+        "kings university college",
+        "kings",
+        "kings college"
+      ]
+    },
+    {
+      "id": "mckellar",
+      "poi_id": "mckellar",
+      "name": "McKellar Theatre",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "McKellar"
+      ],
+      "raw_labels": [
+        "McKellar Theatre",
+        "McKellar"
+      ],
+      "search_terms": [
+        "mckellar theatre",
+        "mckellar"
+      ]
+    },
+    {
+      "id": "bayfield",
+      "poi_id": "bayfield",
+      "name": "Bayfield Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Bayfield"
+      ],
+      "raw_labels": [
+        "Bayfield Hall",
+        "Bayfield",
+        "Bayfield Hall Residence"
+      ],
+      "search_terms": [
+        "bayfield hall",
+        "bayfield"
+      ]
+    },
+    {
+      "id": "clare",
+      "poi_id": "clare",
+      "name": "Clare Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Clare"
+      ],
+      "raw_labels": [
+        "Clare Hall",
+        "Clare",
+        "Clare Hall Residence"
+      ],
+      "search_terms": [
+        "clare hall",
+        "clare"
+      ]
+    },
+    {
+      "id": "delaware",
+      "poi_id": "delaware",
+      "name": "Delaware Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Delaware"
+      ],
+      "raw_labels": [
+        "Delaware Hall",
+        "Delaware",
+        "Delaware Hall Residence"
+      ],
+      "search_terms": [
+        "delaware hall",
+        "delaware"
+      ]
+    },
+    {
+      "id": "delaware_main_lounge",
+      "poi_id": "delaware",
+      "parent_name": "Delaware Hall",
+      "name": "Delaware Main Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Delaware Lounge"
+      ],
+      "raw_labels": [
+        "Delaware Main Lounge",
+        "Delaware Lounge"
+      ],
+      "search_terms": [
+        "delaware main lounge",
+        "delaware lounge"
+      ],
+      "location_hint": "Main lounge, ground floor"
+    },
+    {
+      "id": "elgin",
+      "poi_id": "elgin",
+      "name": "Elgin Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Elgin"
+      ],
+      "raw_labels": [
+        "Elgin Hall",
+        "Elgin",
+        "Elgin Hall Residence"
+      ],
+      "search_terms": [
+        "elgin hall",
+        "elgin"
+      ]
+    },
+    {
+      "id": "elgin_backyard",
+      "poi_id": "elgin",
+      "parent_name": "Elgin Hall",
+      "name": "Elgin Hall Backyard",
+      "display_label": "Elgin Backyard",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Elgin Backyard"
+      ],
+      "raw_labels": [
+        "Elgin Hall Backyard",
+        "Elgin Backyard"
+      ],
+      "search_terms": [
+        "elgin hall backyard",
+        "elgin backyard"
+      ],
+      "location_hint": "Backyard, exterior"
+    },
+    {
+      "id": "elgin_cafeteria",
+      "poi_id": "elgin",
+      "parent_name": "Elgin Hall",
+      "name": "Elgin Hall Cafeteria",
+      "display_label": "Elgin Cafeteria",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Elgin Cafeteria",
+        "Elgin Dining"
+      ],
+      "raw_labels": [
+        "Elgin Hall Cafeteria",
+        "Elgin Cafeteria",
+        "Elgin Dining"
+      ],
+      "search_terms": [
+        "elgin hall cafeteria",
+        "elgin cafeteria",
+        "elgin dining"
+      ],
+      "location_hint": "Cafeteria, ground floor"
+    },
+    {
+      "id": "elgin_main_lounge",
+      "poi_id": "elgin",
+      "parent_name": "Elgin Hall",
+      "name": "Elgin Hall Main Lounge",
+      "display_label": "Elgin Main Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Elgin Main Lounge",
+        "Elgin Lounge"
+      ],
+      "raw_labels": [
+        "Elgin Hall Main Lounge",
+        "Elgin Main Lounge",
+        "Elgin Lounge"
+      ],
+      "search_terms": [
+        "elgin hall main lounge",
+        "elgin main lounge",
+        "elgin lounge"
+      ],
+      "location_hint": "Main lounge, ground floor"
+    },
+    {
+      "id": "essex",
+      "poi_id": "essex",
+      "name": "Essex Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Essex"
+      ],
+      "raw_labels": [
+        "Essex Hall",
+        "Essex",
+        "Essex Hall Residence"
+      ],
+      "search_terms": [
+        "essex hall",
+        "essex"
+      ]
+    },
+    {
+      "id": "essex_backyard",
+      "poi_id": "essex",
+      "parent_name": "Essex Hall",
+      "name": "Essex Backyard",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [],
+      "raw_labels": [
+        "Essex Backyard"
+      ],
+      "search_terms": [
+        "essex backyard"
+      ],
+      "location_hint": "Backyard, exterior"
+    },
+    {
+      "id": "essex_cafeteria",
+      "poi_id": "essex",
+      "parent_name": "Essex Hall",
+      "name": "Essex Cafeteria",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Essex Dining"
+      ],
+      "raw_labels": [
+        "Essex Cafeteria",
+        "Essex Dining"
+      ],
+      "search_terms": [
+        "essex cafeteria",
+        "essex dining"
+      ],
+      "location_hint": "Cafeteria, ground floor"
+    },
+    {
+      "id": "lambton",
+      "poi_id": "lambton",
+      "name": "Lambton Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Lambton"
+      ],
+      "raw_labels": [
+        "Lambton Hall",
+        "Lambton",
+        "Lambton Hall Residence"
+      ],
+      "search_terms": [
+        "lambton hall",
+        "lambton"
+      ]
+    },
+    {
+      "id": "lambton_5th_lounge",
+      "poi_id": "lambton",
+      "parent_name": "Lambton Hall",
+      "name": "Lambton Hall 5th Floor Lounge",
+      "display_label": "Lambton 5th Floor Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Lambton 5th Lounge",
+        "Lambton 5th Floor"
+      ],
+      "raw_labels": [
+        "Lambton Hall 5th Floor Lounge",
+        "Lambton 5th Floor Lounge",
+        "Lambton 5th Lounge"
+      ],
+      "search_terms": [
+        "lambton hall 5th floor lounge",
+        "lambton 5th floor lounge",
+        "lambton 5th lounge"
+      ],
+      "location_hint": "5th floor lounge"
+    },
+    {
+      "id": "lambton_front_yard",
+      "poi_id": "lambton",
+      "parent_name": "Lambton Hall",
+      "name": "Lambton Hall Front Yard",
+      "display_label": "Lambton Front Yard",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Lambton Front Yard"
+      ],
+      "raw_labels": [
+        "Lambton Hall Front Yard",
+        "Lambton Front Yard"
+      ],
+      "search_terms": [
+        "lambton hall front yard",
+        "lambton front yard"
+      ],
+      "location_hint": "Front yard, exterior"
+    },
+    {
+      "id": "lambton_main_lounge",
+      "poi_id": "lambton",
+      "parent_name": "Lambton Hall",
+      "name": "Lambton Hall Main Lounge",
+      "display_label": "Lambton Main Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Lambton Main Lounge",
+        "Lambton Lounge"
+      ],
+      "raw_labels": [
+        "Lambton Hall Main Lounge",
+        "Lambton Main Lounge",
+        "Lambton Lounge"
+      ],
+      "search_terms": [
+        "lambton hall main lounge",
+        "lambton main lounge",
+        "lambton lounge"
+      ],
+      "location_hint": "Main lounge, ground floor"
+    },
+    {
+      "id": "medsyd",
+      "poi_id": "medsyd",
+      "name": "Medway-Sydenham Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Med-Syd",
+        "Medway Sydenham",
+        "Sydenham",
+        "Medway"
+      ],
+      "raw_labels": [
+        "Medway-Sydenham Hall",
+        "Medway-Sydenham",
+        "Med-Syd",
+        "Sydenham Hall",
+        "Medway Hall"
+      ],
+      "search_terms": [
+        "medway sydenham hall",
+        "med syd",
+        "medway sydenham",
+        "sydenham hall",
+        "medway hall"
+      ]
+    },
+    {
+      "id": "medway_formal_lounge",
+      "poi_id": "medsyd",
+      "parent_name": "Medway-Sydenham Hall",
+      "name": "Medway Formal Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Medway Lounge"
+      ],
+      "raw_labels": [
+        "Medway Formal Lounge",
+        "Medway Lounge"
+      ],
+      "search_terms": [
+        "medway formal lounge",
+        "medway lounge"
+      ],
+      "location_hint": "Formal lounge, Medway side"
+    },
+    {
+      "id": "sydenham_lounge",
+      "poi_id": "medsyd",
+      "parent_name": "Medway-Sydenham Hall",
+      "name": "Sydenham Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Syd Lounge"
+      ],
+      "raw_labels": [
+        "Sydenham Lounge",
+        "Syd Lounge"
+      ],
+      "search_terms": [
+        "sydenham lounge",
+        "syd lounge"
+      ],
+      "location_hint": "Lounge, Sydenham side"
+    },
+    {
+      "id": "sydenham_quad",
+      "poi_id": "medsyd",
+      "parent_name": "Medway-Sydenham Hall",
+      "name": "Sydenham Quad",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Syd Quad"
+      ],
+      "raw_labels": [
+        "Sydenham Quad",
+        "Syd Quad"
+      ],
+      "search_terms": [
+        "sydenham quad",
+        "syd quad"
+      ],
+      "location_hint": "Outdoor quad, Sydenham side"
+    },
+    {
+      "id": "ontario",
+      "poi_id": "ontario",
+      "name": "Ontario Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Ontario"
+      ],
+      "raw_labels": [
+        "Ontario Hall",
+        "Ontario",
+        "Ontario Hall Residence"
+      ],
+      "search_terms": [
+        "ontario hall",
+        "ontario"
+      ]
+    },
+    {
+      "id": "ontario_courtyard",
+      "poi_id": "ontario",
+      "parent_name": "Ontario Hall",
+      "name": "Ontario Hall Courtyard",
+      "display_label": "Ontario Courtyard",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Ontario Courtyard"
+      ],
+      "raw_labels": [
+        "Ontario Hall Courtyard",
+        "Ontario Courtyard"
+      ],
+      "search_terms": [
+        "ontario hall courtyard",
+        "ontario courtyard"
+      ],
+      "location_hint": "Courtyard, exterior"
+    },
+    {
+      "id": "perth",
+      "poi_id": "perth",
+      "name": "Perth Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Perth"
+      ],
+      "raw_labels": [
+        "Perth Hall",
+        "Perth",
+        "Perth Hall Residence"
+      ],
+      "search_terms": [
+        "perth hall",
+        "perth"
+      ]
+    },
+    {
+      "id": "perth_backyard",
+      "poi_id": "perth",
+      "parent_name": "Perth Hall",
+      "name": "Perth Backyard",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [],
+      "raw_labels": [
+        "Perth Backyard"
+      ],
+      "search_terms": [
+        "perth backyard"
+      ],
+      "location_hint": "Backyard, exterior"
+    },
+    {
+      "id": "perth_cafeteria",
+      "poi_id": "perth",
+      "parent_name": "Perth Hall",
+      "name": "Perth Cafeteria",
+      "display_label": "Perth Dining Hall",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Perth Dining Hall",
+        "Perth Dining"
+      ],
+      "raw_labels": [
+        "Perth Cafeteria",
+        "Perth Dining Hall",
+        "Perth Dining"
+      ],
+      "search_terms": [
+        "perth cafeteria",
+        "perth dining hall",
+        "perth dining"
+      ],
+      "location_hint": "Dining hall, ground floor"
+    },
+    {
+      "id": "perth_fireside",
+      "poi_id": "perth",
+      "parent_name": "Perth Hall",
+      "name": "Perth Fireside Lounge",
+      "display_label": "Perth Fireside Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Perth Fireside"
+      ],
+      "raw_labels": [
+        "Perth Fireside Lounge",
+        "Perth Fireside"
+      ],
+      "search_terms": [
+        "perth fireside lounge",
+        "perth fireside"
+      ],
+      "location_hint": "Inside Perth Hall"
+    },
+    {
+      "id": "saugeen",
+      "poi_id": "saugeen",
+      "name": "Saugeen Hall",
+      "kind": "residence",
+      "is_parent": true,
+      "aliases": [
+        "Saugeen",
+        "Saugeen-Maitland",
+        "Saugeen Maitland Hall",
+        "The Zoo"
+      ],
+      "raw_labels": [
+        "Saugeen",
+        "Saugeen Hall",
+        "Saugeen-Maitland Hall",
+        "Saugeen Maitland Hall"
+      ],
+      "search_terms": [
+        "saugeen hall",
+        "saugeen",
+        "saugeen maitland hall",
+        "saugeen maitland"
+      ]
+    },
+    {
+      "id": "saugeen_basketball",
+      "poi_id": "saugeen",
+      "parent_name": "Saugeen Hall",
+      "name": "Saugeen Basketball Courts",
+      "display_label": "Saugeen Basketball Courts",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Saugeen Courts"
+      ],
+      "raw_labels": [
+        "Saugeen Basketball Courts",
+        "Saugeen Courts"
+      ],
+      "search_terms": [
+        "saugeen basketball courts",
+        "saugeen courts"
+      ],
+      "location_hint": "Basketball courts, exterior"
+    },
+    {
+      "id": "saugeen_dining",
+      "poi_id": "saugeen",
+      "parent_name": "Saugeen Hall",
+      "name": "Saugeen Dining Hall",
+      "display_label": "Saugeen Dining Hall",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Saugeen Cafeteria",
+        "Saugeen Dining"
+      ],
+      "raw_labels": [
+        "Saugeen Dining Hall",
+        "Saugeen Cafeteria",
+        "Saugeen Dining"
+      ],
+      "search_terms": [
+        "saugeen dining hall",
+        "saugeen cafeteria",
+        "saugeen dining"
+      ],
+      "location_hint": "Dining hall, ground floor"
+    },
+    {
+      "id": "saugeen_front_lot",
+      "poi_id": "saugeen",
+      "parent_name": "Saugeen Hall",
+      "name": "Saugeen Front Lot",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [],
+      "raw_labels": [
+        "Saugeen Front Lot"
+      ],
+      "search_terms": [
+        "saugeen front lot"
+      ],
+      "location_hint": "Front lot, exterior"
+    },
+    {
+      "id": "saugeen_main_lounge",
+      "poi_id": "saugeen",
+      "parent_name": "Saugeen Hall",
+      "name": "Saugeen Main Lounge",
+      "kind": "subvenue",
+      "is_parent": false,
+      "aliases": [
+        "Saugeen Lounge"
+      ],
+      "raw_labels": [
+        "Saugeen Main Lounge",
+        "Saugeen Lounge"
+      ],
+      "search_terms": [
+        "saugeen main lounge",
+        "saugeen lounge"
+      ],
+      "location_hint": "Main lounge, ground floor"
+    },
+    {
+      "id": "saugeen_side_fields",
+      "poi_id": "saugeen",
+      "parent_name": "Saugeen Hall",
+      "name": "Saugeen Side Fields",
+      "display_label": "Saugeen Side Field",
+      "kind": "subvenue",
+      "is_parent": false,
+      "is_outdoor": true,
+      "aliases": [
+        "Saugeen Side Field"
+      ],
+      "raw_labels": [
+        "Saugeen Side Field / Side Fields",
+        "Saugeen Side Fields",
+        "Saugeen Side Field"
+      ],
+      "search_terms": [
+        "saugeen side fields",
+        "saugeen side field"
+      ],
+      "location_hint": "Side field, exterior"
+    }
+  ]
+}

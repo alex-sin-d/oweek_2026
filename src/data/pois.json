@@ -1,0 +1,462 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "aceb",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2763062,
+          43.004231
+        ]
+      },
+      "properties": {
+        "id": "aceb",
+        "name": "Amit Chakma Engineering Building",
+        "short_code": "ACEB",
+        "category": "academic",
+        "osm_ref": "way/confirmed-Mapcarta",
+        "description": "Western's newest engineering building on the Western Road edge of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "concrete_beach",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2753856,
+          43.008517
+        ]
+      },
+      "properties": {
+        "id": "concrete_beach",
+        "name": "Concrete Beach",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/237301679",
+        "description": "The open paved square outside the UCC. A central hangout and event space."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "health_sci",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.272857,
+          43.0053537
+        ]
+      },
+      "properties": {
+        "id": "health_sci",
+        "name": "Health Sciences Building",
+        "short_code": "HSB",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to Western's health sciences programs on the north end of central campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "huron_quad",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2783697,
+          43.0087131
+        ]
+      },
+      "properties": {
+        "id": "huron_quad",
+        "name": "Huron Quad",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/confirmed-Huron-UC",
+        "description": "The outdoor quad at Huron University College. A common OWeek event space."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "kings",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.257,
+          43.0116
+        ]
+      },
+      "properties": {
+        "id": "kings",
+        "name": "King's University College",
+        "short_code": "King's",
+        "category": "affiliated",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "An affiliated Catholic liberal arts college at the south edge of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "mckellar",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2706,
+          43.0074
+        ]
+      },
+      "properties": {
+        "id": "mckellar",
+        "name": "McKellar Theatre",
+        "short_code": null,
+        "category": "academic",
+        "osm_ref": "way/confirmed-Talbot-area",
+        "description": "A theatre venue in Talbot College used for performances and OWeek events."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "rec_centre",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2742467,
+          43.0031232
+        ]
+      },
+      "properties": {
+        "id": "rec_centre",
+        "name": "Recreation Centre",
+        "short_code": "WSRC",
+        "category": "athletics",
+        "osm_ref": "way/confirmed-OSM-WSRC",
+        "description": "Western's main rec facility. Pool, gyms, fitness classes, intramurals."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "schmeichel",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2762851,
+          43.007403
+        ]
+      },
+      "properties": {
+        "id": "schmeichel",
+        "name": "Ronald D. Schmeichel Building",
+        "short_code": "SEIB",
+        "category": "academic",
+        "osm_ref": "way/310131574",
+        "description": "Western's entrepreneurship and innovation hub. Maker spaces, flexible learning, central campus location."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "somerville",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.274102,
+          43.0076884
+        ]
+      },
+      "properties": {
+        "id": "somerville",
+        "name": "Somerville House",
+        "short_code": "SH",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to the Great Hall and Green Leaf Cafe. Used for large formal events."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "talbot",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2706194,
+          43.0073837
+        ]
+      },
+      "properties": {
+        "id": "talbot",
+        "name": "Talbot College",
+        "short_code": "TC",
+        "category": "academic",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Home to the Don Wright Faculty of Music and Kenny Theatre."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "thames",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2743716,
+          43.0068794
+        ]
+      },
+      "properties": {
+        "id": "thames",
+        "name": "Thames Hall",
+        "short_code": "TH",
+        "category": "academic",
+        "osm_ref": "way/118764095",
+        "description": "Central academic building next to Concrete Beach and the UCC."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "uc_hill",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2741,
+          43.008
+        ]
+      },
+      "properties": {
+        "id": "uc_hill",
+        "name": "UC Hill",
+        "short_code": null,
+        "category": "outdoor",
+        "osm_ref": "way/confirmed-OSM-grassland",
+        "description": "The grassy hill on campus. A key gathering spot and OWeek landmark."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ucc",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2761665,
+          43.0086815
+        ]
+      },
+      "properties": {
+        "id": "ucc",
+        "name": "University Community Centre",
+        "short_code": "UCC",
+        "category": "academic",
+        "osm_ref": "way/182649262",
+        "description": "Western's student hub. The Spoke, The Wave, USC offices, and most student services are here.",
+        "_note": "The Spoke and The Wave resolve to this pin."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "alumni_stadium",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2738862,
+          42.9998662
+        ]
+      },
+      "properties": {
+        "id": "alumni_stadium",
+        "name": "Western Alumni Stadium",
+        "short_code": null,
+        "category": "athletics",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Main outdoor stadium. Home of Mustang football and large OWeek concerts."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bayfield",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2787827,
+          43.0126599
+        ]
+      },
+      "properties": {
+        "id": "bayfield",
+        "name": "Bayfield Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668520",
+        "description": "Hybrid-style residence in the Glenmore complex near Saugeen and Lambton."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "clare",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2766,
+          43.0048
+        ]
+      },
+      "properties": {
+        "id": "clare",
+        "name": "Clare Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM",
+        "description": "Hybrid-style newer residence on the south end of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "delaware",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.268908,
+          43.0086515
+        ]
+      },
+      "properties": {
+        "id": "delaware",
+        "name": "Delaware Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/141710478",
+        "description": "Traditional-style first-year residence on the east side of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "elgin",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2649481,
+          43.0083058
+        ]
+      },
+      "properties": {
+        "id": "elgin",
+        "name": "Elgin Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/142286099",
+        "description": "Suite-style residence on the far east side of campus near Delaware."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "essex",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2756302,
+          43.0013419
+        ]
+      },
+      "properties": {
+        "id": "essex",
+        "name": "Essex Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM-EHR",
+        "description": "Suite-style residence in the south-central area of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "lambton",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2776567,
+          43.0134621
+        ]
+      },
+      "properties": {
+        "id": "lambton",
+        "name": "Lambton Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668341",
+        "description": "Suite-style residence on Western Road near the university hospital."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "medsyd",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2649385,
+          43.0074609
+        ]
+      },
+      "properties": {
+        "id": "medsyd",
+        "name": "Medway-Sydenham Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/confirmed-OSM-SYHR",
+        "description": "Traditional-style residence on University Drive. Third largest on campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ontario",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2792693,
+          43.000433
+        ]
+      },
+      "properties": {
+        "id": "ontario",
+        "name": "Ontario Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/310134768",
+        "description": "Newer hybrid-style residence in the south end of campus."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "perth",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2770682,
+          42.9998228
+        ]
+      },
+      "properties": {
+        "id": "perth",
+        "name": "Perth Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/310135962",
+        "description": "Hybrid-style residence in the south campus near Platt's Lane."
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "saugeen",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.2790744,
+          43.0114836
+        ]
+      },
+      "properties": {
+        "id": "saugeen",
+        "name": "Saugeen Hall",
+        "short_code": null,
+        "category": "residence",
+        "osm_ref": "way/126668347",
+        "description": "The largest residence on campus. Traditional-style, 1,252 students, Windermere Road."
+      }
+    }
+  ]
+}
