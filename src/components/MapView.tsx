@@ -1,30 +1,89 @@
 "use client";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
+import {
+  Layer,
+  Map as ReactMap,
+  Marker,
+  Source,
+  type LayerProps,
+  type MapMouseEvent,
+  type MapRef,
+} from "react-map-gl/mapbox";
 import { useSearchParams } from "next/navigation";
+import BuildingPanel, { type OWeekEvent } from "@/components/BuildingPanel";
+import MapControlSheet from "@/components/map/MapControlSheet";
+import { MapIcon } from "@/components/map/mapIcons";
+import MapMarkerBadge from "@/components/map/MapMarkerBadge";
+import MapPreviewCard from "@/components/map/MapPreviewCard";
+import StampToast from "@/components/StampToast";
+import {
+  MAP_DEFAULT_BEARING,
+  MAP_DEFAULT_PITCH,
+  MAP_DEFAULT_ZOOM,
+  PROXIMITY_RADIUS_M,
+  DEMO_DATE,
+} from "@/lib/config";
 import { useApp } from "@/lib/AppContext";
 import { allPoiCoordinates, allPois, getPoiById } from "@/lib/pois";
 import {
-  PERTH_START_COORDS,
-  CAMPUS_CENTER,
-  MAP_DEFAULT_ZOOM,
-  MAP_DEFAULT_PITCH,
-  MAP_DEFAULT_BEARING,
-  PROXIMITY_RADIUS_M,
-  WALK_TICK_MS,
-} from "@/lib/config";
+  buildMapSearchItems,
+  buildMapSelectionPreview,
+  createMapPoiPresentations,
+  getStableMarkerKind,
+  getVisibleMapMarkers,
+  type MapFilterKey,
+} from "@/lib/mapPresentation";
+import { getMapPreviewMedia } from "@/lib/mapPreviewMedia";
 import { detectUnlocks } from "@/lib/proximityDetection";
-import { advanceRoute, INITIAL_ROUTE_STATE, RouteState } from "@/lib/walkRoute";
+import {
+  DEMO_WALK_PATH,
+  WALK_DURATION_MS,
+  WALK_START,
+  easeInOutQuad,
+  interpolateRoute,
+} from "@/lib/walkRoute";
 import { venueResolver as resolver } from "@/lib/venueResolver";
-import BuildingPanel from "@/components/BuildingPanel";
-import QuickMenu from "@/components/QuickMenu";
-import StampToast from "@/components/StampToast";
 
 import eventsJson from "@/data/events.json";
 
-// ─── Mapbox → OWeek name mapping ─────────────────────────────────────────────
+const ALL_EVENTS = (eventsJson as { events: OWeekEvent[] }).events;
+const MAP_POI_PRESENTATIONS = createMapPoiPresentations({
+  pois: allPois,
+  events: ALL_EVENTS,
+  resolver,
+});
+const MAP_POI_PRESENTATION_BY_ID = new Map(
+  MAP_POI_PRESENTATIONS.map((poi) => [poi.poiId, poi]),
+);
+
+const DEFAULT_FILTERS: Record<MapFilterKey, boolean> = {
+  events: true,
+  buildings: true,
+  food: true,
+  transit: true,
+};
+
+const MAP_MARKERS = getVisibleMapMarkers({
+  presentations: MAP_POI_PRESENTATIONS,
+  activeFilters: DEFAULT_FILTERS,
+});
+
+const MAP_MARKER_BY_POI_ID = new Map(
+  MAP_MARKERS.map((marker) => [marker.poiId, marker]),
+);
+
+const MAP_PADDING_RESET = {
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+} as const;
+
+const MAP_STYLE_URL = "mapbox://styles/flyinglow/cmnzbx6e7008c01qv2evv4azd";
+const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? "";
 
 const MAPBOX_NAME_ALIASES: Record<string, string> = {
   "Perth Hall": "perth",
@@ -61,6 +120,91 @@ const MAPBOX_NAME_ALIASES: Record<string, string> = {
   "Huron Quad": "huron_quad",
   HURON: "huron_quad",
   "Alumni staadium": "alumni_stadium",
+  "Alumni Hall": "alumni_hall",
+};
+
+const userLocationHaloLayer: LayerProps = {
+  id: "user-location-halo",
+  type: "circle",
+  paint: {
+    "circle-radius": [
+      "interpolate",
+      ["linear"],
+      ["zoom"],
+      14,
+      16,
+      18,
+      25,
+    ],
+    "circle-color": "rgba(104, 77, 164, 0.16)",
+    "circle-pitch-alignment": "map",
+  },
+};
+
+const userLocationRingLayer: LayerProps = {
+  id: "user-location-ring",
+  type: "circle",
+  paint: {
+    "circle-radius": [
+      "interpolate",
+      ["linear"],
+      ["zoom"],
+      14,
+      8,
+      18,
+      11,
+    ],
+    "circle-color": "#ffffff",
+    "circle-pitch-alignment": "map",
+  },
+};
+
+const userLocationCoreLayer: LayerProps = {
+  id: "user-location-core",
+  type: "circle",
+  paint: {
+    "circle-radius": [
+      "interpolate",
+      ["linear"],
+      ["zoom"],
+      14,
+      5,
+      18,
+      7,
+    ],
+    "circle-color": "#5e2ba6",
+    "circle-pitch-alignment": "map",
+  },
+};
+
+const debugCaptureCircleLayer: LayerProps = {
+  id: "debug-capture-circles",
+  type: "circle",
+  paint: {
+    "circle-radius": 8,
+    "circle-color": "#FF0000",
+    "circle-stroke-color": "#FFFFFF",
+    "circle-stroke-width": 2,
+    "circle-pitch-alignment": "map",
+  },
+};
+
+const debugCaptureLabelLayer: LayerProps = {
+  id: "debug-capture-labels",
+  type: "symbol",
+  layout: {
+    "text-field": ["get", "label"],
+    "text-size": 11,
+    "text-font": ["DIN Pro Bold", "Arial Unicode MS Bold"],
+    "text-offset": [0, -1.5],
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+  },
+  paint: {
+    "text-color": "#FF0000",
+    "text-halo-color": "#FFFFFF",
+    "text-halo-width": 1.5,
+  },
 };
 
 function canonicalizePoiName(value: string): string {
@@ -87,39 +231,87 @@ const MAPBOX_NAME_TO_POI_ID = (() => {
   return index;
 })();
 
-// ─── Category colour map for circle layer ───────────────────────────────────
+function disableBasemapLabels(map: mapboxgl.Map) {
+  const configKeys = [
+    "showLabels",
+    "showPlaceLabels",
+    "showRoadLabels",
+    "showPointOfInterestLabels",
+    "showTransitLabels",
+  ] as const;
 
-const CATEGORY_HEX: Record<string, string> = {
-  academic: "#4F2D7F",
-  residence: "#F7B500",
-  athletics: "#22C55E",
-  outdoor: "#38BDF8",
-  affiliated: "#F97316",
-};
-// ─── Build GeoJSON for circle layers ─────────────────────────────────────────
+  for (const key of configKeys) {
+    try {
+      map.setConfigProperty("basemap", key, false);
+    } catch {
+      // Custom styles without a Standard basemap import will throw here.
+    }
+  }
+}
 
-function buildPoiGeoJSON(unlocked: Set<string>): GeoJSON.FeatureCollection {
+function hideNativeLabelLayers(map: mapboxgl.Map) {
+  const layers = map.getStyle().layers ?? [];
+  for (const layer of layers) {
+    if (layer.id.startsWith("debug-")) {
+      continue;
+    }
+    if (layer.type !== "symbol") continue;
+    map.setLayoutProperty(layer.id, "visibility", "none");
+  }
+}
+
+function suppressAllMapText(map: mapboxgl.Map) {
+  if (!map.isStyleLoaded()) return;
+  disableBasemapLabels(map);
+  hideNativeLabelLayers(map);
+}
+
+function buildUserLocationGeoJSON(
+  position: [number, number],
+): GeoJSON.FeatureCollection {
   return {
     type: "FeatureCollection",
-    features: allPois.map((poi) => ({
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: position,
+        },
+        properties: {},
+      },
+    ],
+  };
+}
+
+function buildDebugCaptureGeoJSON(
+  captures: { label: string; lng: number; lat: number }[],
+): GeoJSON.FeatureCollection {
+  return {
+    type: "FeatureCollection",
+    features: captures.map((capture) => ({
       type: "Feature" as const,
       geometry: {
         type: "Point" as const,
-        coordinates: poi.coordinates,
+        coordinates: [capture.lng, capture.lat],
       },
       properties: {
-        id: poi.id,
-        name: poi.name,
-        short_code: poi.shortCode ?? poi.name.charAt(0),
-        category: poi.category,
-        unlocked: unlocked.has(poi.id) ? 1 : 0,
-        color: CATEGORY_HEX[poi.category] ?? CATEGORY_HEX.academic,
+        label: capture.label,
       },
     })),
   };
 }
 
-// ─── Debug Coordinate Capture Panel ──────────────────────────────────────────
+function appendCanvasToneOverlay(map: mapboxgl.Map) {
+  const container = map.getCanvasContainer();
+  if (container.querySelector(".map-canvas-tone-overlay")) {
+    return;
+  }
+
+  const overlay = document.createElement("div");
+  overlay.className = "map-canvas-tone-overlay";
+  container.appendChild(overlay);
+}
 
 function DebugPanel({
   captures,
@@ -140,87 +332,91 @@ function DebugPanel({
 
   return (
     <div
-      className="absolute top-4 left-4 z-30 bg-black/90 text-green-400 rounded-xl p-4 font-mono text-xs max-w-xs shadow-2xl backdrop-blur-sm"
-      style={{ maxHeight: "60vh", overflowY: "auto" }}
+      className="absolute left-4 z-30 max-w-xs rounded-xl bg-black/90 p-4 font-mono text-xs text-green-400 shadow-2xl backdrop-blur-sm"
+      style={{
+        top: "max(env(safe-area-inset-top), 16px)",
+        maxHeight: "60vh",
+        overflowY: "auto",
+      }}
     >
-      <div className="text-green-300 font-bold text-sm mb-2">
-        🐛 Debug: Coordinate Capture
+      <div className="mb-2 text-sm font-bold text-green-300">
+        Debug: Coordinate Capture
       </div>
 
       {waitingForClick ? (
-        <div className="bg-yellow-900/50 text-yellow-300 rounded px-2 py-1 mb-2">
+        <div className="mb-2 rounded bg-yellow-900/50 px-2 py-1 text-yellow-300">
           Click the map to capture: <strong>{currentLabel}</strong>
         </div>
       ) : (
-        <div className="flex gap-1 mb-2">
+        <div className="mb-2 flex gap-1">
           <input
             type="text"
             value={inputVal}
-            onChange={(e) => setInputVal(e.target.value)}
+            onChange={(event) => setInputVal(event.target.value)}
             placeholder="Building name…"
-            className="flex-1 bg-gray-800 text-green-400 border border-gray-600 rounded px-2 py-1 text-xs placeholder:text-gray-500 focus:outline-none focus:border-green-500"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && inputVal.trim()) {
+            className="flex-1 rounded border border-gray-600 bg-gray-800 px-2 py-1 text-xs text-green-400 placeholder:text-gray-500 focus:border-green-500 focus:outline-none"
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && inputVal.trim()) {
                 onStartCapture(inputVal.trim());
                 setInputVal("");
               }
             }}
           />
           <button
+            type="button"
             onClick={() => {
               if (inputVal.trim()) {
                 onStartCapture(inputVal.trim());
                 setInputVal("");
               }
             }}
-            className="bg-green-700 text-white rounded px-2 py-1 text-xs hover:bg-green-600"
+            className="rounded bg-green-700 px-2 py-1 text-xs text-white hover:bg-green-600"
           >
             Capture
           </button>
         </div>
       )}
 
-      {captures.length > 0 && (
+      {captures.length > 0 ? (
         <>
-          <div className="border-t border-gray-700 pt-2 mt-1 mb-1 text-gray-400">
+          <div className="mb-1 mt-1 border-t border-gray-700 pt-2 text-gray-400">
             Captured ({captures.length}):
           </div>
-          {captures.map((c, i) => (
-            <div key={i} className="mb-1">
-              <span className="text-white">{c.label}:</span>{" "}
-              [{c.lng}, {c.lat}]
+          {captures.map((capture, index) => (
+            <div key={`${capture.label}-${index}`} className="mb-1">
+              <span className="text-white">{capture.label}:</span>{" "}
+              [{capture.lng}, {capture.lat}]
             </div>
           ))}
-          <div className="flex gap-1 mt-2">
+          <div className="mt-2 flex gap-1">
             <button
+              type="button"
               onClick={onCopyAll}
-              className="bg-blue-700 text-white rounded px-2 py-1 text-xs hover:bg-blue-600"
+              className="rounded bg-blue-700 px-2 py-1 text-xs text-white hover:bg-blue-600"
             >
               Copy JSON
             </button>
             <button
+              type="button"
               onClick={onClearAll}
-              className="bg-red-800 text-white rounded px-2 py-1 text-xs hover:bg-red-700"
+              className="rounded bg-red-800 px-2 py-1 text-xs text-white hover:bg-red-700"
             >
               Clear
             </button>
           </div>
         </>
-      )}
+      ) : null}
 
-      <div className="text-gray-500 mt-2 text-[10px]">
-        ?debug=1 in URL to show this panel
-      </div>
+      <div className="mt-2 text-[10px] text-gray-500">?debug=1 in URL to show this panel</div>
     </div>
   );
 }
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function MapView() {
   const {
     unlockedBuildings,
     unlockBuilding,
+    selectedPoiId,
     panelPoiId,
     setPanelPoiId,
     setSelectedPoiId,
@@ -229,340 +425,159 @@ export default function MapView() {
   const searchParams = useSearchParams();
   const debugMode = searchParams.get("debug") === "1";
 
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<mapboxgl.Map | null>(null);
-  const userMarkerRef = useRef<mapboxgl.Marker | null>(null);
-  const routeStateRef = useRef<RouteState>(INITIAL_ROUTE_STATE);
-  const walkTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const mapRef = useRef<MapRef | null>(null);
+  const rafRef = useRef<number>(0);
+  const walkStartRef = useRef<number>(0);
   const unlockedRef = useRef<Set<string>>(new Set());
+  const initialContextFocusRef = useRef(false);
+  const debugWaitingRef = useRef(false);
+  const debugLabelRef = useRef("");
 
-  const [quickMenuOpen, setQuickMenuOpen] = useState(false);
+  const [controlSheetOpen, setControlSheetOpen] = useState(false);
+  const [controlSheetTab, setControlSheetTab] = useState<
+    "search" | "unlocked" | "filters"
+  >("search");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilters, setActiveFilters] =
+    useState<Record<MapFilterKey, boolean>>(DEFAULT_FILTERS);
   const [stampToast, setStampToast] = useState<{
     poiId: string;
     name: string;
   } | null>(null);
   const [mapReady, setMapReady] = useState(false);
-
-  // Debug state
+  const [playerPos, setPlayerPos] = useState<[number, number]>(WALK_START);
+  const [walking, setWalking] = useState(false);
+  const [walkDone, setWalkDone] = useState(false);
   const [debugCaptures, setDebugCaptures] = useState<
     { label: string; lng: number; lat: number }[]
   >([]);
   const [debugWaiting, setDebugWaiting] = useState(false);
   const [debugCurrentLabel, setDebugCurrentLabel] = useState("");
-  const debugWaitingRef = useRef(false);
-  const debugLabelRef = useRef("");
 
-  // Keep unlocked ref in sync
   useEffect(() => {
     unlockedRef.current = unlockedBuildings;
   }, [unlockedBuildings]);
 
-  // ── Map initialisation ─────────────────────────────────────────────────────
   useEffect(() => {
-    if (!mapContainerRef.current || mapRef.current) return;
-
-    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? "";
-    let destroyed = false;
-
-    const map = new mapboxgl.Map({
-      container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/standard",
-      center: CAMPUS_CENTER,
-      zoom: MAP_DEFAULT_ZOOM,
-      pitch: MAP_DEFAULT_PITCH,
-      bearing: MAP_DEFAULT_BEARING,
-      config: {
-        basemap: {
-          lightPreset: "dusk",
-          show3dObjects: true,
-          showPointOfInterestLabels: true,
-        },
-      },
-    } as mapboxgl.MapOptions & {
-      config: Record<string, Record<string, unknown>>;
-    });
-    mapRef.current = map;
-    if (process.env.NODE_ENV === "development") {
-      (window as unknown as Record<string, unknown>).__map = map;
-    }
-
-    map.on("error", (e) =>
-      console.error("[MapView] Mapbox error:", e.error?.message ?? e)
-    );
-
-    map.on("load", () => {
-      if (destroyed) return;
-
-      // ── GeoJSON source for all POIs ──────────────────────────────────────
-      map.addSource("oweek-pois", {
-        type: "geojson",
-        data: buildPoiGeoJSON(unlockedRef.current),
-      });
-
-      // ── Circle layer — outer ring (border effect) ────────────────────────
-      map.addLayer({
-        id: "oweek-poi-ring",
-        type: "circle",
-        source: "oweek-pois",
-        slot: "top",
-        paint: {
-          "circle-radius": [
-            "case",
-            ["==", ["get", "unlocked"], 1],
-            14,
-            11,
-          ],
-          "circle-color": "rgba(255,255,255,0.9)",
-          "circle-pitch-alignment": "map",
-        },
-      });
-
-      // ── Circle layer — filled centre ─────────────────────────────────────
-      map.addLayer({
-        id: "oweek-poi-circle",
-        type: "circle",
-        source: "oweek-pois",
-        slot: "top",
-        paint: {
-          "circle-radius": [
-            "case",
-            ["==", ["get", "unlocked"], 1],
-            11,
-            9,
-          ],
-          "circle-color": ["get", "color"],
-          "circle-opacity": [
-            "case",
-            ["==", ["get", "unlocked"], 1],
-            1,
-            0.75,
-          ],
-          "circle-pitch-alignment": "map",
-        },
-      });
-
-      // ── Symbol layer — short code labels ─────────────────────────────────
-      map.addLayer({
-        id: "oweek-poi-label",
-        type: "symbol",
-        source: "oweek-pois",
-        slot: "top",
-        layout: {
-          "text-field": ["get", "short_code"],
-          "text-size": [
-            "case",
-            ["==", ["get", "unlocked"], 1],
-            10,
-            8,
-          ],
-          "text-font": ["DIN Pro Bold", "Arial Unicode MS Bold"],
-          "text-allow-overlap": true,
-          "text-ignore-placement": true,
-        },
-        paint: {
-          "text-color": "#ffffff",
-          "text-halo-color": "rgba(0,0,0,0.4)",
-          "text-halo-width": 1,
-        },
-      });
-
-      // ── Debug capture: source + layer for test markers ───────────────────
-      map.addSource("debug-captures", {
-        type: "geojson",
-        data: { type: "FeatureCollection", features: [] },
-      });
-
-      map.addLayer({
-        id: "debug-capture-circles",
-        type: "circle",
-        source: "debug-captures",
-        slot: "top",
-        paint: {
-          "circle-radius": 8,
-          "circle-color": "#FF0000",
-          "circle-stroke-color": "#FFFFFF",
-          "circle-stroke-width": 2,
-          "circle-pitch-alignment": "map",
-        },
-      });
-
-      map.addLayer({
-        id: "debug-capture-labels",
-        type: "symbol",
-        source: "debug-captures",
-        slot: "top",
-        layout: {
-          "text-field": ["get", "label"],
-          "text-size": 11,
-          "text-font": ["DIN Pro Bold", "Arial Unicode MS Bold"],
-          "text-offset": [0, -1.5],
-          "text-allow-overlap": true,
-          "text-ignore-placement": true,
-        },
-        paint: {
-          "text-color": "#FF0000",
-          "text-halo-color": "#FFFFFF",
-          "text-halo-width": 1.5,
-        },
-      });
-
-      // ── Click handler ────────────────────────────────────────────────────
-      map.on("click", "oweek-poi-circle", (e) => {
-        // Don't intercept if debug capture is waiting for a click
-        if (debugWaitingRef.current) return;
-
-        if (!e.features?.length) return;
-        const props = e.features[0].properties;
-        if (!props) return;
-
-        const poiId = props.id as string;
-        setSelectedPoiId(poiId);
-        setPanelPoiId(poiId);
-      });
-
-      // Also intercept clicks on Mapbox native POI labels
-      map.on("click", (e) => {
-        // If debug mode is waiting for a click, handle the capture
-        if (debugWaitingRef.current) {
-          const { lng, lat } = e.lngLat;
-          const lngRound = Math.round(lng * 1e7) / 1e7;
-          const latRound = Math.round(lat * 1e7) / 1e7;
-          const label = debugLabelRef.current;
-
-          console.log(
-            `%c[DEBUG CAPTURE] ${label}: [${lngRound}, ${latRound}]`,
-            "color: #00ff00; font-weight: bold; font-size: 14px;"
-          );
-          console.log(
-            "  // Copy-paste for pois.merged-from-manual-captures.json:\n" +
-              `  "coordinates": [${lngRound}, ${latRound}]`
-          );
-
-          setDebugCaptures((prev) => [
-            ...prev,
-            { label, lng: lngRound, lat: latRound },
-          ]);
-
-          // Add debug marker to the map via GeoJSON source
-          const src = map.getSource("debug-captures") as mapboxgl.GeoJSONSource;
-          if (src) {
-            // We need to rebuild from current state + new point
-            setDebugCaptures((prev) => {
-              const all = [...prev, { label, lng: lngRound, lat: latRound }];
-              src.setData({
-                type: "FeatureCollection",
-                features: all.map((c) => ({
-                  type: "Feature" as const,
-                  geometry: {
-                    type: "Point" as const,
-                    coordinates: [c.lng, c.lat],
-                  },
-                  properties: { label: c.label },
-                })),
-              });
-              return all;
-            });
-          }
-
-          debugWaitingRef.current = false;
-          debugLabelRef.current = "";
-          setDebugWaiting(false);
-          setDebugCurrentLabel("");
-          return;
-        }
-
-        // Check for Mapbox native POI click
-        const hits = map.queryRenderedFeatures(e.point);
-        for (const f of hits) {
-          const name = f.properties?.name ?? f.properties?.name_en;
-          if (!name) continue;
-          const poiId = MAPBOX_NAME_TO_POI_ID.get(canonicalizePoiName(name));
-          if (poiId) {
-            setSelectedPoiId(poiId);
-            setPanelPoiId(poiId);
-            return;
-          }
-        }
-      });
-
-      // Cursor styling for poi circles
-      map.on("mouseenter", "oweek-poi-circle", () => {
-        map.getCanvas().style.cursor = "pointer";
-      });
-      map.on("mouseleave", "oweek-poi-circle", () => {
-        map.getCanvas().style.cursor = "";
-      });
-
-      setMapReady(true);
-      console.log(
-        `[MapView] Map loaded — GeoJSON circle layers active (${allPois.length} POIs)`,
-      );
-    });
-
     return () => {
-      destroyed = true;
-      map.remove();
-      mapRef.current = null;
-      setMapReady(false);
+      cancelAnimationFrame(rafRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ── User position marker ───────────────────────────────────────────────────
+  const searchItems = useMemo(
+    () =>
+      buildMapSearchItems({
+        presentations: MAP_POI_PRESENTATIONS,
+        unlockedPoiIds: unlockedBuildings,
+      }),
+    [unlockedBuildings],
+  );
+
+  const unlockedSearchItems = useMemo(
+    () => searchItems.filter((item) => item.isUnlocked),
+    [searchItems],
+  );
+
+  const selectedPresentation = selectedPoiId
+    ? MAP_POI_PRESENTATION_BY_ID.get(selectedPoiId) ?? null
+    : null;
+
+  const selectedMarkerKind = selectedPresentation
+    ? MAP_MARKER_BY_POI_ID.get(selectedPresentation.poiId)?.kind ??
+      getStableMarkerKind(selectedPresentation)
+    : null;
+
+  const selectionPreview = useMemo(() => {
+    if (!selectedPresentation || !selectedMarkerKind) {
+      return null;
+    }
+
+    return buildMapSelectionPreview({
+      poi: selectedPresentation,
+      markerKind: selectedMarkerKind,
+      getPreviewMedia: getMapPreviewMedia,
+    });
+  }, [selectedMarkerKind, selectedPresentation]);
+
+  const userLocationGeoJSON = useMemo(
+    () => buildUserLocationGeoJSON(playerPos),
+    [playerPos],
+  );
+
+  const debugCaptureGeoJSON = useMemo(
+    () => buildDebugCaptureGeoJSON(debugCaptures),
+    [debugCaptures],
+  );
+
+  const clearActiveSelection = useCallback(() => {
+    setPanelPoiId(null);
+    setSelectedPoiId(null);
+  }, [setPanelPoiId, setSelectedPoiId]);
+
+  const focusPoi = useCallback((poiId: string, minimumZoom = 15.65) => {
+    const poi = MAP_POI_PRESENTATION_BY_ID.get(poiId);
+    const map = mapRef.current?.getMap();
+    if (!poi || !map) return;
+
+    map.easeTo({
+      center: poi.coordinates,
+      zoom: Math.max(map.getZoom(), minimumZoom),
+      duration: 700,
+      essential: true,
+      padding: MAP_PADDING_RESET,
+    });
+  }, []);
+
+  const handleSelectPoi = useCallback(
+    (
+      poiId: string,
+      options?: {
+        closeSheet?: boolean;
+        openPanel?: boolean;
+        focus?: boolean;
+      },
+    ) => {
+      if (options?.closeSheet !== false) {
+        setControlSheetOpen(false);
+      }
+
+      setSelectedPoiId(poiId);
+      setPanelPoiId(options?.openPanel ? poiId : null);
+
+      if (options?.focus) {
+        focusPoi(poiId);
+      }
+    },
+    [focusPoi, setPanelPoiId, setSelectedPoiId],
+  );
+
+  useEffect(() => {
+    if (!mapReady || initialContextFocusRef.current) return;
+    initialContextFocusRef.current = true;
+
+    const poiId = panelPoiId ?? selectedPoiId;
+    if (!poiId) return;
+
+    focusPoi(poiId, panelPoiId ? 16.1 : 15.65);
+  }, [focusPoi, mapReady, panelPoiId, selectedPoiId]);
+
   useEffect(() => {
     if (!mapReady || !mapRef.current) return;
 
-    const el = document.createElement("div");
-    el.innerHTML = `
-      <div style="
-        width:18px;height:18px;border-radius:50%;
-        background:#4F2D7F;border:3px solid white;
-        box-shadow:0 2px 8px rgba(79,45,127,0.5);
-        position:relative;
-      ">
-        <div style="
-          position:absolute;inset:-6px;border-radius:50%;
-          background:rgba(79,45,127,0.2);
-          animation:pulse 2s ease-out infinite;
-        "></div>
-      </div>
-    `;
+    const map = mapRef.current.getMap();
+    const handleStyleData = () => {
+      suppressAllMapText(map);
+    };
 
-    if (!document.getElementById("marker-pulse-style")) {
-      const style = document.createElement("style");
-      style.id = "marker-pulse-style";
-      style.textContent = `
-        @keyframes pulse {
-          0%   { transform:scale(1); opacity:0.6; }
-          100% { transform:scale(2.5); opacity:0; }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-
-    const marker = new mapboxgl.Marker({ element: el, anchor: "center" })
-      .setLngLat(PERTH_START_COORDS)
-      .addTo(mapRef.current);
-    userMarkerRef.current = marker;
-
+    suppressAllMapText(map);
+    map.on("styledata", handleStyleData);
     return () => {
-      marker.remove();
-      userMarkerRef.current = null;
+      map.off("styledata", handleStyleData);
     };
   }, [mapReady]);
 
-  // ── Simulated walk ─────────────────────────────────────────────────────────
-  useEffect(() => {
-    if (!mapReady) return;
-
-    walkTimerRef.current = setInterval(() => {
-      const { state, position, finished } = advanceRoute(
-        routeStateRef.current,
-      );
-      routeStateRef.current = state;
-      userMarkerRef.current?.setLngLat(position);
-
-      // Proximity check
+  const processUnlocks = useCallback(
+    (position: [number, number]) => {
       const newUnlocks = detectUnlocks(
         position,
         allPoiCoordinates,
@@ -570,80 +585,211 @@ export default function MapView() {
         PROXIMITY_RADIUS_M,
       );
 
+      if (newUnlocks.length === 0) return;
+
+      const nextUnlocked = new Set(unlockedRef.current);
       for (const poiId of newUnlocks) {
+        nextUnlocked.add(poiId);
         unlockBuilding(poiId);
         const name = getPoiById(poiId)?.properties.name ?? poiId;
         setStampToast({ poiId, name });
-        setPanelPoiId(poiId);
+        setSelectedPoiId(poiId);
       }
+      unlockedRef.current = nextUnlocked;
+      setPanelPoiId(null);
+    },
+    [setPanelPoiId, setSelectedPoiId, unlockBuilding],
+  );
 
-      if (finished && walkTimerRef.current) {
-        clearInterval(walkTimerRef.current);
-        walkTimerRef.current = null;
-      }
-    }, WALK_TICK_MS);
-
-    return () => {
-      if (walkTimerRef.current) clearInterval(walkTimerRef.current);
-    };
-  }, [mapReady, unlockBuilding, setPanelPoiId]);
-
-  // ── Update GeoJSON source when unlocked set changes ───────────────────────
   useEffect(() => {
-    if (!mapReady || !mapRef.current) return;
-    const src = mapRef.current.getSource("oweek-pois") as mapboxgl.GeoJSONSource;
-    if (src) {
-      src.setData(buildPoiGeoJSON(unlockedBuildings));
-    }
-  }, [unlockedBuildings, mapReady]);
+    processUnlocks(playerPos);
+  }, [playerPos, processUnlocks]);
 
-  // ── Debug capture handlers ─────────────────────────────────────────────────
+  const startWalk = useCallback(() => {
+    const map = mapRef.current?.getMap();
+    if (!map || walking || walkDone) return;
+
+    setControlSheetOpen(false);
+    clearActiveSelection();
+    setWalking(true);
+
+    cancelAnimationFrame(rafRef.current);
+    walkStartRef.current = performance.now();
+
+    const tick = (now: number) => {
+      const progress = Math.min(
+        (now - walkStartRef.current) / WALK_DURATION_MS,
+        1,
+      );
+      const eased = easeInOutQuad(progress);
+      const position = interpolateRoute(DEMO_WALK_PATH, eased);
+
+      setPlayerPos(position);
+      map.easeTo({
+        center: position,
+        duration: 60,
+        easing: (value: number) => value,
+      });
+
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      setWalking(false);
+      setWalkDone(true);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+  }, [clearActiveSelection, walkDone, walking]);
+
   const handleStartCapture = useCallback((label: string) => {
     debugWaitingRef.current = true;
     debugLabelRef.current = label;
     setDebugWaiting(true);
     setDebugCurrentLabel(label);
-    console.log(
-      `%c[DEBUG] Waiting for click to capture: "${label}"`,
-      "color: #ffff00; font-weight: bold;"
-    );
   }, []);
 
   const handleClearCaptures = useCallback(() => {
     setDebugCaptures([]);
-    if (mapRef.current) {
-      const src = mapRef.current.getSource("debug-captures") as mapboxgl.GeoJSONSource;
-      if (src) {
-        src.setData({ type: "FeatureCollection", features: [] });
-      }
-    }
   }, []);
 
   const handleCopyAll = useCallback(() => {
     const json = JSON.stringify(
       Object.fromEntries(
-        debugCaptures.map((c) => [
-          c.label,
-          { coordinates: [c.lng, c.lat] },
-        ])
+        debugCaptures.map((capture) => [
+          capture.label,
+          { coordinates: [capture.lng, capture.lat] },
+        ]),
       ),
       null,
-      2
+      2,
     );
-    navigator.clipboard.writeText(json).then(() => {
-      console.log("[DEBUG] Copied to clipboard:", json);
+    navigator.clipboard.writeText(json).catch((error) => {
+      console.error("[MapView] Failed to copy debug captures:", error);
     });
   }, [debugCaptures]);
 
-  // ── Render ─────────────────────────────────────────────────────────────────
+  const handleMapClick = useCallback(
+    (event: MapMouseEvent) => {
+      const map = mapRef.current?.getMap();
+      if (!map) return;
+
+      if (debugWaitingRef.current) {
+        const { lng, lat } = event.lngLat;
+        const lngRound = Math.round(lng * 1e7) / 1e7;
+        const latRound = Math.round(lat * 1e7) / 1e7;
+        const label = debugLabelRef.current;
+
+        setDebugCaptures((previous) => [
+          ...previous,
+          { label, lng: lngRound, lat: latRound },
+        ]);
+
+        debugWaitingRef.current = false;
+        debugLabelRef.current = "";
+        setDebugWaiting(false);
+        setDebugCurrentLabel("");
+        return;
+      }
+
+      const hits = map.queryRenderedFeatures(event.point);
+      for (const feature of hits) {
+        const name = feature.properties?.name ?? feature.properties?.name_en;
+        if (!name) continue;
+        const poiId = MAPBOX_NAME_TO_POI_ID.get(canonicalizePoiName(name));
+        if (poiId) {
+          handleSelectPoi(poiId, { focus: true });
+          return;
+        }
+      }
+
+      clearActiveSelection();
+    },
+    [clearActiveSelection, handleSelectPoi],
+  );
+
+  const openControlSheet = useCallback(
+    (tab: "search" | "unlocked" | "filters") => {
+      setControlSheetTab(tab);
+      setControlSheetOpen(true);
+    },
+    [],
+  );
+
   return (
     <div className="absolute inset-0">
-      <div ref={mapContainerRef} className="w-full h-full" />
+      <ReactMap
+        ref={mapRef}
+        attributionControl={false}
+        cursor="auto"
+        initialViewState={{
+          longitude: WALK_START[0],
+          latitude: WALK_START[1],
+          zoom: MAP_DEFAULT_ZOOM,
+          pitch: MAP_DEFAULT_PITCH,
+          bearing: MAP_DEFAULT_BEARING,
+        }}
+        mapStyle={MAP_STYLE_URL}
+        mapboxAccessToken={MAPBOX_TOKEN}
+        maxZoom={18}
+        onClick={handleMapClick}
+        onLoad={() => {
+          const map = mapRef.current?.getMap();
+          if (map) {
+            appendCanvasToneOverlay(map);
+            suppressAllMapText(map);
+          }
+          setMapReady(true);
+          console.log(
+            `[MapView] Map loaded — stable React marker system active (${MAP_MARKERS.length} POIs)`,
+          );
+        }}
+        reuseMaps
+        style={{ width: "100%", height: "100%" }}
+      >
+        <Source id="user-location" type="geojson" data={userLocationGeoJSON}>
+          <Layer {...userLocationHaloLayer} />
+          <Layer {...userLocationRingLayer} />
+          <Layer {...userLocationCoreLayer} />
+        </Source>
 
-      {mapReady && (
+        <Source id="debug-captures" type="geojson" data={debugCaptureGeoJSON}>
+          <Layer {...debugCaptureCircleLayer} />
+          <Layer {...debugCaptureLabelLayer} />
+        </Source>
+
+        {MAP_MARKERS.map((marker) => (
+          <Marker
+            key={marker.poiId}
+            anchor="center"
+            longitude={marker.coordinates[0]}
+            latitude={marker.coordinates[1]}
+            style={{
+              zIndex:
+                marker.poiId === selectedPoiId
+                  ? 40
+                  : marker.kind === "transit"
+                    ? 24
+                    : marker.kind === "food"
+                      ? 20
+                      : marker.kind === "event"
+                        ? 18
+                        : 14,
+            }}
+          >
+            <MapMarkerBadge
+              marker={marker}
+              isSelected={marker.poiId === selectedPoiId}
+              onSelect={(poiId) => handleSelectPoi(poiId)}
+            />
+          </Marker>
+        ))}
+      </ReactMap>
+
+      {mapReady ? (
         <>
-          {/* Debug panel — only visible with ?debug=1 */}
-          {debugMode && (
+          {debugMode ? (
             <DebugPanel
               captures={debugCaptures}
               waitingForClick={debugWaiting}
@@ -652,72 +798,127 @@ export default function MapView() {
               onClearAll={handleClearCaptures}
               onCopyAll={handleCopyAll}
             />
-          )}
+          ) : null}
 
-          <button
-            onClick={() => setQuickMenuOpen(true)}
-            className="absolute top-4 right-4 z-10 bg-white rounded-2xl shadow-lg p-3 flex items-center gap-2 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+          <div
+            className="absolute inset-x-0 z-20 flex items-start justify-between px-4 pointer-events-none"
+            style={{ top: "max(env(safe-area-inset-top), 16px)" }}
           >
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              className="w-5 h-5"
+            <button
+              type="button"
+              onClick={() => openControlSheet("filters")}
+              className="pointer-events-auto flex min-h-11 items-center gap-2 rounded-full bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[14px] font-semibold tracking-[-0.02em] text-[#4f2d7f] shadow-[0_18px_34px_rgba(79,45,127,0.12)] ring-1 ring-white/80 backdrop-blur-xl"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"
-              />
-            </svg>
-            <span className="pr-1">Search</span>
-          </button>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="h-4.5 w-4.5"
+              >
+                <path strokeLinecap="round" d="M4 7h16M7 12h10M10 17h4" />
+              </svg>
+              <span>Filters</span>
+            </button>
 
-          {stampToast && (
+            <button
+              type="button"
+              onClick={() => openControlSheet("search")}
+              className="pointer-events-auto flex min-h-11 items-center gap-2 rounded-full bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[14px] font-semibold tracking-[-0.02em] text-[#2a1f3b] shadow-[0_18px_34px_rgba(79,45,127,0.12)] ring-1 ring-white/80 backdrop-blur-xl"
+            >
+              <MapIcon name="search" className="h-4.5 w-4.5 text-[#6f48b2]" />
+              <span>Search</span>
+            </button>
+          </div>
+
+          {!controlSheetOpen && selectionPreview && !panelPoiId ? (
+            <MapPreviewCard
+              preview={selectionPreview}
+              onClose={clearActiveSelection}
+              onOpenDetails={() => {
+                if (selectedPoiId) {
+                  setPanelPoiId(selectedPoiId);
+                }
+              }}
+            />
+          ) : null}
+
+          {!panelPoiId && !controlSheetOpen ? (
+            <button
+              type="button"
+              onClick={startWalk}
+              disabled={walking || walkDone}
+              className={[
+                "absolute right-4 z-30 flex min-h-11 items-center gap-2 rounded-full border border-white/70 px-4 py-2.5 text-[13px] font-semibold tracking-[-0.02em] shadow-[0_16px_30px_rgba(58,74,100,0.12)] backdrop-blur-xl transition",
+                walking
+                  ? "cursor-default bg-white/78 text-slate-500"
+                  : walkDone
+                    ? "cursor-default bg-white/84 text-emerald-600"
+                    : "bg-white/88 text-slate-800",
+              ].join(" ")}
+              style={{ bottom: "calc(env(safe-area-inset-bottom) + 82px)" }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                className="h-4.5 w-4.5"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 4 9.5 8.25l2 2L9 14l2.5 6M9.75 8h4.5" />
+              </svg>
+              <span>
+                {walkDone
+                  ? "Arrived at ACEB"
+                  : walking
+                    ? "Walking..."
+                    : "Simulate Walk"}
+              </span>
+            </button>
+          ) : null}
+
+          {stampToast ? (
             <StampToast
               name={stampToast.name}
               onDismiss={() => setStampToast(null)}
             />
-          )}
+          ) : null}
 
-          {quickMenuOpen && (
-            <QuickMenu
-              onClose={() => setQuickMenuOpen(false)}
-              onSelectPoi={(poiId) => {
-                setQuickMenuOpen(false);
-                setPanelPoiId(poiId);
-                const poi = allPois.find((entry) => entry.id === poiId);
-                if (poi && mapRef.current) {
-                  mapRef.current.flyTo({
-                    center: poi.coordinates,
-                    zoom: 16.5,
-                    duration: 800,
-                  });
-                }
-              }}
+          {controlSheetOpen ? (
+            <MapControlSheet
+              initialTab={controlSheetTab}
+              query={searchQuery}
+              searchItems={searchItems}
+              unlockedItems={unlockedSearchItems}
+              activeFilters={activeFilters}
+              onClose={() => setControlSheetOpen(false)}
+              onQueryChange={setSearchQuery}
+              onSelectPoi={(poiId) => handleSelectPoi(poiId, { focus: true })}
+              onToggleFilter={(filterKey) =>
+                setActiveFilters((current) => ({
+                  ...current,
+                  [filterKey]: !current[filterKey],
+                }))
+              }
             />
-          )}
+          ) : null}
 
-          {panelPoiId && (
+          {panelPoiId ? (
             <BuildingPanel
               poiId={panelPoiId}
               resolver={resolver}
-              events={
-                (eventsJson as { events: unknown[] })
-                  .events as Parameters<typeof BuildingPanel>[0]["events"]
-              }
-              onClose={() => setPanelPoiId(null)}
+              events={ALL_EVENTS.filter((event) => event.date === DEMO_DATE)}
+              onClose={clearActiveSelection}
             />
-          )}
+          ) : null}
         </>
-      )}
+      ) : null}
 
-      {!process.env.NEXT_PUBLIC_MAPBOX_TOKEN?.startsWith("pk.eyJ") && (
-        <div className="absolute inset-x-4 top-16 z-20 bg-amber-50 border border-amber-200 text-amber-800 text-xs rounded-xl px-4 py-3">
+      {!MAPBOX_TOKEN.startsWith("pk.eyJ") ? (
+        <div className="absolute inset-x-4 top-16 z-20 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-800">
           Add your Mapbox token to <code>.env.local</code> to see the map.
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -1,36 +1,36 @@
 "use client";
 
 import { useMemo } from "react";
+import PassportStampTile from "@/components/passport/PassportStampTile";
+import {
+  getPassportProgress,
+  PASSPORT_CATEGORY_ORDER,
+  PASSPORT_POIS_BY_CATEGORY,
+  TOTAL_PASSPORT_POIS,
+} from "@/data/passport";
 import { useApp } from "@/lib/AppContext";
 import {
-  TRACKED_POI_CATEGORIES,
-  TRACKED_POI_IDS,
-  TOTAL_TRACKED_POIS,
   CATEGORY_LABELS,
   CATEGORY_COLOURS,
   BADGES,
   SAMPLE_RESIDENCE_PROGRESS,
-  type PoiCategoryKey,
 } from "@/lib/config";
-import { trackedPoiById } from "@/lib/pois";
-
-interface PoiProps {
-  id: string;
-  name: string;
-  short_code: string | null;
-  category: string;
-}
-
-const TOTAL_POIS = TOTAL_TRACKED_POIS;
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
 export default function PassportPage() {
-  const { profile, unlockedBuildings, earnedBadgeIds } = useApp();
+  const { profile, unlockedBuildings } = useApp();
 
-  const totalUnlocked = useMemo(() => {
-    return TRACKED_POI_IDS.filter((id) => unlockedBuildings.has(id)).length;
+  const passportProgress = useMemo(() => {
+    return getPassportProgress(unlockedBuildings);
   }, [unlockedBuildings]);
+  const totalUnlocked = passportProgress.collectedCount;
+  const effectiveUnlocked = passportProgress.effectiveUnlocked;
+  const earnedBadgeIds = useMemo(() => {
+    return BADGES.filter((badge) => badge.earned(effectiveUnlocked)).map(
+      (badge) => badge.id,
+    );
+  }, [effectiveUnlocked]);
 
   return (
     <div className="h-full overflow-y-auto px-4 pt-4 pb-8 space-y-6">
@@ -38,16 +38,23 @@ export default function PassportPage() {
       <section>
         <div className="flex items-baseline justify-between mb-4">
           <h1 className="text-xl font-bold text-gray-900">Campus Passport</h1>
-          <span className="text-sm font-medium text-gray-500">
-            {totalUnlocked} / {TOTAL_POIS} stamps
-          </span>
+          <div className="text-right">
+            <span className="text-sm font-medium text-gray-500">
+              {totalUnlocked} / {passportProgress.totalCount} stamps
+            </span>
+            <p className="text-xs font-medium text-[#6f6187]">
+              {passportProgress.completionPercent}% complete
+            </p>
+          </div>
         </div>
 
         {/* Category stamp groups */}
         <div className="space-y-4">
-          {(Object.keys(TRACKED_POI_CATEGORIES) as Exclude<PoiCategoryKey, "dining">[]).map((catKey) => {
-            const ids = TRACKED_POI_CATEGORIES[catKey];
-            const unlocked = ids.filter((id) => unlockedBuildings.has(id)).length;
+          {PASSPORT_CATEGORY_ORDER.map((catKey) => {
+            const stamps = PASSPORT_POIS_BY_CATEGORY[catKey];
+            const unlocked = stamps.filter((stamp) =>
+              effectiveUnlocked.has(stamp.poiId),
+            ).length;
             const colours = CATEGORY_COLOURS[catKey];
 
             return (
@@ -63,7 +70,7 @@ export default function PassportPage() {
                     {CATEGORY_LABELS[catKey]}
                   </span>
                   <span className="text-xs text-gray-400 font-medium">
-                    {unlocked}/{ids.length}
+                    {unlocked}/{stamps.length}
                   </span>
                 </div>
 
@@ -72,39 +79,28 @@ export default function PassportPage() {
                   <div
                     className={`h-1.5 rounded-full ${colours.stamp} transition-all duration-300`}
                     style={{
-                      width: `${ids.length > 0 ? (unlocked / ids.length) * 100 : 0}%`,
+                      width: `${stamps.length > 0 ? (unlocked / stamps.length) * 100 : 0}%`,
                     }}
                   />
                 </div>
 
                 {/* Stamp grid */}
                 <div className="grid grid-cols-5 gap-2">
-                  {ids.map((poiId) => {
-                    const poi = trackedPoiById.get(poiId)?.properties as PoiProps | undefined;
-                    const isUnlocked = unlockedBuildings.has(poiId);
-                    const label =
-                      poi?.short_code ||
-                      poi?.name
-                        ?.split(" ")
-                        .map((w) => w[0])
-                        .join("")
-                        .slice(0, 3)
-                        .toUpperCase() ||
-                      "?";
+                  {stamps.map((stamp) => {
+                    const isUnlocked = effectiveUnlocked.has(stamp.poiId);
+                    const tileState = isUnlocked ? "collected" : "locked";
+                    const caption =
+                      stamp.name.split(" ")[0]?.slice(0, 10) ?? stamp.shortLabel;
 
                     return (
-                      <div key={poiId} className="flex flex-col items-center gap-1">
-                        <div
-                          className={`w-11 h-11 rounded-full flex items-center justify-center text-[10px] font-bold leading-none ${
-                            isUnlocked
-                              ? `${colours.stamp} text-white`
-                              : "bg-gray-200 text-gray-400"
-                          }`}
-                        >
-                          {isUnlocked ? label : "?"}
-                        </div>
+                      <div key={stamp.poiId} className="flex flex-col items-center gap-1.5">
+                        <PassportStampTile
+                          definition={stamp}
+                          state={tileState}
+                          variant="compact"
+                        />
                         <span className="text-[9px] text-gray-400 text-center leading-tight truncate w-full">
-                          {poi?.name?.split(" ")[0] ?? poiId}
+                          {caption}
                         </span>
                       </div>
                     );
@@ -163,7 +159,7 @@ export default function PassportPage() {
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 divide-y divide-gray-100">
           {SAMPLE_RESIDENCE_PROGRESS.map((entry) => {
-            const pct = Math.round((entry.discovered / entry.total) * 100);
+            const pct = Math.round((entry.discovered / TOTAL_PASSPORT_POIS) * 100);
             const isUser = profile?.residenceTag === entry.tag;
 
             return (

@@ -48,7 +48,11 @@ export default function BottomNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 h-16 flex items-center">
       {TABS.map(({ href, label, icon }) => {
-        const active = pathname === href || pathname.startsWith(href + "/");
+        const active =
+          pathname === href ||
+          pathname.startsWith(href + "/") ||
+          (href === "/home" &&
+            (pathname === "/notices" || pathname.startsWith("/notices/")));
         return (
           <Link
             key={href}

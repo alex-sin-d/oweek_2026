@@ -6,11 +6,8 @@ export const DEMO_DATE = "2026-09-08"; // Tuesday
 /** Human-readable day label for the demo date */
 export const DEMO_DAY_LABEL = "Tuesday";
 
-/** Starting position for the demo — Perth Hall coordinates [lng, lat] from the merged manual capture dataset */
-export const PERTH_START_COORDS: [number, number] = [-81.2770294, 42.9999657];
-
-/** Campus center for default camera position [lng, lat] */
-export const CAMPUS_CENTER: [number, number] = [-81.2740, 43.0070];
+/** Fixed demo player start near Perth Hall [lng, lat], aligned with the Echoe walk origin */
+export const PERTH_START_COORDS: [number, number] = [-81.27676819671778, 43.000142254099956];
 
 /** Default camera zoom level on map load */
 export const MAP_DEFAULT_ZOOM = 14.6;
@@ -23,12 +20,6 @@ export const MAP_DEFAULT_BEARING = 18;
 
 /** Proximity radius in metres — a building unlocks when the user enters this range */
 export const PROXIMITY_RADIUS_M = 70;
-
-/** Simulated walk speed in metres per second */
-export const WALK_SPEED_MPS = 1.4;
-
-/** Interval in ms at which the simulated walk position updates */
-export const WALK_TICK_MS = 500;
 
 // ─── OWeek Schedule ───────────────────────────────────────────────────────────
 
