@@ -1,61 +1,95 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import OnboardingShell from "./OnboardingShell";
+import getInvolvedImage from "@/design/images/get_involved.jpg";
 import sciWelcomeImage from "@/design/images/sci_welcome.png";
-import yourNextStopImage from "@/design/images/your_next_stop.png";
 
 interface IntroScreenProps {
   onContinue: () => void;
 }
 
-const CARDS = [
+type CardDef =
+  | {
+      kind: "image";
+      title: string;
+      body: string;
+      image: StaticImageData;
+      alt: string;
+    }
+  | {
+      kind: "info";
+      title: string;
+      body: string;
+    };
+
+const CARDS: CardDef[] = [
   {
+    kind: "image",
     title: "Welcome to Western!",
     body: "Your OWeek adventure starts here.",
-    image: yourNextStopImage,
-    kind: "tower" as const,
+    image: getInvolvedImage,
+    alt: "Western students gathered at a campus event",
   },
   {
+    kind: "image",
     title: "Events & Activities",
     body: "Explore concerts, socials, and campus traditions.",
     image: sciWelcomeImage,
-    kind: "people" as const,
+    alt: "Students enjoying a Western OWeek activity",
   },
   {
+    kind: "info",
     title: "Get Important Info",
     body: "Schedules, FAQs, and everything you need for a great first week.",
-    image: null,
-    kind: "info" as const,
   },
 ];
 
-function CardThumbnail({
-  image,
-  alt,
-}: {
-  image: typeof sciWelcomeImage | null;
-  alt: string;
-}) {
-  if (image) {
+function CardVisual({ card }: { card: CardDef }) {
+  if (card.kind === "image") {
     return (
-      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px] ring-1 ring-[rgba(210,170,255,0.3)]">
+      <div
+        className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-[16px]"
+        style={{
+          border: "1px solid rgba(210,170,255,0.28)",
+          boxShadow:
+            "inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 22px -10px rgba(10,4,25,0.7)",
+        }}
+      >
         <Image
-          src={image}
-          alt={alt}
+          src={card.image}
+          alt={card.alt}
           fill
-          sizes="56px"
+          sizes="72px"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1A0A2E]/30 to-[#5B2A8F]/40" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1A0A2E]/15 via-transparent to-[#5B2A8F]/25" />
       </div>
     );
   }
-  // Info card: glowing 'i' icon
   return (
-    <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#3A1A66] to-[#1A0A2E] ring-1 ring-[rgba(210,170,255,0.4)] shadow-[0_0_24px_-2px_rgba(157,78,221,0.55)]">
-      <span className="text-2xl font-serif italic text-[#E9D5FF]">i</span>
-      <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-[#9D4EDD]/40" />
+    <div
+      className="relative flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full"
+      style={{
+        background:
+          "radial-gradient(80% 80% at 30% 25%, #5B2A8F 0%, #2A1340 60%, #170B2B 100%)",
+        border: "1px solid rgba(210,170,255,0.45)",
+        boxShadow:
+          "0 0 26px -4px rgba(157,78,221,0.6), inset 0 1px 0 rgba(255,255,255,0.12)",
+      }}
+    >
+      <span
+        className="text-[28px] leading-none text-[#F4ECFF]"
+        style={{
+          fontFamily:
+            "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+          fontWeight: 500,
+          fontStyle: "italic",
+        }}
+      >
+        i
+      </span>
+      <span className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-[#C8B6FF]/35" />
     </div>
   );
 }
@@ -68,21 +102,22 @@ export default function IntroScreen({ onContinue }: IntroScreenProps) {
         <button
           type="button"
           onClick={onContinue}
-          className="w-full rounded-2xl py-[18px] text-[15px] font-semibold tracking-tight text-[#1A0A2E] transition-transform active:scale-[0.98]"
+          className="w-full rounded-[20px] py-[18px] text-[15px] font-bold tracking-tight text-[#1A0A2E] transition-transform active:scale-[0.985]"
           style={{
-            background: "linear-gradient(180deg, #E9D5FF 0%, #D8B4FE 100%)",
+            background:
+              "linear-gradient(180deg, #EFE2FF 0%, #D8B4FE 60%, #C8A3F9 100%)",
             boxShadow:
-              "0 12px 32px -8px rgba(157,78,221,0.55), inset 0 1px 0 rgba(255,255,255,0.7)",
+              "0 16px 36px -10px rgba(157,78,221,0.6), 0 0 24px -8px rgba(200,182,255,0.55), inset 0 1px 0 rgba(255,255,255,0.75)",
           }}
         >
           Continue
         </button>
       }
     >
-      {/* Decorative botanical line art (subtle, matches reference vibe) */}
+      {/* Decorative botanical line art — purely visual */}
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute left-0 top-[120px] h-32 w-24 opacity-30"
+        className="pointer-events-none absolute -left-2 top-[80px] h-32 w-24 opacity-25"
         viewBox="0 0 100 140"
         fill="none"
         stroke="#C8B6FF"
@@ -92,7 +127,7 @@ export default function IntroScreen({ onContinue }: IntroScreenProps) {
       </svg>
       <svg
         aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-[120px] h-32 w-24 opacity-30"
+        className="pointer-events-none absolute -right-2 top-[80px] h-32 w-24 opacity-25"
         viewBox="0 0 100 140"
         fill="none"
         stroke="#C8B6FF"
@@ -101,48 +136,50 @@ export default function IntroScreen({ onContinue }: IntroScreenProps) {
         <path d="M90 20 Q 70 30 50 20 M90 40 Q 65 50 40 35 M90 60 Q 60 70 30 50 M90 80 Q 55 90 25 65" />
       </svg>
 
-      <div className="relative flex flex-col gap-3.5">
+      <div className="relative flex flex-col gap-3">
         {CARDS.map((card, i) => (
           <div
             key={card.title}
-            className="oweek-fade-in flex items-center gap-3.5 rounded-[20px] p-3.5"
+            className="oweek-fade-in flex items-center gap-4 rounded-[22px] p-4"
             style={{
               animationDelay: `${i * 90}ms`,
               background:
-                "linear-gradient(180deg, rgba(255,255,255,0.085) 0%, rgba(255,255,255,0.04) 100%)",
-              border: "1px solid rgba(210,170,255,0.22)",
+                "linear-gradient(180deg, rgba(45,24,75,0.78) 0%, rgba(28,14,52,0.7) 100%)",
+              border: "1px solid rgba(197,142,255,0.25)",
               boxShadow:
-                "0 18px 44px rgba(10,4,25,0.5), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 28px -8px rgba(157,78,221,0.18)",
+                "0 22px 48px rgba(10,4,25,0.55), inset 0 1px 0 rgba(255,255,255,0.05), 0 0 32px -10px rgba(157,78,221,0.22)",
               backdropFilter: "blur(14px)",
             }}
           >
             <div className="min-w-0 flex-1">
-              <h3 className="text-[15.5px] font-semibold tracking-tight text-[#F8F5FF]">
+              <h3 className="text-[17px] font-semibold tracking-tight text-[#F8F5FF]">
                 {card.title}
               </h3>
-              <p className="mt-1 text-[13px] leading-snug text-[#CFC4DD]">
+              <p className="mt-1 text-[13.5px] leading-snug text-[#D8CDEC]">
                 {card.body}
               </p>
             </div>
-            <CardThumbnail image={card.image} alt="" />
+            <CardVisual card={card} />
           </div>
         ))}
       </div>
 
-      <div className="mt-12 text-center">
+      <div className="mt-9 text-center">
         <h2
-          className="text-[34px] leading-[1.05] tracking-tight text-[#F8F5FF]"
+          className="text-[36px] leading-[1.02] tracking-tight text-[#F8F5FF]"
           style={{
             fontFamily:
               "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
             fontWeight: 500,
+            letterSpacing: "-0.01em",
+            textShadow: "0 6px 24px rgba(157,78,221,0.18)",
           }}
         >
           Start Your
           <br />
           OWeek Journey
         </h2>
-        <p className="mx-auto mt-3 max-w-[300px] text-[13.5px] leading-relaxed text-[#CFC4DD]">
+        <p className="mx-auto mt-3 max-w-[320px] text-[14px] leading-relaxed text-[#D8CDEC]">
           Discover events, campus traditions, and important first-week info — all in one place.
         </p>
       </div>
