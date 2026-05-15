@@ -102,6 +102,280 @@ body {
   transform: translateY(0);
 }
 
+/* ── Stamp reveal overlay (Passport collectible showcase) ─────────────── */
+.stamp-shell-reveal {
+  transition:
+    opacity 300ms ease,
+    transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+:root {
+  --stamp-reveal-duration: 520ms;
+  --stamp-reveal-spring: cubic-bezier(0.34, 1.26, 0.64, 1);
+  --stamp-reveal-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stamp-reveal-backdrop {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  background: rgba(24, 15, 37, 0.1);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition:
+    opacity 280ms ease,
+    background 420ms ease,
+    backdrop-filter 420ms ease,
+    -webkit-backdrop-filter 420ms ease;
+}
+
+.stamp-reveal-backdrop.is-active {
+  opacity: 1;
+  background: rgba(20, 12, 34, 0.42);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.stamp-reveal-shell {
+  transform-origin: top left;
+  transition:
+    transform var(--stamp-reveal-duration) var(--stamp-reveal-spring),
+    border-radius 440ms var(--stamp-reveal-ease),
+    box-shadow 440ms ease,
+    opacity 220ms ease;
+  will-change: transform, border-radius, box-shadow, opacity;
+}
+
+.stamp-reveal-glow {
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 520ms ease,
+    transform 680ms var(--stamp-reveal-ease);
+  transition-delay: 140ms;
+}
+.stamp-reveal-glow.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.stamp-reveal-hero {
+  opacity: 0;
+  transform: translateY(18px) scale(0.86);
+  transition:
+    opacity 380ms ease,
+    transform 620ms var(--stamp-reveal-spring);
+  transition-delay: 160ms;
+}
+.stamp-reveal-hero.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.stamp-reveal-sparkle {
+  opacity: 0;
+  transform: scale(0.4);
+  transition:
+    opacity 360ms ease,
+    transform 520ms var(--stamp-reveal-spring);
+}
+.stamp-reveal-sparkle.is-visible {
+  opacity: 0.85;
+  transform: scale(1);
+}
+
+.stamp-reveal-head {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition:
+    opacity 320ms ease,
+    transform 440ms var(--stamp-reveal-ease);
+  transition-delay: 120ms;
+}
+.stamp-reveal-head.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stamp-reveal-body {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 340ms ease,
+    transform 480ms var(--stamp-reveal-ease);
+  transition-delay: 280ms;
+}
+.stamp-reveal-body.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Stamp collect overlay (BuildingPanel reward reveal → fly-to-slot) ─── */
+/* The flyer is the single animated element. Origin and destination are    */
+/* the same button slot — the stamp rises out, holds at center, returns.   */
+.stamp-collect-flyer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transform-origin: top left;
+  will-change: transform, opacity, filter;
+  filter: drop-shadow(0 10px 22px rgba(10, 5, 24, 0.28));
+}
+
+.stamp-collect-flyer-visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  isolation: isolate;
+}
+
+.stamp-collect-flyer-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  will-change: opacity;
+}
+
+.stamp-collect-flyer-layer.is-visible {
+  opacity: 1;
+}
+
+.stamp-collect-flyer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  object-fit: contain;
+}
+
+.stamp-collect-flyer-lock {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32%;
+  width: 32%;
+  min-height: 14px;
+  min-width: 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #4f1d96;
+  box-shadow: 0 1px 2px rgba(34, 18, 54, 0.25);
+  border: 1px solid rgba(79, 29, 150, 0.25);
+  pointer-events: none;
+}
+
+.stamp-collect-flyer-lock svg {
+  width: 56%;
+  height: 56%;
+}
+
+.stamp-collect-burst {
+  position: fixed;
+  width: 360px;
+  height: 360px;
+  pointer-events: none;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%) scale(0.5);
+  background: radial-gradient(
+    circle,
+    rgba(129, 82, 217, 0.42) 0%,
+    rgba(129, 82, 217, 0.18) 38%,
+    rgba(129, 82, 217, 0) 70%
+  );
+  opacity: 0;
+  will-change: opacity, transform;
+  filter: blur(2px);
+}
+
+.stamp-collect-slot-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(129, 82, 217, 0.55) 0%,
+    rgba(129, 82, 217, 0) 70%
+  );
+  opacity: 0;
+  pointer-events: none;
+  animation: stamp-collect-slot-kiss 320ms var(--stamp-reveal-ease) forwards;
+}
+
+@keyframes stamp-collect-slot-kiss {
+  0% { opacity: 0; transform: scale(0.6); }
+  40% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-collect-flyer {
+    transition-duration: 160ms !important;
+  }
+  .stamp-collect-burst,
+  .stamp-collect-slot-glow {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* ── Collectible stamp hover / tap treatment ──────────────────────────────── */
+/* drop-shadow traces the transparent PNG silhouette, not the bounding box   */
+
+.stamp-collectible {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.stamp-collectible-art {
+  transition:
+    filter 260ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: filter, transform;
+}
+
+.stamp-collectible:hover .stamp-collectible-art {
+  filter:
+    drop-shadow(0 0 5px rgba(79, 45, 127, 0.36))
+    drop-shadow(0 0 14px rgba(79, 45, 127, 0.16));
+  transform: scale(1.08) translateY(-3px);
+}
+
+.stamp-collectible:active .stamp-collectible-art {
+  filter:
+    drop-shadow(0 0 7px rgba(79, 45, 127, 0.52))
+    drop-shadow(0 0 20px rgba(79, 45, 127, 0.22));
+  transform: scale(1.04) translateY(-1px);
+  transition-duration: 80ms;
+}
+
+.stamp-collectible:focus-visible .stamp-collectible-art {
+  filter:
+    drop-shadow(0 0 6px rgba(79, 45, 127, 0.5))
+    drop-shadow(0 0 16px rgba(79, 45, 127, 0.2));
+  transform: scale(1.06) translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp-collectible-art {
+    transition-duration: 120ms !important;
+  }
+  .stamp-collectible:hover .stamp-collectible-art,
+  .stamp-collectible:active .stamp-collectible-art {
+    transform: none;
+  }
+}
+
 .map-canvas-tone-overlay {
   position: absolute;
   inset: 0;

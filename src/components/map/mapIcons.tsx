@@ -9,7 +9,11 @@ type IconName =
   | "close"
   | "time"
   | "location"
-  | "chevron-right";
+  | "chevron-right"
+  | "route"
+  | "save"
+  | "share"
+  | "passport";
 
 interface MapIconProps {
   name: IconName;
@@ -159,6 +163,45 @@ export function MapIcon({ name, className }: MapIconProps) {
           d="M12 20.5s6.5-4.04 6.5-10a6.5 6.5 0 1 0-13 0c0 5.96 6.5 10 6.5 10Z"
         />
         <circle cx="12" cy="10.5" r="2.15" />
+      </svg>
+    );
+  }
+
+  if (resolvedName === "route") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} className={className}>
+        <circle cx="6" cy="6" r="2.25" />
+        <circle cx="18" cy="18" r="2.25" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 8.25v3a3 3 0 0 0 3 3h6a3 3 0 0 1 3 3v-.25" />
+      </svg>
+    );
+  }
+
+  if (resolvedName === "save") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} className={className}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 5.5A1.5 1.5 0 0 1 6.5 4h11A1.5 1.5 0 0 1 19 5.5V20l-7-3.5L5 20V5.5Z" />
+      </svg>
+    );
+  }
+
+  if (resolvedName === "share") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} className={className}>
+        <circle cx="18" cy="5.5" r="2" />
+        <circle cx="6" cy="12" r="2" />
+        <circle cx="18" cy="18.5" r="2" />
+        <path strokeLinecap="round" d="M7.9 10.9 16.1 7M7.9 13.1l8.2 4.2" />
+      </svg>
+    );
+  }
+
+  if (resolvedName === "passport") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.9} className={className}>
+        <rect x="4.5" y="3.5" width="15" height="17" rx="2" strokeLinecap="round" />
+        <circle cx="12" cy="11.5" r="2.75" />
+        <path strokeLinecap="round" d="M7.5 16.5h9" />
       </svg>
     );
   }

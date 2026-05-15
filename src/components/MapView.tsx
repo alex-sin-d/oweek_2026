@@ -18,16 +18,14 @@ import MapControlSheet from "@/components/map/MapControlSheet";
 import { MapIcon } from "@/components/map/mapIcons";
 import MapMarkerBadge from "@/components/map/MapMarkerBadge";
 import MapPreviewCard from "@/components/map/MapPreviewCard";
-import StampToast from "@/components/StampToast";
 import {
   MAP_DEFAULT_BEARING,
   MAP_DEFAULT_PITCH,
   MAP_DEFAULT_ZOOM,
-  PROXIMITY_RADIUS_M,
   DEMO_DATE,
 } from "@/lib/config";
 import { useApp } from "@/lib/AppContext";
-import { allPoiCoordinates, allPois, getPoiById } from "@/lib/pois";
+import { allPois } from "@/lib/pois";
 import {
   buildMapSearchItems,
   buildMapSelectionPreview,
@@ -37,7 +35,6 @@ import {
   type MapFilterKey,
 } from "@/lib/mapPresentation";
 import { getMapPreviewMedia } from "@/lib/mapPreviewMedia";
-import { detectUnlocks } from "@/lib/proximityDetection";
 import {
   DEMO_WALK_PATH,
   WALK_DURATION_MS,
@@ -415,7 +412,6 @@ function DebugPanel({
 export default function MapView() {
   const {
     unlockedBuildings,
-    unlockBuilding,
     selectedPoiId,
     panelPoiId,
     setPanelPoiId,
@@ -428,7 +424,6 @@ export default function MapView() {
   const mapRef = useRef<MapRef | null>(null);
   const rafRef = useRef<number>(0);
   const walkStartRef = useRef<number>(0);
-  const unlockedRef = useRef<Set<string>>(new Set());
   const initialContextFocusRef = useRef(false);
   const debugWaitingRef = useRef(false);
   const debugLabelRef = useRef("");
@@ -440,10 +435,6 @@ export default function MapView() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeFilters, setActiveFilters] =
     useState<Record<MapFilterKey, boolean>>(DEFAULT_FILTERS);
-  const [stampToast, setStampToast] = useState<{
-    poiId: string;
-    name: string;
-  } | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [playerPos, setPlayerPos] = useState<[number, number]>(WALK_START);
   const [walking, setWalking] = useState(false);
@@ -453,10 +444,6 @@ export default function MapView() {
   >([]);
   const [debugWaiting, setDebugWaiting] = useState(false);
   const [debugCurrentLabel, setDebugCurrentLabel] = useState("");
-
-  useEffect(() => {
-    unlockedRef.current = unlockedBuildings;
-  }, [unlockedBuildings]);
 
   useEffect(() => {
     return () => {
@@ -575,35 +562,6 @@ export default function MapView() {
       map.off("styledata", handleStyleData);
     };
   }, [mapReady]);
-
-  const processUnlocks = useCallback(
-    (position: [number, number]) => {
-      const newUnlocks = detectUnlocks(
-        position,
-        allPoiCoordinates,
-        unlockedRef.current,
-        PROXIMITY_RADIUS_M,
-      );
-
-      if (newUnlocks.length === 0) return;
-
-      const nextUnlocked = new Set(unlockedRef.current);
-      for (const poiId of newUnlocks) {
-        nextUnlocked.add(poiId);
-        unlockBuilding(poiId);
-        const name = getPoiById(poiId)?.properties.name ?? poiId;
-        setStampToast({ poiId, name });
-        setSelectedPoiId(poiId);
-      }
-      unlockedRef.current = nextUnlocked;
-      setPanelPoiId(null);
-    },
-    [setPanelPoiId, setSelectedPoiId, unlockBuilding],
-  );
-
-  useEffect(() => {
-    processUnlocks(playerPos);
-  }, [playerPos, processUnlocks]);
 
   const startWalk = useCallback(() => {
     const map = mapRef.current?.getMap();
@@ -877,13 +835,6 @@ export default function MapView() {
             </button>
           ) : null}
 
-          {stampToast ? (
-            <StampToast
-              name={stampToast.name}
-              onDismiss={() => setStampToast(null)}
-            />
-          ) : null}
-
           {controlSheetOpen ? (
             <MapControlSheet
               initialTab={controlSheetTab}
@@ -908,6 +859,7 @@ export default function MapView() {
               poiId={panelPoiId}
               resolver={resolver}
               events={ALL_EVENTS.filter((event) => event.date === DEMO_DATE)}
+              allPois={allPois}
               onClose={clearActiveSelection}
             />
           ) : null}

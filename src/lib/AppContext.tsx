@@ -48,6 +48,11 @@ const AppContext = createContext<AppState | null>(null);
 const LS_PROFILE    = "oweek_profile";
 const LS_UNLOCKED   = "oweek_unlocked";
 const LS_SAVED_EVTS = "oweek_saved_events";
+
+// Stamps with a premium collect-reveal video must always start collectable
+// on a fresh page load, even if a prior session persisted them — otherwise
+// the demo can only be run once per browser profile.
+const DEMO_RESET_UNLOCKED_IDS = new Set(["aceb"]);
 const EMPTY_PERSISTED_STATE = {
   profile: null as UserProfile | null,
   unlockedBuildings: new Set<string>(),
@@ -66,12 +71,23 @@ function loadSet(key: string): Set<string> {
   }
 }
 
+// In-session unlocks for demo-reset stamps. Not persisted — cleared on full
+// reload so ACEB is collectable again from scratch, while the UI still shows
+// the landed state for the rest of the current session.
+const sessionDemoUnlocked = new Set<string>();
+
 function loadUnlockedPoiSet(): Set<string> {
   if (typeof window === "undefined") return new Set();
   try {
     const raw = localStorage.getItem(LS_UNLOCKED);
     const values = raw ? (JSON.parse(raw) as string[]) : [];
-    return new Set(values.map((poiId) => canonicalizePoiId(poiId)));
+    const out = new Set(
+      values
+        .map((poiId) => canonicalizePoiId(poiId))
+        .filter((poiId) => !DEMO_RESET_UNLOCKED_IDS.has(poiId)),
+    );
+    for (const poiId of sessionDemoUnlocked) out.add(poiId);
+    return out;
   } catch {
     return new Set();
   }
@@ -165,6 +181,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const unlockBuilding = useCallback((poiId: string) => {
     const canonicalPoiId = canonicalizePoiId(poiId);
     if (unlockedBuildings.has(canonicalPoiId)) return;
+
+    if (DEMO_RESET_UNLOCKED_IDS.has(canonicalPoiId)) {
+      sessionDemoUnlocked.add(canonicalPoiId);
+      emitPersistedChange();
+      return;
+    }
 
     const next = new Set(unlockedBuildings);
     next.add(canonicalPoiId);

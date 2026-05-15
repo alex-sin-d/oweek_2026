@@ -94,25 +94,44 @@ export const PASSPORT_POIS_BY_CATEGORY = PASSPORT_CATEGORY_ORDER.reduce<
 
 export const TOTAL_PASSPORT_POIS = PASSPORT_POI_IDS.length;
 
+/**
+ * 23 seeded "already collected" POIs for the passport demo.
+ *
+ * Clare, essex, and kings are intentionally excluded — they have no finished
+ * stamp artwork and should appear as locked placeholders at the back of their
+ * category lists.
+ *
+ * ivey, rec_centre, and alumni_stadium are now collected (promoted from the
+ * old "Next Stamps to Discover" section).
+ */
 export const PASSPORT_SEEDED_UNLOCKED_IDS = [
-  "university_college",
+  // Recently Collected hero
   "ucc",
-  "health_sci",
-  "concrete_beach",
-  "aceb",
-  "somerville",
-  "talbot",
-  "thames",
+  // Collected residences (essex/clare excluded — no finished artwork)
+  "mcintosh_art",
+  "nat_sci_building",
+  "taylor_libary",
   "weldon",
-  "lawson_hall",
-  "medical_science_building",
   "social_science_center",
-  "visual_art_centre",
-  "education_building",
+  "perth",
+  "ontario",
   "delaware",
   "elgin",
   "medsyd",
+  "saugeen",
+  // Academics
+  "stevenson_hall",
+  "talbot",
+  "somerville",
+  "thames",
+  "health_sci",
+  // Landmarks
+  "concrete_beach",
+  "uc_hill",
+  // Student life (kings excluded — no finished artwork)
   "ivey",
+  "rec_centre",
+  "alumni_stadium",
 ] as const;
 
 const PASSPORT_SEEDED_UNLOCKED_SET = new Set<string>(PASSPORT_SEEDED_UNLOCKED_IDS);
@@ -122,13 +141,20 @@ export const HOME_PASSPORT_PREVIEW_IDS = [
   "ucc",
   "health_sci",
   "concrete_beach",
-  "kings",
+  "ivey",
   "rec_centre",
   "alumni_stadium",
   "perth",
   "saugeen",
-  "western_science_centre",
+  "medsyd",
 ] as const;
+
+/**
+ * Locations with no finished stamp artwork. These are permanently locked
+ * regardless of localStorage state or the seeded list — even if a user
+ * previously tapped "Collect Stamp" for one of these, it will not count.
+ */
+export const UNFINISHED_ARTWORK_IDS = new Set(["essex", "clare", "kings"]);
 
 export function getEffectivePassportUnlocked(
   unlockedBuildings: Set<string>,
@@ -136,13 +162,13 @@ export function getEffectivePassportUnlocked(
   const effectiveUnlocked = new Set<string>();
 
   for (const poiId of PASSPORT_SEEDED_UNLOCKED_SET) {
-    if (PASSPORT_POI_ID_SET.has(poiId)) {
+    if (PASSPORT_POI_ID_SET.has(poiId) && !UNFINISHED_ARTWORK_IDS.has(poiId)) {
       effectiveUnlocked.add(poiId);
     }
   }
 
   for (const poiId of unlockedBuildings) {
-    if (PASSPORT_POI_ID_SET.has(poiId)) {
+    if (PASSPORT_POI_ID_SET.has(poiId) && !UNFINISHED_ARTWORK_IDS.has(poiId)) {
       effectiveUnlocked.add(poiId);
     }
   }

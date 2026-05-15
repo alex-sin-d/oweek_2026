@@ -1,0 +1,154 @@
+{
+  "ucc": {
+    "role_label": "Student Hub",
+    "why_it_matters": "The UCC is Western's student activity centre — the hub for student social, cultural, and recreational life on campus. It's packed with clubs, food, lounges, and non-stop OWeek programming all day.",
+    "quick_info_chips": ["Wi-Fi", "ATM", "Food Nearby", "Lounge", "Accessible"],
+    "best_for": ["Student Clubs", "Events", "Socializing", "Evening activities"]
+  },
+  "concrete_beach": {
+    "subtitle": "Outdoor Plaza",
+    "role_label": "Outdoor Space",
+    "why_it_matters": "The large open plaza in front of the UCC is the social heart of campus — host to clubs fairs, food trucks, live performances, and late-night hangouts throughout OWeek.",
+    "quick_info_chips": ["Food Trucks", "Outdoor Stage", "Open Air"],
+    "best_for": ["Student gatherings", "Outdoor events", "Food & drinks"]
+  },
+  "uc_hill": {
+    "subtitle": "South Campus Lawn",
+    "role_label": "Landmark",
+    "why_it_matters": "The iconic sloped lawn in front of University College is one of Western's most recognizable gathering spots. It's a go-to for outdoor activities, lawn games, and spontaneous hangouts.",
+    "quick_info_chips": ["Scenic View", "Open Lawn", "Outdoor"],
+    "best_for": ["Relaxation", "Outdoor activities", "Meeting people"]
+  },
+  "aceb": {
+    "subtitle": "Amit Chakma Engineering Building",
+    "role_label": "Academic",
+    "why_it_matters": "Western's newest engineering building is a practical and inspiring space where undergrads integrate classroom theory with hands-on learning. Home base for all Engineering faculty events this week.",
+    "quick_info_chips": ["Engineering Labs", "Maker Space", "Accessible"],
+    "best_for": ["Engineering students", "Faculty meetups", "Projects"]
+  },
+  "health_sci": {
+    "subtitle": "Arthur & Sonia Labatt Health Sciences Building",
+    "role_label": "Academic",
+    "why_it_matters": "The Health Sciences Building houses Western's health, rehab, and kinesiology programs. It's the gathering point for all Health Sciences and Science faculty home bases during OWeek.",
+    "quick_info_chips": ["Labs", "Lecture Halls", "Accessible"],
+    "best_for": ["Health & science students", "Faculty meetups"]
+  },
+  "talbot": {
+    "subtitle": "Don Wright Faculty of Music",
+    "role_label": "Academic",
+    "why_it_matters": "Talbot College is home to Western's Don Wright Faculty of Music and the Paul Davenport Theatre, which hosts over 200 performances a year. Music students gather here for their first-year welcome.",
+    "quick_info_chips": ["Concert Hall", "Practice Rooms", "Accessible"],
+    "best_for": ["Music students", "Arts events", "Performances"]
+  },
+  "mckellar": {
+    "role_label": "Academic",
+    "why_it_matters": "McKellar Theatre is a campus performance venue hosting screenings, film events, and cultural programming. Catch the OWeek movie night here tonight.",
+    "quick_info_chips": ["Theatre", "Screening Room", "Accessible"],
+    "best_for": ["Film events", "Performances", "Late-night programming"]
+  },
+  "schmeichel": {
+    "role_label": "Academic",
+    "why_it_matters": "An academic building on Western's campus supporting faculty teaching and research programs throughout the year.",
+    "quick_info_chips": ["Lecture Halls", "Accessible"],
+    "best_for": ["Academic events", "Students"]
+  },
+  "somerville": {
+    "role_label": "Academic",
+    "why_it_matters": "Somerville House is a charming academic building on Western's west campus, home to student commons and evening programming including the OWeek movie watch party.",
+    "quick_info_chips": ["Common Room", "Study Space", "Accessible"],
+    "best_for": ["Evening events", "Students", "Social programming"]
+  },
+  "thames": {
+    "role_label": "Academic",
+    "why_it_matters": "Thames Hall supports Western's social science and humanities faculties with lecture halls and seminar rooms for everyday teaching and academic events.",
+    "quick_info_chips": ["Lecture Halls", "Accessible"],
+    "best_for": ["Academic events", "Social science students"]
+  },
+  "rec_centre": {
+    "subtitle": "Western Student Recreation Centre",
+    "role_label": "Athletics",
+    "why_it_matters": "The WSRC is Western's state-of-the-art recreation facility — featuring an 8-lane pool, full gyms, courts, and drop-in fitness classes running all week during OWeek.",
+    "quick_info_chips": ["Gym", "Pool", "Courts", "Fitness Classes", "Accessible"],
+    "best_for": ["Fitness classes", "Workouts", "Swimming"]
+  },
+  "alumni_stadium": {
+    "role_label": "Athletics",
+    "why_it_matters": "Western Alumni Stadium is home to the Mustangs football and field hockey teams and sits at the heart of campus athletics. Tonight it hosts the OWeek Film on the Field and Global Village.",
+    "quick_info_chips": ["Sports Field", "Main Stage", "Concessions"],
+    "best_for": ["Sports events", "Live performances", "Evening shows"]
+  },
+  "kings": {
+    "role_label": "Affiliated College",
+    "why_it_matters": "King's is Western's Catholic liberal-arts college — the largest affiliated college at Western, with its own campus, residences, and tight-knit community. King's students meet here for their OWeek home base.",
+    "quick_info_chips": ["Cafeteria", "Chapel", "Wi-Fi", "Accessible"],
+    "best_for": ["King's students", "Community events", "Faculty meetups"]
+  },
+  "huron_quad": {
+    "subtitle": "Huron University College",
+    "role_label": "Outdoor",
+    "why_it_matters": "Huron Quad is the grassy heart of Huron University College, surrounded by historic buildings and used for outdoor student events throughout the year.",
+    "quick_info_chips": ["Grassy Lawn", "Outdoor Tent", "Accessible"],
+    "best_for": ["Huron students", "Outdoor activities", "Traditions"]
+  },
+  "bayfield": {
+    "role_label": "Residence",
+    "why_it_matters": "Bayfield Hall is one of Western's student residences, offering a community-focused living experience close to campus amenities and OWeek activities.",
+    "quick_info_chips": ["Residence Hall", "Common Room", "Laundry"],
+    "best_for": ["Residents", "Floor events", "Community"]
+  },
+  "clare": {
+    "role_label": "Residence",
+    "why_it_matters": "Clare Hall is a smaller, community-focused residence at Western known for its close-knit atmosphere. Clare hosts its own community night during OWeek.",
+    "quick_info_chips": ["Residence Hall", "Common Room", "Laundry"],
+    "best_for": ["Residents", "Floor events", "Community"]
+  },
+  "delaware": {
+    "role_label": "Residence",
+    "why_it_matters": "Delaware Hall is one of Western's classic residences with a welcoming community and a large main lounge — the site of tonight's Delaware social.",
+    "quick_info_chips": ["Residence Hall", "Main Lounge", "Laundry"],
+    "best_for": ["Residents", "Floor events", "Social nights"]
+  },
+  "elgin": {
+    "role_label": "Residence",
+    "why_it_matters": "Elgin Hall is a lively residence with a backyard gathering space perfect for outdoor socials — including tonight's Elgin Backyard Social during OWeek.",
+    "quick_info_chips": ["Residence Hall", "Backyard", "Common Room"],
+    "best_for": ["Residents", "Outdoor socials", "Community"]
+  },
+  "essex": {
+    "role_label": "Residence",
+    "why_it_matters": "Essex Hall is a mid-campus residence with its own cafeteria and a strong floor community. Essex hosts free food and social events for residents throughout OWeek.",
+    "quick_info_chips": ["Residence Hall", "Cafeteria", "Common Room"],
+    "best_for": ["Residents", "Floor events", "Free food"]
+  },
+  "lambton": {
+    "role_label": "Residence",
+    "why_it_matters": "Lambton Hall is a quiet, community-oriented residence at Western with a main lounge perfect for floor social nights throughout OWeek.",
+    "quick_info_chips": ["Residence Hall", "Main Lounge", "Laundry"],
+    "best_for": ["Residents", "Floor events", "Community"]
+  },
+  "medsyd": {
+    "subtitle": "Medway-Sydenham Hall",
+    "role_label": "Residence",
+    "why_it_matters": "Med-Syd is one of Western's larger residence complexes, home to a big student community and lively outdoor quad events during OWeek.",
+    "quick_info_chips": ["Residence Hall", "Quad", "Common Room"],
+    "best_for": ["Residents", "Outdoor socials", "Community"]
+  },
+  "ontario": {
+    "role_label": "Residence",
+    "why_it_matters": "Ontario Hall is a traditional Western residence with a spacious courtyard used for community socials and OWeek outdoor programming.",
+    "quick_info_chips": ["Residence Hall", "Courtyard", "Common Room"],
+    "best_for": ["Residents", "Outdoor events", "Community"]
+  },
+  "perth": {
+    "role_label": "Residence",
+    "why_it_matters": "Perth Hall is one of Western's smaller residences, known for its tight-knit community and cozy dining hall — the gathering spot for tonight's Perth Social.",
+    "quick_info_chips": ["Residence Hall", "Dining Hall", "Common Room"],
+    "best_for": ["Residents", "Floor events", "Dining socials"]
+  },
+  "saugeen": {
+    "role_label": "Residence",
+    "why_it_matters": "Saugeen-Maitland is Western's largest and most iconic residence, housing nearly 1,200 students. It's the social epicentre of first-year residence life and OWeek.",
+    "quick_info_chips": ["Residence Hall", "Main Lounge", "Food Court", "Accessible"],
+    "best_for": ["Residents", "Social events", "Community nights"]
+  }
+}

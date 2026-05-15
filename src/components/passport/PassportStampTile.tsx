@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import type {
   PassportStampDefinition,
@@ -6,6 +7,7 @@ import type {
 import PlaceholderStampArtwork, {
   type PassportArtworkVariant,
 } from "@/components/passport/PlaceholderStampArtwork";
+import { getStampImage } from "@/lib/stampImages";
 
 export type PassportArtworkRenderer = (args: {
   definition: PassportStampDefinition;
@@ -35,6 +37,25 @@ function resolveArtwork(
     return artwork;
   }
 
+  const src = getStampImage(definition.poiId);
+  if (src) {
+    const isLocked = state === "locked";
+    return (
+      <Image
+        src={src}
+        alt={definition.name}
+        fill
+        unoptimized
+        className="object-contain transition-[filter,opacity] duration-200"
+        style={
+          isLocked
+            ? { filter: "saturate(0.15) brightness(0.92)", opacity: 0.7 }
+            : undefined
+        }
+      />
+    );
+  }
+
   return (
     <PlaceholderStampArtwork
       definition={definition}
@@ -60,7 +81,7 @@ export default function PassportStampTile({
       : "aspect-square rounded-[18px]";
 
   const surfaceClass = isLocked
-    ? "bg-[linear-gradient(180deg,rgba(240,236,246,0.94)_0%,rgba(233,227,242,0.92)_100%)] text-[#b8acce] ring-[#ece5f2] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]"
+    ? "bg-[linear-gradient(180deg,rgba(238,232,248,0.96)_0%,rgba(226,217,238,0.94)_100%)] text-[#5a4a78] ring-[rgba(196,182,222,0.7)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-8px_18px_rgba(79,45,127,0.07)]"
     : "bg-[linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(249,245,253,0.98)_100%)] text-[#4c2f79] ring-[rgba(233,224,243,0.9)] shadow-[0_12px_24px_rgba(83,53,123,0.12),inset_0_1px_0_rgba(255,255,255,0.92)]";
 
   const glowClass = isNew
@@ -70,21 +91,24 @@ export default function PassportStampTile({
   return (
     <div
       aria-label={`${definition.name} ${state}`}
-      className={`relative flex items-center justify-center overflow-hidden ring-1 ${sizeClass} ${surfaceClass} ${glowClass} ${className}`}
+      className={`relative overflow-hidden ring-1 ${sizeClass} ${surfaceClass} ${glowClass} ${className}`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.68),transparent_65%)]" />
-      <div className="relative flex items-center justify-center">
+      {/* Artwork — inset keeps stamp from bleeding to tile edges */}
+      <div className="absolute inset-[5px] flex items-center justify-center">
         {resolveArtwork(artwork, definition, state, variant)}
       </div>
 
+      {/* Top-glow overlay — sits above artwork so it applies to real stamps too */}
+      <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.68),transparent_65%)]" />
+
       {isLocked && (
-        <span className="absolute bottom-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-white/80 text-[#b9acca] ring-1 ring-white/90">
+        <span className="absolute bottom-2 right-2 z-20 flex h-5 w-5 items-center justify-center rounded-full bg-[rgba(79,29,150,0.1)] text-[rgba(79,29,150,0.72)] ring-1 ring-[rgba(79,29,150,0.18)]">
           <LockGlyph />
         </span>
       )}
 
       {isNew && (
-        <span className="absolute right-2 top-2 rounded-full bg-[#6f3cc5] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-white">
+        <span className="absolute right-2 top-2 z-20 rounded-full bg-[#6f3cc5] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-white">
           New
         </span>
       )}
