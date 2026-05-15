@@ -2,6 +2,10 @@
 
 :root {
   --western-purple: #4F2D7F;
+  --western-plum: #2A1340;
+  --western-midnight: #15082A;
+  --lavender-accent: #C8B6FF;
+  --lavender-soft: #E5DBFF;
   --western-gold: #F7B500;
   --featured-overlay-duration: 380ms;
   --featured-overlay-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -30,6 +34,49 @@ body {
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ── Onboarding / splash ─────────────────────────────────────────── */
+@keyframes oweek-splash-fill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes oweek-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.oweek-splash-bar {
+  animation: oweek-splash-fill 1800ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.oweek-fade-in {
+  animation: oweek-fade-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.oweek-onboard-bg {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(140, 90, 230, 0.28) 0%, transparent 60%),
+    radial-gradient(80% 60% at 50% 110%, rgba(79, 45, 127, 0.35) 0%, transparent 70%),
+    linear-gradient(180deg, #1A0A2E 0%, #15082A 60%, #0E0420 100%);
+}
+
+.oweek-card-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(200, 182, 255, 0.14);
+  box-shadow:
+    0 18px 40px rgba(10, 4, 25, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.oweek-card-glass--selected {
+  border-color: rgba(200, 182, 255, 0.85);
+  background: linear-gradient(180deg, rgba(200, 182, 255, 0.18) 0%, rgba(200, 182, 255, 0.06) 100%);
+  box-shadow:
+    0 0 0 1px rgba(200, 182, 255, 0.45),
+    0 0 32px -8px rgba(200, 182, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .scrollbar-none::-webkit-scrollbar {

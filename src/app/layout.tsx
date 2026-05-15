@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { AppProvider } from "@/lib/AppContext";
 import BottomNav from "@/components/BottomNav";
-import OnboardingModal from "@/components/OnboardingModal";
+import OnboardingFlow from "@/components/onboarding/OnboardingFlow";
 
 export const metadata: Metadata = {
   title: "OWeek 2026",
@@ -23,7 +23,9 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className="h-full flex flex-col overflow-hidden">
         <AppProvider>
-          <OnboardingModal />
+          {/* Splash + multi-step onboarding overlay. Renders nothing once
+              the user has completed onboarding. */}
+          <OnboardingFlow />
           {/* Main content — fills above fixed bottom nav */}
           <main className="relative flex-1 overflow-hidden pb-16">
             {children}

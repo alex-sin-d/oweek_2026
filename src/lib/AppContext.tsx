@@ -27,6 +27,8 @@ export interface UserProfile {
 
 interface AppState {
   profile: UserProfile | null;
+  /** True when a profile has been saved (post-onboarding). */
+  onboardingComplete: boolean;
   unlockedBuildings: Set<string>;
   savedEventIds: Set<string>;
   selectedPoiId: string | null;
@@ -35,6 +37,7 @@ interface AppState {
   earnedBadgeIds: string[];
 
   setProfile: (p: UserProfile) => void;
+  resetOnboarding: () => void;
   unlockBuilding: (poiId: string) => void;
   toggleSavedEvent: (eventId: string) => void;
   setSelectedPoiId: (id: string | null) => void;
@@ -45,9 +48,24 @@ const AppContext = createContext<AppState | null>(null);
 
 // ─── Persistence helpers ──────────────────────────────────────────────────────
 
-const LS_PROFILE    = "oweek_profile";
-const LS_UNLOCKED   = "oweek_unlocked";
-const LS_SAVED_EVTS = "oweek_saved_events";
+// Bumped key so legacy `oweek_profile` (which contained test data like "Maya")
+// is ignored and the user goes through the new onboarding flow.
+const LS_PROFILE      = "oweek_profile_v2";
+const LS_PROFILE_LEGACY = "oweek_profile";
+const LS_UNLOCKED     = "oweek_unlocked";
+const LS_SAVED_EVTS   = "oweek_saved_events";
+
+// One-shot migration: remove the legacy profile blob on first load so it
+// cannot leak into the new flow.
+if (typeof window !== "undefined") {
+  try {
+    if (localStorage.getItem(LS_PROFILE_LEGACY) !== null) {
+      localStorage.removeItem(LS_PROFILE_LEGACY);
+    }
+  } catch {
+    // ignore quota / privacy-mode errors
+  }
+}
 
 // Stamps with a premium collect-reveal video must always start collectable
 // on a fresh page load, even if a prior session persisted them — otherwise
@@ -178,6 +196,23 @@ export function AppProvider({ children }: { children: ReactNode }) {
     emitPersistedChange();
   }, []);
 
+  const resetOnboarding = useCallback(() => {
+    try {
+      // Profile keys
+      localStorage.removeItem(LS_PROFILE);
+      localStorage.removeItem(LS_PROFILE_LEGACY);
+      // Demo state — collected stamps and saved events. Wiping these here
+      // means a single `window.__oweekReset()` call leaves the user with a
+      // truly clean slate, so they can verify that no auto-collect path
+      // exists without having to also remember to clear `oweek_unlocked`.
+      localStorage.removeItem(LS_UNLOCKED);
+      localStorage.removeItem(LS_SAVED_EVTS);
+    } catch {
+      // ignore quota / privacy-mode errors
+    }
+    emitPersistedChange();
+  }, []);
+
   const unlockBuilding = useCallback((poiId: string) => {
     const canonicalPoiId = canonicalizePoiId(poiId);
     if (unlockedBuildings.has(canonicalPoiId)) return;
@@ -206,12 +241,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     <AppContext.Provider
       value={{
         profile,
+        onboardingComplete: profile !== null,
         unlockedBuildings,
         savedEventIds,
         selectedPoiId,
         panelPoiId,
         earnedBadgeIds,
         setProfile,
+        resetOnboarding,
         unlockBuilding,
         toggleSavedEvent,
         setSelectedPoiId,
