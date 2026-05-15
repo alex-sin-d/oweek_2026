@@ -2,11 +2,12 @@
 
 import { useState, useMemo, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import FeaturedEventOverlay from "@/components/FeaturedEventOverlay";
 import { useApp } from "@/lib/AppContext";
 import { OWEEK_DAYS, DEMO_DATE } from "@/lib/config";
+import { buildEventExperience } from "@/lib/eventExperience";
 import { venueResolver as resolver } from "@/lib/venueResolver";
 import EventCard from "@/components/EventCard";
-import EventDetail from "@/components/EventDetail";
 import type { OWeekEvent } from "@/components/EventCard";
 
 import eventsJson from "@/data/events.json";
@@ -17,7 +18,13 @@ const allEvents = (eventsJson as { events: OWeekEvent[] }).events;
 
 export default function SchedulePage() {
   const router = useRouter();
-  const { profile, savedEventIds } = useApp();
+  const {
+    profile,
+    savedEventIds,
+    toggleSavedEvent,
+    setSelectedPoiId,
+    setPanelPoiId,
+  } = useApp();
 
   // Day picker — locked to demo date
   const [selectedDate, setSelectedDate] = useState(DEMO_DATE);
@@ -30,6 +37,17 @@ export default function SchedulePage() {
 
   // Event detail
   const [detailEvent, setDetailEvent] = useState<OWeekEvent | null>(null);
+  const detailResolved = useMemo(
+    () => (detailEvent ? resolver.resolve(detailEvent.venue_id) : null),
+    [detailEvent],
+  );
+  const detailExperience = useMemo(
+    () =>
+      detailEvent && detailResolved
+        ? buildEventExperience(detailEvent, detailResolved)
+        : null,
+    [detailEvent, detailResolved],
+  );
 
   // ── Filtered events ─────────────────────────────────────────────────────────
   const filteredEvents = useMemo(() => {
@@ -81,11 +99,12 @@ export default function SchedulePage() {
     (event: OWeekEvent) => {
       const resolved = resolver.resolve(event.venue_id);
       if (resolved.poiId) {
-        // Navigate to map — the map tab will pick up selectedPoiId from context
-        router.push("/map");
+        setSelectedPoiId(resolved.poiId);
+        setPanelPoiId(resolved.poiId);
       }
+      router.push("/map");
     },
-    [router],
+    [router, setPanelPoiId, setSelectedPoiId],
   );
 
   return (
@@ -240,16 +259,21 @@ export default function SchedulePage() {
         )}
       </div>
 
-      {/* ── Event Detail Sheet ──────────────────────────────────────────────── */}
-      {detailEvent && (
-        <EventDetail
+      {/* ── Event Detail Overlay ────────────────────────────────────────────── */}
+      {detailEvent && detailResolved && detailExperience && (
+        <FeaturedEventOverlay
           event={detailEvent}
-          resolved={resolver.resolve(detailEvent.venue_id)}
+          detail={detailExperience.detail}
+          resolved={detailResolved}
+          phase="open"
+          originRect={null}
+          isSaved={savedEventIds.has(detailEvent.id)}
           onClose={() => setDetailEvent(null)}
-          onShowOnMap={() => {
+          onOpenInMap={() => {
             setDetailEvent(null);
             handleShowOnMap(detailEvent);
           }}
+          onToggleSaved={() => toggleSavedEvent(detailEvent.id)}
         />
       )}
     </div>
