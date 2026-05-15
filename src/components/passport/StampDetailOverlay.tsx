@@ -766,14 +766,23 @@ function CloseIcon() {
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const SPARKLE_CONFIG = [
+type FloatingStampPosition = {
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+  size: number;
+  delay: number;
+};
+
+const SPARKLE_CONFIG: FloatingStampPosition[] = [
   { top: "8%",  left: "7%",        size: 9,  delay: 60  },
   { top: "14%", right: "9%",       size: 7,  delay: 120 },
   { top: "52%", left: "2%",        size: 6,  delay: 180 },
   { top: "58%", right: "2%",       size: 5,  delay: 220 },
   { bottom: "18%", left: "11%",    size: 8,  delay: 160 },
   { bottom: "10%", right: "13%",   size: 6,  delay: 200 },
-] as const;
+];
 
 // ─── Geometry helpers ─────────────────────────────────────────────────────────
 
