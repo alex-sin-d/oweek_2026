@@ -24,10 +24,8 @@ export default function PreviewPage() {
           className="relative rounded-[48px] bg-black p-[12px] shadow-[0_40px_120px_-20px_rgba(157,78,221,0.45),0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/10"
           style={{ width: FRAME_WIDTH + 24, height: FRAME_HEIGHT + 24 }}
         >
-          {/* Dynamic Island */}
-          <div className="absolute left-1/2 top-[18px] z-20 h-[28px] w-[120px] -translate-x-1/2 rounded-full bg-black" />
-
-          {/* Screen */}
+          {/* Screen — no Dynamic Island so the greeting / status area
+              isn't covered. */}
           <div
             className="relative overflow-hidden rounded-[38px] bg-[#090014]"
             style={{ width: FRAME_WIDTH, height: FRAME_HEIGHT }}
@@ -36,12 +34,14 @@ export default function PreviewPage() {
               key={iframeKey}
               src="/"
               title="OWeek 2026 App Preview"
-              className="h-full w-full border-0"
+              className="block h-full w-full border-0 outline-none focus:outline-none focus-visible:outline-none"
+              style={{ border: "none" }}
               allow="geolocation; clipboard-read; clipboard-write"
             />
           </div>
 
-          {/* Home indicator */}
+          {/* Home indicator — sits in the bottom bezel, below the screen,
+              so it never overlaps content. */}
           <div className="absolute bottom-[10px] left-1/2 z-20 h-[5px] w-[130px] -translate-x-1/2 rounded-full bg-white/80" />
         </div>
 
