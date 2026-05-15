@@ -5,10 +5,35 @@ import { useState } from "react";
 const FRAME_WIDTH = 390;
 const FRAME_HEIGHT = 844;
 
+// Keep in sync with src/lib/AppContext.tsx — duplicated here intentionally so
+// the demo reset works without coupling /preview to the AppProvider context.
+const DEMO_STORAGE_KEYS = [
+  "oweek_profile_v2",
+  "oweek_profile",
+  "oweek_unlocked",
+  "oweek_saved_events",
+];
+
 export default function PreviewPage() {
   // Bumping `iframeKey` remounts the iframe — useful for "reset / replay
   // onboarding" during a live demo without reloading the host page.
   const [iframeKey, setIframeKey] = useState(0);
+
+  // Full demo reset: wipe persisted profile/stamp state then remount the
+  // iframe so it boots from splash → intro → profile → features → home.
+  // Same-origin storage means clearing from the host page also clears it
+  // for the iframe.
+  function resetDemo() {
+    if (typeof window === "undefined") return;
+    for (const key of DEMO_STORAGE_KEYS) {
+      try {
+        localStorage.removeItem(key);
+      } catch {
+        // ignore quota / privacy-mode errors
+      }
+    }
+    setIframeKey((k) => k + 1);
+  }
 
   return (
     <main
@@ -53,8 +78,17 @@ export default function PreviewPage() {
           <span className="h-3 w-px bg-white/20" />
           <button
             type="button"
+            onClick={resetDemo}
+            className="rounded-full border border-[#C8B6FF]/40 bg-[#C8B6FF]/15 px-3 py-1 font-semibold text-[#E9D5FF] transition-colors hover:bg-[#C8B6FF]/25"
+            title="Wipes profile + stamps, then replays splash and onboarding"
+          >
+            Reset Demo
+          </button>
+          <button
+            type="button"
             onClick={() => setIframeKey((k) => k + 1)}
             className="rounded-full border border-white/15 bg-white/5 px-3 py-1 font-medium text-white/80 transition-colors hover:bg-white/10"
+            title="Remounts the iframe without clearing storage"
           >
             Reset iframe
           </button>
