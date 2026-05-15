@@ -60,6 +60,25 @@ export default function OnboardingFlow() {
     } catch {
       // prefetch is best-effort
     }
+
+    // Eagerly evaluate MapView's dynamic chunk so mapbox-gl + react-map-gl
+    // are downloaded and parsed during onboarding rather than on first Map
+    // tab tap. Mirrors next/dynamic in src/app/map/page.tsx.
+    void import("@/components/MapView").catch(() => {});
+
+    // Best-effort warm of the Mapbox style JSON. The SDK uses the
+    // mapbox://styles/... URL form, which it resolves to this REST endpoint
+    // — fetching the same URL puts the style JSON in the browser HTTP cache
+    // so the SDK's request lands as a cache hit.
+    const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
+    if (token) {
+      const styleUrl = `https://api.mapbox.com/styles/v1/flyinglow/cmnzbx6e7008c01qv2evv4azd?access_token=${encodeURIComponent(
+        token,
+      )}`;
+      void fetch(styleUrl, { mode: "cors", credentials: "omit" }).catch(
+        () => {},
+      );
+    }
   }, [step, router]);
 
   function handleSplashDone() {

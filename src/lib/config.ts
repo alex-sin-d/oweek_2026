@@ -9,8 +9,8 @@ export const DEMO_DAY_LABEL = "Tuesday";
 /** Fixed demo player start near Perth Hall [lng, lat], aligned with the Echoe walk origin */
 export const PERTH_START_COORDS: [number, number] = [-81.27676819671778, 43.000142254099956];
 
-/** Default camera zoom level on map load */
-export const MAP_DEFAULT_ZOOM = 14.6;
+/** Default camera zoom level on map load — closer-in 3D campus view */
+export const MAP_DEFAULT_ZOOM = 16.0;
 
 /** Default camera pitch (tilt) in degrees — matches Echoes 3D view */
 export const MAP_DEFAULT_PITCH = 52;
