@@ -39,6 +39,24 @@ const POIS: CampusPoi[] = [
     description: "Main event and shuttle pickup point.",
     capturedName: null,
   },
+  {
+    id: "nat_sci_building",
+    name: "Nat Sci building",
+    shortCode: null,
+    category: "academic",
+    coordinates: [-81.274, 43.01],
+    description: "Science building with placeholder map copy.",
+    capturedName: "Nat Sci building",
+  },
+  {
+    id: "ivey",
+    name: "ivey",
+    shortCode: null,
+    category: "academic",
+    coordinates: [-81.277418, 43.004593],
+    description: "Business school POI with lowercase captured name.",
+    capturedName: "ivey",
+  },
 ];
 
 const EVENTS: OWeekEvent[] = [
@@ -238,6 +256,20 @@ const preview = buildMapSelectionPreview({
 });
 assert("preview uses event-first title", preview.title, "Science Home Base + Meetup");
 assert("preview keeps building location", preview.locationLabel, "Health Sciences Building");
+
+const natSciPreview = buildMapSelectionPreview({
+  poi: presentations.find((item) => item.poiId === "nat_sci_building") as MapPoiPresentation,
+  markerKind: "building",
+  getPreviewMedia: () => null,
+});
+assert("building preview upgrades rough placeholder names", natSciPreview.title, "Natural Science");
+
+const iveyPreview = buildMapSelectionPreview({
+  poi: presentations.find((item) => item.poiId === "ivey") as MapPoiPresentation,
+  markerKind: "building",
+  getPreviewMedia: () => null,
+});
+assert("building preview upgrades ivey to the shared formal name", iveyPreview.title, "Ivey Business School");
 
 if (failed > 0) {
   console.error(`\n${failed} assertion${failed === 1 ? "" : "s"} failed`);

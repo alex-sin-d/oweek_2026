@@ -2,6 +2,7 @@ import type { OWeekEvent } from "@/components/BuildingPanel";
 import { SCIENCE_FEATURED_EVENT } from "@/data/featuredEventExperience";
 import { SHUTTLE_PICKUP_POI_ID } from "@/data/shuttle";
 import { CATEGORY_LABELS, DEMO_DATE, type PoiCategoryKey } from "@/lib/config";
+import { getMapPopupDisplayName } from "@/lib/poiDisplayNames";
 import type { CampusPoi } from "@/lib/pois";
 import type { VenueResolver } from "@/lib/resolveVenue";
 import type { MapPreviewMedia } from "@/lib/mapPreviewMedia";
@@ -327,6 +328,7 @@ export function buildMapSelectionPreview({
 }): MapSelectionPreview {
   const previewEvent = poi.primaryEvent;
   const thumbnail = getPreviewMedia(poi.poiId, previewEvent?.id ?? null);
+  const popupName = getMapPopupDisplayName(poi.poiId, poi.name);
 
   if (previewEvent) {
     return {
@@ -337,7 +339,7 @@ export function buildMapSelectionPreview({
           ? "Featured event"
           : "Upcoming event",
       title: previewEvent.title,
-      locationLabel: poi.name,
+      locationLabel: popupName,
       statusText: getRelativeEventStatusText(previewEvent),
       summary: trimSummary(poi.primaryEventHint, 54),
       thumbnail,
@@ -369,7 +371,7 @@ export function buildMapSelectionPreview({
     poiId: poi.poiId,
     markerKind,
     eyebrow: placeEyebrow,
-    title: poi.name,
+    title: popupName,
     locationLabel:
       markerKind === "food"
         ? poi.foodVenueLabel ?? poi.name
