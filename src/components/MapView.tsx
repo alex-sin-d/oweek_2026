@@ -694,11 +694,16 @@ export default function MapView() {
         onClick={handleMapClick}
         onLoad={() => {
           const map = mapRef.current?.getMap();
-          if (map) {
-            appendCanvasToneOverlay(map);
-            suppressAllMapText(map);
+          if (!map) {
+            setMapReady(true);
+            return;
           }
-          setMapReady(true);
+          appendCanvasToneOverlay(map);
+          suppressAllMapText(map);
+          // Wait for the post-suppress render to commit before lifting the
+          // reveal-guard overlay — otherwise the user catches a frame with
+          // default POI / street / place labels still painted.
+          map.once("idle", () => setMapReady(true));
           console.log(
             `[MapView] Map loaded — stable React marker system active (${MAP_MARKERS.length} POIs)`,
           );
@@ -744,6 +749,40 @@ export default function MapView() {
           </Marker>
         ))}
       </ReactMap>
+
+      {/* Reveal-guard: covers the Mapbox canvas during initial paint so the
+          user never sees default POI / road / place labels before
+          suppressAllMapText runs. Fades out after the post-suppress render
+          frame is committed (map.once("idle", …) in onLoad). */}
+      <div
+        aria-hidden
+        className={`pointer-events-none absolute inset-0 z-10 flex items-center justify-center transition-opacity duration-300 ${
+          mapReady ? "opacity-0" : "opacity-100"
+        }`}
+        style={{
+          background:
+            "radial-gradient(120% 80% at 50% 0%, #3A1A66 0%, #1D0F33 45%, #15082A 100%)",
+        }}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <div className="h-1 w-32 overflow-hidden rounded-full bg-white/15">
+            <div
+              className="h-full rounded-full"
+              style={{
+                width: "55%",
+                background:
+                  "linear-gradient(90deg, #E9D5FF 0%, #9D4EDD 100%)",
+                boxShadow: "0 0 14px rgba(157,78,221,0.7)",
+                animation:
+                  "oweek-splash-fill 1100ms cubic-bezier(0.22,1,0.36,1) infinite alternate",
+              }}
+            />
+          </div>
+          <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/75">
+            Loading map…
+          </p>
+        </div>
+      </div>
 
       {mapReady ? (
         <>
