@@ -22,8 +22,8 @@ import nextStopImage from "@/design/images/your_next_stop.png";
 const FEATURED_EVENT: OWeekEvent = {
   id: "2026-09-08_science_home_base_major_meetup",
   title: "Science Home Base + Major Meetup",
-  venue_id: "health_sci",
-  raw_location_label: "Health Sciences Building",
+  venue_id: "nat_sci_building",
+  raw_location_label: "Natural Sciences Centre",
   date: "2026-09-08",
   day_label: "Tuesday",
   start_time: "11:00",

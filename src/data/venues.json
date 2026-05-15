@@ -87,6 +87,32 @@
       "location_hint": "Room 9"
     },
     {
+      "id": "nat_sci_building",
+      "poi_id": "nat_sci_building",
+      "name": "Natural Sciences Centre",
+      "short_code": "NSC",
+      "kind": "building",
+      "is_parent": true,
+      "aliases": [
+        "NSC",
+        "Nat Sci",
+        "Natural Sciences"
+      ],
+      "raw_labels": [
+        "Natural Sciences Centre",
+        "Natural Sciences Center",
+        "Nat Sci building",
+        "NSC"
+      ],
+      "search_terms": [
+        "natural sciences centre",
+        "natural sciences center",
+        "nat sci",
+        "nat sci building",
+        "nsc"
+      ]
+    },
+    {
       "id": "schmeichel",
       "poi_id": "schmeichel",
       "name": "Ronald D. Schmeichel Building",
