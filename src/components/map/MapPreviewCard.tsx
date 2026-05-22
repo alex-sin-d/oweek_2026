@@ -17,7 +17,7 @@ export default function MapPreviewCard({
 }: Props) {
   return (
     <div
-      className="absolute inset-x-0 z-30 flex justify-center px-4 pointer-events-none"
+      className="absolute inset-x-0 z-40 flex justify-center px-4 pointer-events-none"
       style={{ bottom: "calc(env(safe-area-inset-bottom) + 148px)" }}
     >
       <div className="pointer-events-auto relative w-full max-w-md">
@@ -29,9 +29,29 @@ export default function MapPreviewCard({
 
           <button
             type="button"
-            onClick={onClose}
+            // Stop the native event from reaching Mapbox's canvas-level click
+            // listener. Without this, a click on the X can re-trigger
+            // queryRenderedFeatures at the same screen point and re-select the
+            // POI, making the popup appear to never close.
+            onPointerDownCapture={(event) => {
+              event.stopPropagation();
+              event.nativeEvent.stopImmediatePropagation();
+            }}
+            onMouseDown={(event) => {
+              event.stopPropagation();
+              event.nativeEvent.stopImmediatePropagation();
+            }}
+            onTouchStart={(event) => {
+              event.stopPropagation();
+            }}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              event.nativeEvent.stopImmediatePropagation();
+              onClose();
+            }}
             aria-label="Close selected location"
-            className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#f4eefb] text-[#6941aa] shadow-[0_10px_22px_rgba(79,45,127,0.08)] ring-1 ring-white/80"
+            className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#f4eefb] text-[#6941aa] shadow-[0_10px_22px_rgba(79,45,127,0.08)] ring-1 ring-white/80"
           >
             <MapIcon name="close" className="h-4 w-4" />
           </button>
@@ -78,7 +98,12 @@ export default function MapPreviewCard({
 
           <button
             type="button"
-            onClick={onOpenDetails}
+            onPointerDown={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onOpenDetails();
+            }}
             className="relative z-10 mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#7d47d3_0%,#5e2ba6_100%)] px-5 py-3 text-[16px] font-semibold tracking-[-0.02em] text-white shadow-[0_18px_34px_rgba(79,45,127,0.24)] transition-transform duration-150 active:scale-[0.988]"
           >
             <span>{preview.ctaLabel}</span>

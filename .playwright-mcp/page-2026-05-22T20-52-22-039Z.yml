@@ -1,0 +1,137 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - main [ref=e3]:
+      - img
+      - iframe [ref=e7]:
+        - generic [active] [ref=f3e1]:
+          - img "OWeek 2026" [ref=f3e3]
+          - main [ref=f3e4]:
+            - generic [ref=f3e7]:
+              - generic [ref=f3e8]:
+                - img "OWeek 2026 logo" [ref=f3e10]
+                - generic [ref=f3e11]:
+                  - paragraph [ref=f3e12]: Good morning, Alex 👋
+                  - heading "Welcome to OWeek" [level=1] [ref=f3e13]
+                  - paragraph [ref=f3e14]: Western University OWeek, Day 3
+              - button "View details for Science Home Base + Major Meetup" [ref=f3e16]:
+                - img "Science Home Base + Major Meetup" [ref=f3e17]
+                - generic [ref=f3e20]:
+                  - generic [ref=f3e21]: ABOUT TO HAPPEN
+                  - heading "Science Home Base + Major Meetup" [level=2] [ref=f3e22]
+                  - paragraph [ref=f3e23]: Starts in 30 minutes
+                  - generic [ref=f3e24]:
+                    - generic [ref=f3e25]:
+                      - img [ref=f3e26]
+                      - generic [ref=f3e29]: Tuesday, 11:00 AM – 12:30 PM
+                    - generic [ref=f3e30]:
+                      - img [ref=f3e31]
+                      - generic [ref=f3e34]: Natural Sciences Centre
+                  - generic [ref=f3e35]:
+                    - generic [ref=f3e36]: SCI
+                    - generic [ref=f3e37]: View Details
+              - generic [ref=f3e38]:
+                - heading "Quick Access" [level=2] [ref=f3e40]
+                - generic [ref=f3e41]:
+                  - button "Notices" [ref=f3e42]:
+                    - img [ref=f3e44]
+                    - generic [ref=f3e46]: Notices
+                  - button "Shuttle" [ref=f3e47]:
+                    - img [ref=f3e49]
+                    - generic [ref=f3e51]: Shuttle
+                  - button "Safety" [ref=f3e52]:
+                    - img [ref=f3e54]
+                    - generic [ref=f3e56]: Safety
+                  - button "Wellness" [ref=f3e57]:
+                    - img [ref=f3e59]
+                    - generic [ref=f3e61]: Wellness
+                  - button "OWeek Links" [ref=f3e62]:
+                    - img [ref=f3e64]
+                    - generic [ref=f3e66]: OWeek Links
+                  - button "FAQs" [ref=f3e67]:
+                    - img [ref=f3e69]
+                    - generic [ref=f3e71]: FAQs
+              - generic [ref=f3e73]:
+                - generic [ref=f3e74]:
+                  - heading "My Passport" [level=2] [ref=f3e75]
+                  - link "View" [ref=f3e76] [cursor=pointer]:
+                    - /url: /passport
+                    - generic [ref=f3e77]: View
+                    - img [ref=f3e78]
+                - generic [ref=f3e80]:
+                  - paragraph [ref=f3e81]: 22 of 51 locations collected
+                  - paragraph [ref=f3e82]: 43% complete
+                - generic [ref=f3e83]:
+                  - generic "university college locked" [ref=f3e84]:
+                    - img "university college" [ref=f3e86]
+                    - img [ref=f3e88]
+                  - generic "University Community Centre collected" [ref=f3e90]:
+                    - img "University Community Centre" [ref=f3e92]
+                  - generic "Health Sciences Building collected" [ref=f3e93]:
+                    - img "Health Sciences Building" [ref=f3e95]
+                  - generic "Concrete Beach collected" [ref=f3e96]:
+                    - img "Concrete Beach" [ref=f3e98]
+                  - generic "ivey collected" [ref=f3e99]:
+                    - img "ivey" [ref=f3e101]
+                  - generic "Recreation Centre collected" [ref=f3e102]:
+                    - img "Recreation Centre" [ref=f3e104]
+                  - generic "Western Alumni Stadium collected" [ref=f3e105]:
+                    - img "Western Alumni Stadium" [ref=f3e107]
+                  - generic "Perth Hall collected" [ref=f3e108]:
+                    - img "Perth Hall" [ref=f3e110]
+                  - generic "Saugeen Hall collected" [ref=f3e111]:
+                    - img "Saugeen Hall" [ref=f3e113]
+                  - generic "Medway-Sydenham Hall collected" [ref=f3e114]:
+                    - img "Medway-Sydenham Hall" [ref=f3e116]
+                - paragraph [ref=f3e117]: Keep exploring to fill your passport
+              - heading "Your Next Stop" [level=2] [ref=f3e119]
+              - generic [ref=f3e123]:
+                - generic [ref=f3e124]:
+                  - paragraph [ref=f3e125]: YOUR NEXT STOP
+                  - heading "The Wave at UCC" [level=2] [ref=f3e126]
+                  - paragraph [ref=f3e127]: Show your OWeek wristband on the 2nd floor and get a 20% student promotion. Perfect for a burger and milkshake break.
+                  - button "View Offer" [ref=f3e128]:
+                    - text: View Offer
+                    - img [ref=f3e129]
+                - img "Burger and fries offer" [ref=f3e133]
+          - navigation [ref=f3e134]:
+            - link "Home" [ref=f3e135] [cursor=pointer]:
+              - /url: /home
+              - img [ref=f3e136]
+              - generic [ref=f3e138]: Home
+            - link "Map" [ref=f3e139] [cursor=pointer]:
+              - /url: /map
+              - img [ref=f3e140]
+              - generic [ref=f3e142]: Map
+            - link "Schedule" [ref=f3e143] [cursor=pointer]:
+              - /url: /schedule
+              - img [ref=f3e144]
+              - generic [ref=f3e146]: Schedule
+            - link "Passport" [ref=f3e147] [cursor=pointer]:
+              - /url: /passport
+              - img [ref=f3e148]
+              - generic [ref=f3e150]: Passport
+      - generic:
+        - generic:
+          - generic: ✦
+          - text: OWeek 2026 — Guided Demo
+          - generic: ✦
+      - button "Reset Demo" [ref=e9]:
+        - img [ref=e10]
+        - text: Reset Demo
+  - navigation [ref=e13]:
+    - link "Home" [ref=e14] [cursor=pointer]:
+      - /url: /home
+      - img [ref=e15]
+      - generic [ref=e17]: Home
+    - link "Map" [ref=e18] [cursor=pointer]:
+      - /url: /map
+      - img [ref=e19]
+      - generic [ref=e21]: Map
+    - link "Schedule" [ref=e22] [cursor=pointer]:
+      - /url: /schedule
+      - img [ref=e23]
+      - generic [ref=e25]: Schedule
+    - link "Passport" [ref=e26] [cursor=pointer]:
+      - /url: /passport
+      - img [ref=e27]
+      - generic [ref=e29]: Passport

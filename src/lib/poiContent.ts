@@ -3,6 +3,7 @@ import poiContentData from "@/data/poi-content.json";
 export interface PoiContent {
   subtitle?: string | null;
   role_label: string;
+  descriptor_chips?: string[];
   why_it_matters: string;
   quick_info_chips: string[];
   best_for: string[];

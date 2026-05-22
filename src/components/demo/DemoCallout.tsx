@@ -95,41 +95,34 @@ export default function DemoCallout({
     );
   }
 
-  const dotStyle: CSSProperties = {
-    width: 6,
-    height: 6,
-    borderRadius: 9999,
-    backgroundColor: "#C8B6FF",
-    boxShadow: "0 0 8px rgba(200, 182, 255, 0.55)",
-    flexShrink: 0,
-  };
-
   const isLeft = geometry.side === "left";
 
-  // arrowStartX === -1 signals "no arrow" (fixed-slot with no target found).
-  // Suppress the endpoint dot so it doesn't float in empty space.
-  const showDot = geometry.arrowStartX >= 0;
+  // The endpoint dot is rendered as an SVG <circle> by the parent overlay so it
+  // shares the exact same coordinate system as the arrow path. That guarantees
+  // the dot center sits precisely on the arrow start with no sub-pixel drift.
+  // The title row uses an explicit 20px line-height so the parent overlay can
+  // place the dot at `textTop + 10` (the title's true vertical center).
 
   return (
     <div style={containerStyle}>
       <div
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          flexDirection: isLeft ? "row-reverse" : "row",
-          justifyContent: isLeft ? "flex-start" : "flex-start",
+          display: "block",
+          textAlign: isLeft ? "right" : "left",
         }}
       >
-        {showDot && <span style={dotStyle} />}
         <div
           style={{
             color: "#F5EEFF",
             fontSize: 14,
             fontWeight: 600,
+            lineHeight: "20px",
             letterSpacing: "-0.01em",
             textAlign: isLeft ? "right" : "left",
-            flex: 1,
+            // Reserve 18 px of breathing room on the dot/arrow-facing edge so
+            // the title text never touches the SVG dot at the container edge.
+            paddingLeft: isLeft ? 0 : 18,
+            paddingRight: isLeft ? 18 : 0,
             textShadow: "0 1px 2px rgba(0,0,0,0.35)",
           }}
         >
@@ -147,8 +140,9 @@ export default function DemoCallout({
             fontSize: 12,
             lineHeight: 1.45,
             textAlign: isLeft ? "right" : "left",
-            paddingLeft: isLeft ? 0 : 14,
-            paddingRight: isLeft ? 14 : 0,
+            // Match the title's 18px breathing room on the dot side.
+            paddingLeft: isLeft ? 0 : 18,
+            paddingRight: isLeft ? 18 : 0,
             textShadow: "0 1px 2px rgba(0,0,0,0.3)",
           }}
         >

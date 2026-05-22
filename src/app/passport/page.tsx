@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import StampImageTile from "@/components/passport/StampImageTile";
 import StampDetailOverlay, {
   type CollectionContext,
@@ -209,10 +210,17 @@ export default function PassportPage() {
       return def ? [{ definition: def, distance: entry.distance }] : [];
     });
 
+  const router = useRouter();
+  const handleViewOnMap = useCallback(() => {
+    router.push("/map");
+  }, [router]);
+
   return (
     <div
       className="scrollbar-none h-full overflow-y-auto pb-10"
       style={{ backgroundColor: CREAM }}
+      data-demo-target="passport-screen"
+      data-demo-scroll="passport"
     >
       <PassportHeader />
 
@@ -233,7 +241,7 @@ export default function PassportPage() {
         <MilestonesSection current={progress.collectedCount} />
 
         {nextStamps.length > 0 && (
-          <NextStampsSection items={nextStamps} />
+          <NextStampsSection items={nextStamps} onViewOnMap={handleViewOnMap} />
         )}
       </div>
 
@@ -337,6 +345,7 @@ function ProgressCard({
         background: `linear-gradient(135deg, ${LAVENDER} 0%, #EDE3F4 55%, #E3D5EE 100%)`,
         borderColor: "rgba(79,45,127,0.10)",
       }}
+      data-demo-target="passport-progress"
     >
       {/* Watermark crest on right */}
       <div
@@ -480,6 +489,7 @@ function RecentlyCollected({
       ref={sectionRef}
       className="relative overflow-hidden rounded-[22px] border bg-white px-5 pt-3 pb-4 shadow-[0_4px_14px_rgba(79,45,127,0.08)]"
       style={{ borderColor: "rgba(79,45,127,0.08)" }}
+      data-demo-target="passport-recently-collected"
     >
       {/* Top row: label */}
       <div className="relative flex items-center justify-between mb-1">
@@ -579,7 +589,7 @@ function CollectionSection({
   onOpen: (stamp: PassportStampDefinition, rect: StampRectSnapshot) => void;
 }) {
   return (
-    <section>
+    <section data-demo-target="passport-collection">
       <div className="flex items-baseline justify-between px-1 mb-3">
         <h2 className="text-[17px] font-bold text-gray-900">My Collection</h2>
         <button
@@ -784,6 +794,7 @@ function MilestonesSection({ current }: { current: number }) {
           "linear-gradient(160deg, #FBF8FD 0%, #F6F0FA 55%, #F1EAF6 100%)",
         borderColor: "rgba(79,45,127,0.10)",
       }}
+      data-demo-target="passport-milestones"
     >
       {/* Decorative crest watermark */}
       <div
@@ -1237,13 +1248,16 @@ function Sparkles({ variant }: { variant: "midway" | "final" }) {
 
 function NextStampsSection({
   items,
+  onViewOnMap,
 }: {
   items: { definition: PassportStampDefinition; distance: string }[];
+  onViewOnMap?: () => void;
 }) {
   return (
     <section
       className="rounded-[20px] border bg-white p-5 shadow-[0_2px_6px_rgba(79,45,127,0.04)]"
       style={{ borderColor: "rgba(79,45,127,0.08)" }}
+      data-demo-target="passport-next-stamps"
     >
       <div className="flex items-start justify-between mb-3.5">
         <div className="flex items-center gap-2">
@@ -1259,8 +1273,10 @@ function NextStampsSection({
         </div>
         <button
           type="button"
+          onClick={onViewOnMap}
           className="inline-flex items-center gap-1 text-[12px] font-semibold whitespace-nowrap"
           style={{ color: PURPLE }}
+          data-demo-target="passport-view-map"
         >
           <MapIcon />
           View on Map

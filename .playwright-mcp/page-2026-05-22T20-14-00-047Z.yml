@@ -1,0 +1,30 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - main [ref=e3]:
+      - img
+      - iframe [ref=e7]
+      - generic:
+        - generic:
+          - generic: ✦
+          - text: OWeek 2026 — Guided Demo
+          - generic: ✦
+      - button "Reset Demo" [ref=e9]:
+        - img [ref=e10]
+        - text: Reset Demo
+  - navigation [ref=e13]:
+    - link "Home" [ref=e14] [cursor=pointer]:
+      - /url: /home
+      - img [ref=e15]
+      - generic [ref=e17]: Home
+    - link "Map" [ref=e18] [cursor=pointer]:
+      - /url: /map
+      - img [ref=e19]
+      - generic [ref=e21]: Map
+    - link "Schedule" [ref=e22] [cursor=pointer]:
+      - /url: /schedule
+      - img [ref=e23]
+      - generic [ref=e25]: Schedule
+    - link "Passport" [ref=e26] [cursor=pointer]:
+      - /url: /passport
+      - img [ref=e27]
+      - generic [ref=e29]: Passport

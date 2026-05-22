@@ -17,10 +17,14 @@ type ScreenKey =
   | "home"
   | "event-detail"
   | "map-initial"
+  | "map-alumni-panel"
   | "map-walking"
   | "map-arrived"
   | "map-aceb-panel"
-  | "map-aceb-collected";
+  | "map-aceb-collected"
+  | "schedule"
+  | "schedule-my-agenda-empty"
+  | "passport";
 
 export interface DemoAnnotation {
   id: string;
@@ -73,6 +77,63 @@ const SHORT_SUBTEXT_VIEWPORT_BREAKPOINT = 1080;
 // visible band before its callout is shown. Using anchor rather than any-overlap
 // prevents arrows from pointing at cards that have nearly scrolled off-screen.
 const VIS_BUFFER = 12;
+// The title row in DemoCallout uses an explicit 20px line-height. The endpoint
+// dot (rendered as an SVG <circle> in this overlay) is centered vertically at
+// textTop + DOT_Y_OFFSET so it sits exactly on the title's vertical midline.
+// Keep this in sync with DemoCallout's title lineHeight.
+const DOT_Y_OFFSET = 10;
+// Pull the arrow tip slightly inside the target's edge so the arrowhead lands
+// cleanly on the card/button rather than touching its outermost pixel —
+// especially important for section-heading <p> targets where 10 px lands on
+// the heading text. 14 px keeps the tip just past the heading's left edge.
+const DEFAULT_TARGET_INSET = 14;
+const ROUNDED_TARGET_INSET = 16;
+
+// ACEB single-active priority: when multiple ACEB callout targets are visible,
+// prefer them in this order. The Collect Stamp callout wins whenever its
+// button is on screen (and the stamp is not yet collected) so the action
+// readout always reaches the user even when other sections are also visible.
+const ACEB_PRIORITY_ORDER = [
+  "aceb-stamp",
+  "aceb-context",
+  "aceb-event",
+  "aceb-nearby",
+  "aceb-later-today",
+];
+
+// Same order for the post-collect screen — without aceb-stamp (passport
+// followup is the terminal callout there and only fires when nav is visible).
+const ACEB_COLLECTED_PRIORITY_ORDER = [
+  "aceb-context-after",
+  "aceb-event-after",
+  "aceb-nearby-after",
+  "aceb-later-today-after",
+  "aceb-passport-followup",
+];
+
+// Passport priority — top-to-bottom reading order. The spec describes the
+// guided flow as #1 → #2 → #3 → #4 → #5 in section order; using reading
+// order as the priority ensures #1 wins at scroll=0 (the progress card is
+// small and would otherwise lose closest-to-center to a taller neighbour).
+// The visibility check (anchor inside band) still hides sections that
+// scroll off-screen, so later sections take over naturally as the user
+// scrolls down.
+const PASSPORT_PRIORITY_ORDER = [
+  "passport-progress",
+  "passport-recently-collected",
+  "passport-collection",
+  "passport-milestones",
+  "passport-next-stamps",
+];
+
+const PASSPORT_TARGET_IDS = new Set(PASSPORT_PRIORITY_ORDER);
+
+// Schedule deliberately runs WITHOUT single-active mode (see computeLayout
+// call site). All three callouts are real, distinct targets that exist on the
+// page simultaneously — they should read as "1 / 2 / 3" together rather than
+// having a priority filter hide two of them. The existing per-callout
+// visibility check (anchor inside iframe band) is enough to hide any callout
+// whose target scrolls off-screen. So no priority list is needed here.
 
 interface ResolvedAnnotation {
   annotation: DemoAnnotation;
@@ -110,6 +171,9 @@ function detectScreen(iframeDoc: Document | null): ScreenKey | null {
     return "map-aceb-panel";
   }
 
+  const alumniPanel = iframeDoc.querySelector('[data-demo-target="alumni-panel"]');
+  if (alumniPanel) return "map-alumni-panel";
+
   // Map states are derived from the Simulate Walk button's text.
   const simulateWalk = iframeDoc.querySelector(
     '[data-demo-target="simulate-walk"]',
@@ -123,8 +187,32 @@ function detectScreen(iframeDoc: Document | null): ScreenKey | null {
 
   // Event Detail overlay — checked before "home" so the Home annotations are
   // suppressed the moment the featured event modal mounts (both are in the DOM).
+  // Also wins over Schedule so that tapping an event card from Schedule hands
+  // off cleanly to the event-detail callout set.
   if (iframeDoc.querySelector('[data-demo-target="event-detail-screen"]')) {
     return "event-detail";
+  }
+
+  // Schedule — empty My Agenda branch first so we can switch copy when the
+  // user opens an empty My Agenda view.
+  const scheduleScreen = iframeDoc.querySelector(
+    '[data-demo-target="schedule-screen"]',
+  );
+  if (scheduleScreen) {
+    if (
+      scheduleScreen.querySelector(
+        '[data-demo-target="schedule-my-agenda-empty"]',
+      )
+    ) {
+      return "schedule-my-agenda-empty";
+    }
+    return "schedule";
+  }
+
+  // Passport — the long-scroll exploration page. Sentinel is the scroll
+  // container itself, which carries data-demo-target="passport-screen".
+  if (iframeDoc.querySelector('[data-demo-target="passport-screen"]')) {
+    return "passport";
   }
 
   // Home — featured card present, no Map button.
@@ -152,6 +240,87 @@ function clampToIframe(
   };
 }
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
+}
+
+function getTargetInset(el: Element, rect: DOMRect): number {
+  const view = el.ownerDocument.defaultView;
+  const style = view?.getComputedStyle(el);
+  const radii = style
+    ? [
+        style.borderTopLeftRadius,
+        style.borderTopRightRadius,
+        style.borderBottomRightRadius,
+        style.borderBottomLeftRadius,
+      ].map((value) => Number.parseFloat(value) || 0)
+    : [];
+  const maxRadius = radii.length > 0 ? Math.max(...radii) : 0;
+  const isMapMarker = (el as HTMLElement).classList?.contains("map-marker");
+
+  if (isMapMarker || maxRadius >= 12 || rect.height <= 64) {
+    return ROUNDED_TARGET_INSET;
+  }
+
+  return DEFAULT_TARGET_INSET;
+}
+
+function getEdgeAwareAnchor(
+  rect: DOMRect,
+  fromX: number,
+  fromY: number,
+  inset: number,
+): { x: number; y: number } {
+  const insetX = Math.min(inset, Math.max(0, rect.width / 2));
+  const insetY = Math.min(inset, Math.max(0, rect.height / 2));
+  const minX = Math.min(rect.left + insetX, rect.right - insetX);
+  const maxX = Math.max(rect.left + insetX, rect.right - insetX);
+  const minY = Math.min(rect.top + insetY, rect.bottom - insetY);
+  const maxY = Math.max(rect.top + insetY, rect.bottom - insetY);
+  const fromLeft = fromX < rect.left;
+  const fromRight = fromX > rect.right;
+  const fromAbove = fromY < rect.top;
+  const fromBelow = fromY > rect.bottom;
+
+  if ((fromLeft || fromRight) && (fromAbove || fromBelow)) {
+    return {
+      x: fromLeft ? minX : maxX,
+      y: fromAbove ? minY : maxY,
+    };
+  }
+
+  if (fromLeft || fromRight) {
+    return {
+      x: fromLeft ? minX : maxX,
+      y: clamp(fromY, minY, maxY),
+    };
+  }
+
+  if (fromAbove || fromBelow) {
+    return {
+      x: clamp(fromX, minX, maxX),
+      y: fromAbove ? minY : maxY,
+    };
+  }
+
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+  const dx = centerX - fromX;
+  const dy = centerY - fromY;
+
+  if (Math.abs(dx) >= Math.abs(dy)) {
+    return {
+      x: dx >= 0 ? minX : maxX,
+      y: clamp(fromY, minY, maxY),
+    };
+  }
+
+  return {
+    x: clamp(fromX, minX, maxX),
+    y: dy >= 0 ? minY : maxY,
+  };
+}
+
 function pickSide(iframeRect: DOMRect): "left" | "right" {
   const leftRoom = iframeRect.left;
   const rightRoom = window.innerWidth - iframeRect.right;
@@ -165,6 +334,13 @@ function computeLayout(
   active: DemoAnnotation[],
   shortMode: boolean,
   singleActive: boolean = false,
+  /**
+   * When set, single-active selection prefers annotations whose id appears
+   * earlier in this list (among the currently-visible candidates). Lets ACEB
+   * keep Collect Stamp on top while its button is on-screen, while still
+   * letting lower sections take over once it scrolls off.
+   */
+  priorityIds: readonly string[] = [],
 ): { resolved: ResolvedAnnotation[]; side: "left" | "right" } {
   const iframeRect = iframe.getBoundingClientRect();
   const iframeDoc = iframe.contentDocument;
@@ -199,15 +375,11 @@ function computeLayout(
         anchorYInside <= iframeRect.height - VIS_BUFFER &&
         anchorXInside >= VIS_BUFFER &&
         anchorXInside <= iframeRect.width - VIS_BUFFER;
-      const targetEdgeY = iframeRect.top + anchorYInside;
-      const targetEdgeX =
-        side === "left"
-          ? iframeRect.left + rect.left
-          : iframeRect.left + rect.right;
       return {
         annotation,
-        targetEdgeX,
-        targetEdgeY,
+        rect,
+        targetCenterY: iframeRect.top + anchorYInside,
+        targetInset: getTargetInset(el, rect),
         visible,
         sortKey: rect.top,
       };
@@ -217,8 +389,9 @@ function computeLayout(
         v,
       ): v is {
         annotation: DemoAnnotation;
-        targetEdgeX: number;
-        targetEdgeY: number;
+        rect: DOMRect;
+        targetCenterY: number;
+        targetInset: number;
         visible: boolean;
         sortKey: number;
       } => v !== null,
@@ -230,12 +403,20 @@ function computeLayout(
 
   for (const c of candidates) {
     const anchorY = c.visible
-      ? Math.max(c.targetEdgeY, lastVisibleAnchorY + MIN_VERTICAL_GAP)
-      : c.targetEdgeY;
+      ? Math.max(c.targetCenterY, lastVisibleAnchorY + MIN_VERTICAL_GAP)
+      : c.targetCenterY;
     if (c.visible) {
       lastVisibleAnchorY = anchorY;
     }
-    const textTop = anchorY - 8;
+    // Place the text block so anchorY lines up with the title's vertical
+    // midline — that's where the SVG dot is drawn (textTop + DOT_Y_OFFSET).
+    const textTop = anchorY - DOT_Y_OFFSET;
+    const targetAnchor = getEdgeAwareAnchor(
+      c.rect,
+      dotInnerX - iframeRect.left,
+      anchorY - iframeRect.top,
+      c.targetInset,
+    );
 
     const geometry: CalloutGeometry = {
       textTop,
@@ -244,8 +425,8 @@ function computeLayout(
       side,
       arrowStartX: dotInnerX,
       arrowStartY: anchorY,
-      arrowEndX: c.targetEdgeX,
-      arrowEndY: c.targetEdgeY,
+      arrowEndX: iframeRect.left + targetAnchor.x,
+      arrowEndY: iframeRect.top + targetAnchor.y,
     };
 
     const annotation =
@@ -256,18 +437,51 @@ function computeLayout(
     resolved.push({ annotation, geometry, hidden: !c.visible });
   }
 
-  // For screens where only one callout should be active at a time (e.g. ACEB
-  // panel), hide every visible callout except the topmost-visible one.
-  // Candidates are already sorted by rect.top so the first visible item is the
-  // highest on-screen section.
+  // For screens where only one callout should be active at a time (event-
+  // detail, ACEB panel/collected), pick exactly one visible candidate.
+  //
+  // Selection rule:
+  //   1. If priorityIds is non-empty, prefer the visible candidate whose id
+  //      appears earliest in the list. This is how ACEB keeps Collect Stamp
+  //      on top whenever its button is on-screen.
+  //   2. Otherwise (or if no priority match is visible), fall back to the
+  //      candidate whose target sits closest to the iframe's vertical center
+  //      — so as the user scrolls, the active callout follows the section
+  //      they're reading.
   if (singleActive) {
-    let firstVisibleSeen = false;
-    for (const r of resolved) {
-      if (!r.hidden) {
-        if (firstVisibleSeen) {
-          r.hidden = true;
-        } else {
-          firstVisibleSeen = true;
+    let bestIdx = -1;
+
+    // Pass 1 — priority list.
+    if (priorityIds.length > 0) {
+      let bestPriority = Infinity;
+      for (let i = 0; i < resolved.length; i++) {
+        if (resolved[i].hidden) continue;
+        const p = priorityIds.indexOf(resolved[i].annotation.id);
+        if (p >= 0 && p < bestPriority) {
+          bestPriority = p;
+          bestIdx = i;
+        }
+      }
+    }
+
+    // Pass 2 — fall back to closest-to-center.
+    if (bestIdx < 0) {
+      const iframeCenterY = iframeRect.top + iframeRect.height / 2;
+      let bestDistance = Infinity;
+      for (let i = 0; i < resolved.length; i++) {
+        if (resolved[i].hidden) continue;
+        const d = Math.abs(resolved[i].geometry.arrowEndY - iframeCenterY);
+        if (d < bestDistance) {
+          bestDistance = d;
+          bestIdx = i;
+        }
+      }
+    }
+
+    if (bestIdx >= 0) {
+      for (let i = 0; i < resolved.length; i++) {
+        if (i !== bestIdx) {
+          resolved[i].hidden = true;
         }
       }
     }
@@ -323,10 +537,10 @@ function computeLayout(
     }
 
     // Dot anchors to the phone-facing edge of the text block, vertically at
-    // roughly the title row.
+    // the title row's true center (textTop + DOT_Y_OFFSET).
     const slotDotX =
       slotSide === "left" ? slotTextLeft + TEXT_WIDTH : slotTextLeft;
-    const slotDotY = slotTextTop + 12;
+    const slotDotY = slotTextTop + DOT_Y_OFFSET;
 
     // Arrow endpoint: track target, clamped to iframe bounds.
     // Use sentinel -1 when the target element cannot be found.
@@ -336,10 +550,14 @@ function computeLayout(
     const el = iframeDoc.querySelector(annotation.targetSelector);
     if (el) {
       const rect = (el as HTMLElement).getBoundingClientRect();
-      const anchorXInIframe = rect.left + rect.width / 2;
-      const anchorYInIframe = rect.top + rect.height / 2;
-      const rawEndX = iframeRect.left + anchorXInIframe;
-      const rawEndY = iframeRect.top + anchorYInIframe;
+      const targetAnchor = getEdgeAwareAnchor(
+        rect,
+        slotDotX - iframeRect.left,
+        slotDotY - iframeRect.top,
+        getTargetInset(el, rect),
+      );
+      const rawEndX = iframeRect.left + targetAnchor.x;
+      const rawEndY = iframeRect.top + targetAnchor.y;
       const clamped = clampToIframe(iframeRect, rawEndX, rawEndY, 16);
       arrowEndX = clamped.x;
       arrowEndY = clamped.y;
@@ -401,15 +619,59 @@ export default function DemoAnnotationOverlay({
       }
       const active = annotations.filter((a) => a.screenKey === screen);
       const shortMode = window.innerWidth < SHORT_SUBTEXT_VIEWPORT_BREAKPOINT;
+      const singleActive =
+        screen === "event-detail" ||
+        screen === "map-alumni-panel" ||
+        screen === "map-aceb-panel" ||
+        screen === "map-aceb-collected" ||
+        screen === "passport";
+      const priorityIds =
+        screen === "map-aceb-panel"
+          ? ACEB_PRIORITY_ORDER
+          : screen === "map-aceb-collected"
+            ? ACEB_COLLECTED_PRIORITY_ORDER
+            : screen === "passport"
+              ? PASSPORT_PRIORITY_ORDER
+              : [];
       const { resolved: next } = computeLayout(
         iframe,
         active,
         shortMode,
-        screen === "event-detail" ||
-          screen === "map-aceb-panel" ||
-          screen === "map-aceb-collected",
+        singleActive,
+        priorityIds,
       );
       setResolved(next);
+
+      // Subtle active-section highlight for Passport: toggle data-demo-active
+      // on whichever passport target is the currently-resolved (non-hidden)
+      // callout. Inert in normal mode because nothing else sets the attribute.
+      const doc = iframe.contentDocument;
+      if (doc) {
+        const activeTargetId =
+          screen === "passport"
+            ? next.find(
+                (r) =>
+                  !r.hidden && PASSPORT_TARGET_IDS.has(r.annotation.id),
+              )?.annotation.id ?? null
+            : null;
+        doc
+          .querySelectorAll('[data-demo-active="true"]')
+          .forEach((el) => {
+            const targetAttr = el.getAttribute("data-demo-target");
+            if (!targetAttr || !PASSPORT_TARGET_IDS.has(targetAttr)) return;
+            if (targetAttr !== activeTargetId) {
+              el.removeAttribute("data-demo-active");
+            }
+          });
+        if (activeTargetId) {
+          const el = doc.querySelector(
+            `[data-demo-target="${activeTargetId}"]`,
+          );
+          if (el && el.getAttribute("data-demo-active") !== "true") {
+            el.setAttribute("data-demo-active", "true");
+          }
+        }
+      }
     });
   }, [annotations, iframeRef]);
 
@@ -557,6 +819,33 @@ export default function DemoAnnotationOverlay({
               />
             );
           })}
+        {/*
+          Endpoint dot — rendered in the same SVG as the arrow path so its
+          center sits EXACTLY at (arrowStartX, arrowStartY) with no flex /
+          line-height drift. This is what guarantees the dot and the line
+          read as a single connected leader.
+        */}
+        {resolved
+          .filter(
+            ({ annotation, geometry }) =>
+              annotation.variant !== "status" && geometry.arrowStartX >= 0,
+          )
+          .map(({ annotation, geometry, hidden }) => (
+            <circle
+              key={`${annotation.id}-dot`}
+              cx={geometry.arrowStartX}
+              cy={geometry.arrowStartY}
+              r={3.5}
+              fill="#C8B6FF"
+              opacity={hidden ? 0 : 1}
+              style={{
+                transition: "opacity 0.2s ease",
+                filter: hidden
+                  ? undefined
+                  : "drop-shadow(0 0 6px rgba(200,182,255,0.55))",
+              }}
+            />
+          ))}
       </svg>
       {resolved.map(({ annotation, geometry, hidden }) => (
         <DemoCallout

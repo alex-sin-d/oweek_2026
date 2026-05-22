@@ -14,6 +14,11 @@ import eventsJson from "@/data/events.json";
 
 const allEvents = (eventsJson as { events: OWeekEvent[] }).events;
 
+// ID of the Science demo event highlighted in Guided Demo Mode. Matches
+// SCIENCE_FEATURED_EVENT.id from data/featuredEventExperience.ts so tapping
+// the schedule card opens the same Event Detail overlay used from Home.
+const SCIENCE_DEMO_EVENT_ID = "2026-09-08_science_home_base_major_meetup";
+
 // ─── Component ───────────────────────────────────────────────────────────────
 
 export default function SchedulePage() {
@@ -108,7 +113,10 @@ export default function SchedulePage() {
   );
 
   return (
-    <div className="h-full flex flex-col bg-[#f8f7fa]">
+    <div
+      data-demo-target="schedule-screen"
+      className="h-full flex flex-col bg-[#f8f7fa]"
+    >
       {/* ── Header ──────────────────────────────────────────────────────────── */}
       <div className="bg-white border-b border-gray-100 px-4 pt-4 pb-2">
         <h1 className="text-xl font-bold text-gray-900 mb-3">Schedule</h1>
@@ -154,6 +162,7 @@ export default function SchedulePage() {
             </button>
             <button
               onClick={() => setView("my")}
+              data-demo-target="schedule-my-agenda-tab"
               className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
                 view === "my"
                   ? "bg-white text-gray-900 shadow-sm"
@@ -173,6 +182,7 @@ export default function SchedulePage() {
           {profile && (
             <button
               onClick={() => setFilterByProfile((v) => !v)}
+              data-demo-target="schedule-for-me"
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 filterByProfile
                   ? "bg-purple-100 text-[#4F2D7F]"
@@ -201,7 +211,12 @@ export default function SchedulePage() {
       {/* ── Event List ──────────────────────────────────────────────────────── */}
       <div className="scrollbar-none flex-1 overflow-y-auto">
         {filteredEvents.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-full text-center px-8">
+          <div
+            data-demo-target={
+              view === "my" ? "schedule-my-agenda-empty" : undefined
+            }
+            className="flex flex-col items-center justify-center h-full text-center px-8"
+          >
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
               <svg
                 viewBox="0 0 24 24"
@@ -229,7 +244,10 @@ export default function SchedulePage() {
             </p>
           </div>
         ) : (
-          <div className="px-4 pt-3 pb-6 space-y-4">
+          <div
+            data-demo-target="schedule-event-list"
+            className="px-4 pt-3 pb-6 space-y-4"
+          >
             {grouped.map(({ hour, events }) => (
               <div key={hour}>
                 {/* Time header */}
@@ -243,6 +261,24 @@ export default function SchedulePage() {
                 <div className="space-y-2">
                   {events.map((event) => {
                     const resolved = resolver.resolve(event.venue_id);
+                    const isScienceDemo = event.id === SCIENCE_DEMO_EVENT_ID;
+                    // Wrap only the Science demo event so we can hang a
+                    // `data-demo-target` on a stable element without modifying
+                    // EventCard's API.
+                    if (isScienceDemo) {
+                      return (
+                        <div
+                          key={event.id}
+                          data-demo-target="schedule-science-card"
+                        >
+                          <EventCard
+                            event={event}
+                            resolved={resolved}
+                            onTap={() => setDetailEvent(event)}
+                          />
+                        </div>
+                      );
+                    }
                     return (
                       <EventCard
                         key={event.id}

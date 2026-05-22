@@ -909,6 +909,7 @@ export default function MapView() {
               events={ALL_EVENTS.filter((event) => event.date === DEMO_DATE)}
               allPois={allPois}
               onClose={clearActiveSelection}
+              demoMode={demoMode}
             />
           ) : null}
         </>

@@ -4,10 +4,44 @@ import { useEffect, useRef, useState } from "react";
 import DemoAnnotationOverlay, {
   type DemoAnnotation,
 } from "@/components/demo/DemoAnnotationOverlay";
-import EventDetailScrollCue from "@/components/demo/EventDetailScrollCue";
+import DemoScrollCue, {
+  type DemoScrollCueConfig,
+} from "@/components/demo/DemoScrollCue";
+
+// External "scroll to see more" cues — one per long-form screen.
+const EVENT_DETAIL_CUE: DemoScrollCueConfig = {
+  id: "event-detail",
+  screenSelector: '[data-demo-target="event-detail-screen"]',
+  scrollerSelector: ".featured-overlay-scroll",
+  hideTargetSelector: '[data-demo-target="event-detail-last-year"]',
+  hideProgress: 0.7,
+  title: "Scroll to see more",
+  subtext: "Photos, notes, and what to know below",
+};
+
+const ACEB_CUE: DemoScrollCueConfig = {
+  id: "aceb-panel",
+  screenSelector: '[data-demo-target="aceb-panel"]',
+  scrollerSelector: '[data-demo-scroll="aceb"]',
+  hideTargetSelector: '[data-demo-target="aceb-later-today"]',
+  hideProgress: 0.65,
+  title: "Scroll to explore ACEB",
+  subtext: "Nearby events, later plans, and stamp progress below",
+};
+
+const PASSPORT_CUE: DemoScrollCueConfig = {
+  id: "passport",
+  screenSelector: '[data-demo-target="passport-screen"]',
+  scrollerSelector: '[data-demo-scroll="passport"]',
+  hideTargetSelector: '[data-demo-target="passport-milestones"]',
+  hideProgress: 0.65,
+  title: "Scroll through Passport",
+  subtext: "Collections, milestones, and next stamps below",
+};
 
 const FRAME_WIDTH = 390;
 const FRAME_HEIGHT = 844;
+const TITLE_PHONE_GAP = 56;
 
 const DEMO_STORAGE_KEYS = [
   "oweek_profile_v2",
@@ -169,6 +203,20 @@ const ANNOTATIONS: DemoAnnotation[] = [
     fixedSlot: "bottom-left",
   },
 
+  // ── Map: Alumni Hall detail panel ─────────────────────────────────────
+  {
+    id: "alumni-close",
+    number: 2,
+    title: "Start with a recognizable landmark",
+    subtext:
+      "Alumni Hall shows how the map turns Western into real places students can recognize, not just building names in a schedule. Close this stop, then tap Simulate Walk.",
+    shortSubtext:
+      "Alumni Hall introduces the map as a recognizable campus guide. Close this stop, then tap Simulate Walk.",
+    targetSelector: '[data-demo-target="alumni-close"]',
+    screenKey: "map-alumni-panel",
+    fixedSlot: "top-right",
+  },
+
   // ── Map: walking status (fixed middle-left slot, arrow to Walking button) ──
   {
     id: "map-walking-status",
@@ -196,7 +244,8 @@ const ANNOTATIONS: DemoAnnotation[] = [
     screenKey: "map-arrived",
   },
 
-  // ── ACEB panel: building context, events, nearby, stamp ─────────────
+  // ── ACEB panel: scroll-aware, one callout at a time ─────────────────
+  // 5 context · 6 events · 7 nearby · 8 later-today · 9 stamp
   {
     id: "aceb-context",
     number: 5,
@@ -224,15 +273,26 @@ const ANNOTATIONS: DemoAnnotation[] = [
     number: 7,
     title: "Nearby options stay visible",
     subtext:
-      "Students can also see what else is happening nearby, making it easier to choose their next stop without backing out and searching again.",
+      "Students can see what else is happening around them without backing out to search again. Nearby events help them keep moving through OWeek from their current location.",
     shortSubtext:
-      "Nearby activity keeps exploration going without backing out.",
+      "Nearby events help students choose their next stop without leaving the building page.",
     targetSelector: '[data-demo-target="aceb-nearby"]',
     screenKey: "map-aceb-panel",
   },
   {
-    id: "aceb-stamp",
+    id: "aceb-later-today",
     number: 8,
+    title: "Plan around this place",
+    subtext:
+      "Students can also see what is happening at this same location later in the day. This helps them decide whether to come back, save an event, or plan their route around one building.",
+    shortSubtext:
+      "Later Today shows what is coming up at this same location, so students can plan whether to return.",
+    targetSelector: '[data-demo-target="aceb-later-today"]',
+    screenKey: "map-aceb-panel",
+  },
+  {
+    id: "aceb-stamp",
+    number: 9,
     title: "Passport turns exploration into progress",
     subtext:
       "Movement gets students to the stop. Tapping 'Collect Stamp' confirms the discovery and adds the building to their Passport.",
@@ -242,7 +302,7 @@ const ANNOTATIONS: DemoAnnotation[] = [
     screenKey: "map-aceb-panel",
   },
 
-  // ── ACEB panel after stamp collected: context, events, nearby + passport ──
+  // ── ACEB after stamp collected: same 5/6/7/8, plus 9 passport followup ──
   {
     id: "aceb-context-after",
     number: 5,
@@ -270,10 +330,21 @@ const ANNOTATIONS: DemoAnnotation[] = [
     number: 7,
     title: "Nearby options stay visible",
     subtext:
-      "Students can also see what else is happening nearby, making it easier to choose their next stop without backing out and searching again.",
+      "Students can see what else is happening around them without backing out to search again. Nearby events help them keep moving through OWeek from their current location.",
     shortSubtext:
-      "Nearby activity keeps exploration going without backing out.",
+      "Nearby events help students choose their next stop without leaving the building page.",
     targetSelector: '[data-demo-target="aceb-nearby"]',
+    screenKey: "map-aceb-collected",
+  },
+  {
+    id: "aceb-later-today-after",
+    number: 8,
+    title: "Plan around this place",
+    subtext:
+      "Students can also see what is happening at this same location later in the day. This helps them decide whether to come back, save an event, or plan their route around one building.",
+    shortSubtext:
+      "Later Today shows what is coming up at this same location, so students can plan whether to return.",
+    targetSelector: '[data-demo-target="aceb-later-today"]',
     screenKey: "map-aceb-collected",
   },
   {
@@ -286,6 +357,116 @@ const ANNOTATIONS: DemoAnnotation[] = [
       "Collected stamps save into Passport — a visual record of where students explored.",
     targetSelector: 'nav a[href="/passport"]',
     screenKey: "map-aceb-collected",
+  },
+
+  // ── Schedule: scroll-aware, one callout at a time ───────────────────
+  // Priority order keeps the Science card on top whenever it's visible;
+  // when scrolled off, "For Me" or the list fallback takes over.
+  {
+    id: "schedule-browse",
+    number: 1,
+    title: "Browse the full schedule",
+    subtext:
+      "The schedule keeps the familiar OWeek event list students expect, but makes it cleaner to scan by day and time. Students can quickly see what is happening without feeling buried in a messy list.",
+    shortSubtext:
+      "The familiar OWeek schedule stays, but the layout is cleaner and easier to scan by day and time.",
+    targetSelector: '[data-demo-target="schedule-event-list"]',
+    screenKey: "schedule",
+  },
+  {
+    id: "schedule-for-me",
+    number: 2,
+    title: "Filter for you",
+    subtext:
+      "Students can narrow the schedule based on onboarding choices like faculty and residence, so they do not have to scroll through every event to find what applies to them.",
+    shortSubtext:
+      "'For Me' filters the schedule around the student's faculty and residence.",
+    targetSelector: '[data-demo-target="schedule-for-me"]',
+    screenKey: "schedule",
+  },
+  {
+    id: "schedule-science-card",
+    number: 3,
+    title: "Save or tap for details",
+    subtext:
+      "Students can bookmark events to build their own agenda, or tap an event card to open deeper details like location, what to know, and media from previous years.",
+    shortSubtext:
+      "Bookmark events for My Agenda, or tap an event to open details.",
+    targetSelector: '[data-demo-target="schedule-science-card"]',
+    screenKey: "schedule",
+  },
+
+  // ── Schedule: empty My Agenda state ─────────────────────────────────
+  // Single callout — the empty state is the only meaningful target here.
+  {
+    id: "schedule-my-agenda-empty",
+    number: 1,
+    title: "My Agenda fills as students save events",
+    subtext:
+      "Students can bookmark events from the full schedule, then come back here to see their personal plan for the day.",
+    shortSubtext:
+      "Saved events appear here once students bookmark them from the schedule.",
+    targetSelector: '[data-demo-target="schedule-my-agenda-empty"]',
+    screenKey: "schedule-my-agenda-empty",
+  },
+
+  // ── Passport — long-scroll exploration page ─────────────────────────
+  // Single-active with priority: as the user scrolls, the active callout
+  // swaps to whichever passport section is currently in view.
+  {
+    id: "passport-progress",
+    number: 1,
+    title: "Exploration becomes progress",
+    subtext:
+      "Passport turns campus discovery into visible progress. Students can track the places they have visited and build familiarity with Western throughout OWeek.",
+    shortSubtext:
+      "Passport turns campus discovery into visible progress students can track throughout OWeek.",
+    targetSelector: '[data-demo-target="passport-progress"]',
+    screenKey: "passport",
+  },
+  {
+    id: "passport-recently-collected",
+    number: 2,
+    title: "Collected stamps feel earned",
+    subtext:
+      "Recently collected stamps give students a visual record of where they have been, turning each campus stop into a small memory from the week.",
+    shortSubtext:
+      "Recently collected stamps make each campus stop feel remembered and earned.",
+    targetSelector: '[data-demo-target="passport-recently-collected"]',
+    screenKey: "passport",
+  },
+  {
+    id: "passport-collection",
+    number: 3,
+    title: "Campus is easier to understand",
+    subtext:
+      "Collections organize stamps into categories like landmarks, residences, academic buildings, and student life, helping first-years learn Western in a more structured way.",
+    shortSubtext:
+      "Stamp categories help students understand Western as types of places, not one confusing campus map.",
+    targetSelector: '[data-demo-target="passport-collection"]',
+    screenKey: "passport",
+  },
+  {
+    id: "passport-milestones",
+    number: 4,
+    title: "Milestones keep students exploring",
+    subtext:
+      "Milestones create lightweight motivation to keep discovering new places. Rewards can connect exploration to real OWeek moments without relying on a points-heavy system.",
+    shortSubtext:
+      "Milestones give students a reason to keep exploring without turning the app into a points-heavy game.",
+    targetSelector: '[data-demo-target="passport-milestones"]',
+    screenKey: "passport",
+  },
+  {
+    id: "passport-next-stamps",
+    number: 5,
+    title: "Passport suggests the next move",
+    subtext:
+      "Next Stamps turns progress into action. Students can see nearby places they have not collected yet, then open the map to keep exploring.",
+    shortSubtext:
+      "Next Stamps shows nearby uncollected places and connects students back to the map.",
+    targetSelector: '[data-demo-target="passport-next-stamps"]',
+    screenKey: "passport",
   },
 ];
 
@@ -319,7 +500,7 @@ export default function DemoPage() {
 
   return (
     <main
-      className="fixed inset-0 z-[200] flex items-start justify-center overflow-hidden px-6 pb-6 pt-[112px]"
+      className="fixed inset-0 z-[200] flex items-start justify-center overflow-hidden px-6 pb-6 pt-9"
       style={{
         background:
           "radial-gradient(120% 80% at 50% 0%, #2A1340 0%, #15082A 55%, #090014 100%)",
@@ -348,15 +529,25 @@ export default function DemoPage() {
       />
 
       <div
-        className="flex flex-col items-center gap-6"
-        style={{
-          transformOrigin: "top center",
-          transform: demoScale < 1 ? `scale(${demoScale})` : undefined,
-        }}
+        className="flex flex-col items-center"
+        style={{ width: FRAME_WIDTH + 24, gap: TITLE_PHONE_GAP }}
       >
+        <div className="pointer-events-none z-[220] text-center">
+          <span className="flex items-center justify-center gap-4 whitespace-nowrap text-[13px] font-semibold uppercase leading-[20px] tracking-[0.34em] text-[#F5EEFF]/90">
+            <span className="text-[#C8B6FF]/65">✦</span>
+            OWeek 2026 — Guided Demo
+            <span className="text-[#C8B6FF]/65">✦</span>
+          </span>
+        </div>
+
         <div
           className="relative rounded-[48px] bg-black p-[12px] shadow-[0_40px_120px_-20px_rgba(157,78,221,0.45),0_20px_60px_rgba(0,0,0,0.55)] ring-1 ring-white/10"
-          style={{ width: FRAME_WIDTH + 24, height: FRAME_HEIGHT + 24 }}
+          style={{
+            width: FRAME_WIDTH + 24,
+            height: FRAME_HEIGHT + 24,
+            transformOrigin: "top center",
+            transform: demoScale < 1 ? `scale(${demoScale})` : undefined,
+          }}
         >
           <div
             className="relative overflow-hidden rounded-[38px] bg-[#090014]"
@@ -375,22 +566,6 @@ export default function DemoPage() {
 
           <div className="absolute bottom-[10px] left-1/2 z-20 h-[5px] w-[130px] -translate-x-1/2 rounded-full bg-white/80" />
         </div>
-      </div>
-
-      {/*
-        Centered heading — sits above the phone with optical-balance offset.
-        The right-side watermark pulls visual weight rightward, so we nudge the
-        heading ~28px left of mathematical center for true optical centering.
-      */}
-      <div
-        className="pointer-events-none absolute top-9 z-[220]"
-        style={{ left: "calc(50% - 28px)", transform: "translateX(-50%)" }}
-      >
-        <span className="flex items-center gap-4 whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.34em] text-[#F5EEFF]/90">
-          <span className="text-[#C8B6FF]/65">✦</span>
-          OWeek 2026 — Guided Demo
-          <span className="text-[#C8B6FF]/65">✦</span>
-        </span>
       </div>
 
       {/* Reset button — independently anchored top-right */}
@@ -413,7 +588,21 @@ export default function DemoPage() {
         annotations={ANNOTATIONS}
       />
 
-      <EventDetailScrollCue iframeRef={iframeRef} iframeKey={iframeKey} />
+      <DemoScrollCue
+        iframeRef={iframeRef}
+        iframeKey={iframeKey}
+        config={EVENT_DETAIL_CUE}
+      />
+      <DemoScrollCue
+        iframeRef={iframeRef}
+        iframeKey={iframeKey}
+        config={ACEB_CUE}
+      />
+      <DemoScrollCue
+        iframeRef={iframeRef}
+        iframeKey={iframeKey}
+        config={PASSPORT_CUE}
+      />
     </main>
   );
 }

@@ -11,7 +11,7 @@ import {
   timeLabelToMinutes,
 } from "@/lib/mapPresentation";
 import type { VenueResolver } from "@/lib/resolveVenue";
-import { getPoiContent } from "@/lib/poiContent";
+import { getPoiContent, type PoiContent } from "@/lib/poiContent";
 import { UNFINISHED_ARTWORK_IDS } from "@/data/passport";
 import { getNearbyEvents } from "@/lib/nearbyEvents";
 import { useApp } from "@/lib/AppContext";
@@ -19,6 +19,22 @@ import { getStampAssets } from "@/lib/stampImages";
 import StampCollectOverlay from "@/components/passport/StampCollectOverlay";
 
 type CollectPhase = "idle" | "collecting" | "settled";
+
+const ALUMNI_HALL_DEMO_CONTENT: PoiContent = {
+  subtitle: "Multi-purpose campus venue",
+  role_label: "Venue",
+  descriptor_chips: ["Campus Landmark", "OWeek Stop"],
+  why_it_matters:
+    "Alumni Hall is a recognizable Western venue for major campus events, athletics, ceremonies, and large student gatherings. During OWeek, it helps first-years connect building names on a schedule to real places on campus.",
+  quick_info_chips: [
+    "Campus Landmark",
+    "Large Venue",
+    "Indoor Events",
+    "Athletics",
+    "Ceremonies",
+  ],
+  best_for: ["Major campus events", "Student gatherings", "Indoor programming"],
+};
 
 export interface OWeekEvent {
   id: string;
@@ -46,6 +62,7 @@ interface Props {
   events: OWeekEvent[];
   allPois: CampusPoi[];
   onClose: () => void;
+  demoMode?: boolean;
 }
 
 function getEventsForPoi(
@@ -179,6 +196,7 @@ export default function BuildingPanel({
   events,
   allPois,
   onClose,
+  demoMode = false,
 }: Props) {
   const { unlockBuilding, unlockedBuildings } = useApp();
   const poi = getPoiById(poiId);
@@ -204,7 +222,10 @@ export default function BuildingPanel({
   const buckets = useMemo(() => bucketEvents(poiEvents), [poiEvents]);
   const status = getPoiStatus(buckets);
 
-  const content = getPoiContent(poiId);
+  const content =
+    demoMode && poiId === "alumni_hall"
+      ? ALUMNI_HALL_DEMO_CONTENT
+      : getPoiContent(poiId);
 
   const nearbyEvents = useMemo(
     () => getNearbyEvents(poiId, allPois, events, resolver),
@@ -291,6 +312,12 @@ export default function BuildingPanel({
 
   const primaryLabel = status === "live" ? "Happening Now" : "Starting Soon";
   const buttonStampImage = buttonShowsCollected ? stampFrontImage : stampLockedImage;
+  const panelDemoTarget =
+    poiId === "aceb"
+      ? "aceb-panel"
+      : demoMode && poiId === "alumni_hall"
+        ? "alumni-panel"
+        : undefined;
   const hideButtonStampDuringCollect = isCollecting && !!buttonStampImage;
   const lockedThumbStyle = {
     filter: "saturate(0.15) brightness(0.92)",
@@ -300,7 +327,7 @@ export default function BuildingPanel({
   return (
     <div
       className="absolute inset-0 z-40 flex items-end justify-center bg-[rgba(18,12,28,0.18)] backdrop-blur-[3px]"
-      data-demo-target={poiId === "aceb" ? "aceb-panel" : undefined}
+      data-demo-target={panelDemoTarget}
     >
       <div
         ref={panelRef}
@@ -316,6 +343,7 @@ export default function BuildingPanel({
         </div>
 
         <div
+          data-demo-scroll={poiId === "aceb" ? "aceb" : undefined}
           className={`px-5 pb-4 pt-3 ${
             isCollecting ? "overflow-hidden" : "scrollbar-none overflow-y-auto"
           }`}
@@ -343,6 +371,14 @@ export default function BuildingPanel({
                   {categoryLabel}
                 </span>
                 <StatusChip status={status} />
+                {content?.descriptor_chips?.map((chip) => (
+                  <span
+                    key={chip}
+                    className="rounded-full bg-white/82 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-[#6b5d82] ring-1 ring-[#d8ccee]"
+                  >
+                    {chip}
+                  </span>
+                ))}
               </div>
             </div>
 
@@ -351,6 +387,9 @@ export default function BuildingPanel({
               onClick={onClose}
               aria-label="Close location details"
               disabled={isCollecting}
+              data-demo-target={
+                demoMode && poiId === "alumni_hall" ? "alumni-close" : undefined
+              }
               className={`mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/88 text-[#6941aa] shadow-[0_8px_20px_rgba(79,45,127,0.1)] ring-1 ring-white/80 transition-opacity ${
                 isCollecting ? "pointer-events-none opacity-50" : ""
               }`}
@@ -439,11 +478,11 @@ export default function BuildingPanel({
           </div>
 
           {/* ── 3. Why This Stop Matters ── */}
-          <div
-            className="relative z-10 mt-5"
-            data-demo-target={poiId === "aceb" ? "aceb-why" : undefined}
-          >
-            <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
+          <div className="relative z-10 mt-5">
+            <p
+              className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]"
+              data-demo-target={poiId === "aceb" ? "aceb-why" : undefined}
+            >
               Why this stop matters
             </p>
             <p className="mt-1.5 text-[14px] leading-[1.6] text-[#4d3f64]">
@@ -453,11 +492,13 @@ export default function BuildingPanel({
 
           {/* ── 4. Primary time section (Happening Now / Starting Soon) ── */}
           {primaryEvents.length > 0 && (
-            <div
-              className="relative z-10 mt-5"
-              data-demo-target={poiId === "aceb" ? "aceb-starting-soon" : undefined}
-            >
-              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
+            <div className="relative z-10 mt-5">
+              <p
+                className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]"
+                data-demo-target={
+                  poiId === "aceb" ? "aceb-starting-soon" : undefined
+                }
+              >
                 {primaryLabel}
               </p>
               <div className="mt-2.5 space-y-2.5">
@@ -470,11 +511,11 @@ export default function BuildingPanel({
 
           {/* ── 5. Happening Nearby Now ── */}
           {nearbyEvents.length > 0 && (
-            <div
-              className="relative z-10 mt-5"
-              data-demo-target={poiId === "aceb" ? "aceb-nearby" : undefined}
-            >
-              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
+            <div className="relative z-10 mt-5">
+              <p
+                className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]"
+                data-demo-target={poiId === "aceb" ? "aceb-nearby" : undefined}
+              >
                 Happening Nearby Now
               </p>
               <div className="mt-2.5 grid grid-cols-2 gap-2">
@@ -506,18 +547,32 @@ export default function BuildingPanel({
           {/* ── 6. Later Today Here ── */}
           {buckets.laterToday.length > 0 && (
             <div className="relative z-10 mt-5">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
+              <p
+                className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]"
+                data-demo-target={
+                  poiId === "aceb" ? "aceb-later-today" : undefined
+                }
+              >
                 Later Today Here
               </p>
               <div className="mt-2.5 space-y-2">
-                {buckets.laterToday.map((event) => (
-                  <EventRow
-                    key={event.id}
-                    event={event}
-                    resolver={resolver}
-                    dimmed
-                  />
-                ))}
+                {buckets.laterToday.map((event, idx) =>
+                  poiId === "aceb" && idx === 0 ? (
+                    <div
+                      key={event.id}
+                      data-demo-target="aceb-later-today-first"
+                    >
+                      <EventRow event={event} resolver={resolver} dimmed />
+                    </div>
+                  ) : (
+                    <EventRow
+                      key={event.id}
+                      event={event}
+                      resolver={resolver}
+                      dimmed
+                    />
+                  ),
+                )}
               </div>
             </div>
           )}
