@@ -540,3 +540,70 @@ body {
     transition-duration: 120ms;
   }
 }
+
+/* ── Guided demo accents ─────────────────────────────────────────────
+   All rules below are scoped to demo-only data attributes, so they
+   have zero effect on normal app rendering.
+*/
+
+@keyframes demo-marker-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(200, 182, 255, 0.55); opacity: 0.85; }
+  70%  { box-shadow: 0 0 0 18px rgba(200, 182, 255, 0); opacity: 0; }
+  100% { box-shadow: 0 0 0 0 rgba(200, 182, 255, 0); opacity: 0; }
+}
+
+.map-marker[data-demo-arrived="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(200, 182, 255, 0.7);
+  animation: demo-marker-pulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  pointer-events: none;
+}
+
+.map-marker__demo-label {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(42, 19, 64, 0.92);
+  color: #E5DBFF;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(20, 12, 32, 0.4);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@keyframes demo-button-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(200, 182, 255, 0.5), 0 16px 30px rgba(58, 74, 100, 0.12); }
+  60%  { box-shadow: 0 0 0 8px rgba(200, 182, 255, 0), 0 16px 30px rgba(58, 74, 100, 0.12); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 182, 255, 0), 0 16px 30px rgba(58, 74, 100, 0.12); }
+}
+
+button[data-demo-pulse="primary"] {
+  animation: demo-button-pulse 1.8s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-marker[data-demo-arrived="true"]::after,
+  button[data-demo-pulse="primary"] {
+    animation: none;
+  }
+}
+
+/* Demo-only: subtle lavender ring on the first nearby card when ACEB is open.
+   Only renders when data-demo-target="aceb-nearby-first" is present, which is
+   gated on poiId === "aceb" inside BuildingPanel — demo-only by construction. */
+[data-demo-target="aceb-nearby-first"] {
+  box-shadow:
+    0 0 0 1.5px rgba(200, 182, 255, 0.55),
+    0 8px 22px rgba(157, 78, 221, 0.18),
+    0 8px 20px rgba(79, 45, 127, 0.07);
+  transition: box-shadow 220ms ease;
+}

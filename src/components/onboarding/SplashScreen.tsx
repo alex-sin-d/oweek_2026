@@ -47,6 +47,7 @@ export default function SplashScreen({ onDone }: SplashScreenProps) {
 
   return (
     <div
+      data-onboarding-splash="true"
       className={`fixed inset-0 z-[100] overflow-hidden bg-[#090014] transition-opacity duration-300 ${
         exiting ? "opacity-0" : "opacity-100"
       }`}

@@ -126,7 +126,7 @@ export default function NoticesScreen() {
   };
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="scrollbar-none h-full overflow-y-auto">
       <div
         aria-hidden={overlayActive}
         className={`home-screen-shell ${overlayActive ? "is-dimmed pointer-events-none" : ""}`}

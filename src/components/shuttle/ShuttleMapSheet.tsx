@@ -84,10 +84,10 @@ export default function ShuttleMapSheet({
         </div>
 
         <div
-          className="flex-1 overflow-y-auto px-4 pb-6 pt-4"
+          className="scrollbar-none flex-1 overflow-y-auto px-4 pb-6 pt-4"
           style={{ paddingBottom: "max(env(safe-area-inset-bottom), 24px)" }}
         >
-          <div className="overflow-auto rounded-[28px] bg-white/92 p-3 shadow-[0_28px_56px_rgba(79,45,127,0.1)] ring-1 ring-white/80">
+          <div className="scrollbar-none overflow-auto rounded-[28px] bg-white/92 p-3 shadow-[0_28px_56px_rgba(79,45,127,0.1)] ring-1 ring-white/80">
             <div className="min-w-full">
               <Image
                 src={route.image}

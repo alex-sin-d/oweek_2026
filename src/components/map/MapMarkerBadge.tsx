@@ -61,10 +61,13 @@ export default function MapMarkerBadge({
   marker,
   isSelected,
   onSelect,
+  demoArrived = false,
 }: {
   marker: MapMarkerPresentation;
   isSelected: boolean;
   onSelect: (poiId: string) => void;
+  /** When true, render the demo-only "ACEB" label and post-walk pulse. */
+  demoArrived?: boolean;
 }) {
   const palette = isSelected
     ? MARKER_PALETTES.selected
@@ -76,14 +79,18 @@ export default function MapMarkerBadge({
     "--marker-ink": palette.ink,
     "--marker-halo": palette.halo,
     "--marker-shadow": palette.shadow,
-    zIndex: isSelected ? 40 : getMarkerZIndex(marker.kind),
+    zIndex: demoArrived ? 41 : isSelected ? 40 : getMarkerZIndex(marker.kind),
   } as CSSProperties;
 
   return (
     <button
       type="button"
       aria-label={`${isSelected ? "Selected " : ""}${marker.kind} marker for ${marker.label}`}
-      className={`map-marker${isSelected ? " is-selected" : ""}`}
+      data-demo-poi={marker.poiId}
+      data-demo-arrived={demoArrived ? "true" : undefined}
+      className={`map-marker${isSelected ? " is-selected" : ""}${
+        demoArrived ? " demo-arrived" : ""
+      }`}
       onClick={(event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -98,6 +105,11 @@ export default function MapMarkerBadge({
           <MapIcon name={marker.kind} className="h-[18px] w-[18px]" />
         </span>
       </span>
+      {demoArrived ? (
+        <span className="map-marker__demo-label" aria-hidden="true">
+          {marker.poiId === "aceb" ? "ACEB" : marker.label}
+        </span>
+      ) : null}
     </button>
   );
 }

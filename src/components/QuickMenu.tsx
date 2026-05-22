@@ -101,7 +101,7 @@ export default function QuickMenu({ onClose, onSelectPoi }: Props) {
         )}
 
         {/* Results */}
-        <div className="overflow-y-auto px-4 pb-4 space-y-1" style={{ maxHeight: "calc(65vh - 140px)" }}>
+        <div className="scrollbar-none overflow-y-auto px-4 pb-4 space-y-1" style={{ maxHeight: "calc(65vh - 140px)" }}>
           {displayList.length === 0 ? (
             <p className="text-sm text-gray-400 text-center py-6">
               {activeTab === "unlocked" ? "No buildings unlocked yet" : "No results found"}

@@ -298,7 +298,10 @@ export default function BuildingPanel({
   } as const;
 
   return (
-    <div className="absolute inset-0 z-40 flex items-end justify-center bg-[rgba(18,12,28,0.18)] backdrop-blur-[3px]">
+    <div
+      className="absolute inset-0 z-40 flex items-end justify-center bg-[rgba(18,12,28,0.18)] backdrop-blur-[3px]"
+      data-demo-target={poiId === "aceb" ? "aceb-panel" : undefined}
+    >
       <div
         ref={panelRef}
         className="relative w-full max-w-md overflow-hidden rounded-t-[34px] bg-[linear-gradient(180deg,rgba(252,250,255,0.98)_0%,rgba(246,241,251,0.98)_100%)] shadow-[0_-16px_54px_rgba(36,24,54,0.2)] ring-1 ring-white/85"
@@ -314,7 +317,7 @@ export default function BuildingPanel({
 
         <div
           className={`px-5 pb-4 pt-3 ${
-            isCollecting ? "overflow-hidden" : "overflow-y-auto"
+            isCollecting ? "overflow-hidden" : "scrollbar-none overflow-y-auto"
           }`}
           style={{ maxHeight: "calc(82vh - 20px)" }}
         >
@@ -362,6 +365,8 @@ export default function BuildingPanel({
               type="button"
               onClick={handleCollectTap}
               disabled={buttonShowsCollected}
+              data-demo-target={poiId === "aceb" ? "aceb-collect-stamp" : undefined}
+              data-demo-collected={buttonShowsCollected ? "true" : undefined}
               className={`flex min-h-[62px] w-full items-center justify-center rounded-[18px] px-3 py-2 text-[15px] font-semibold tracking-[-0.02em] transition-colors ${
                 buttonShowsCollected
                   ? "bg-[#e8dff8] text-[#5a32a0] ring-1 ring-[#c9b6ee]/55"
@@ -434,7 +439,10 @@ export default function BuildingPanel({
           </div>
 
           {/* ── 3. Why This Stop Matters ── */}
-          <div className="relative z-10 mt-5">
+          <div
+            className="relative z-10 mt-5"
+            data-demo-target={poiId === "aceb" ? "aceb-why" : undefined}
+          >
             <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
               Why this stop matters
             </p>
@@ -445,7 +453,10 @@ export default function BuildingPanel({
 
           {/* ── 4. Primary time section (Happening Now / Starting Soon) ── */}
           {primaryEvents.length > 0 && (
-            <div className="relative z-10 mt-5">
+            <div
+              className="relative z-10 mt-5"
+              data-demo-target={poiId === "aceb" ? "aceb-starting-soon" : undefined}
+            >
               <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
                 {primaryLabel}
               </p>
@@ -459,14 +470,22 @@ export default function BuildingPanel({
 
           {/* ── 5. Happening Nearby Now ── */}
           {nearbyEvents.length > 0 && (
-            <div className="relative z-10 mt-5">
+            <div
+              className="relative z-10 mt-5"
+              data-demo-target={poiId === "aceb" ? "aceb-nearby" : undefined}
+            >
               <p className="text-[13px] font-semibold uppercase tracking-[0.1em] text-[#8a71af]">
                 Happening Nearby Now
               </p>
               <div className="mt-2.5 grid grid-cols-2 gap-2">
-                {nearbyEvents.map((ne) => (
+                {nearbyEvents.map((ne, idx) => (
                   <div
                     key={`${ne.poiId}-${ne.eventTitle}`}
+                    data-demo-target={
+                      poiId === "aceb" && idx === 0
+                        ? "aceb-nearby-first"
+                        : undefined
+                    }
                     className="rounded-[18px] bg-white/80 px-3 py-3 shadow-[0_8px_20px_rgba(79,45,127,0.07)] ring-1 ring-white/80"
                   >
                     <p className="text-[13px] font-semibold leading-[1.2] tracking-[-0.025em] text-[#231836]">

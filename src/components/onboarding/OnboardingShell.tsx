@@ -21,7 +21,8 @@ export default function OnboardingShell({
 }: OnboardingShellProps) {
   return (
     <div
-      className="fixed inset-0 z-[90] overflow-y-auto text-white"
+      data-onboarding-step={step}
+      className="scrollbar-none fixed inset-0 z-[90] overflow-y-auto text-white"
       style={{
         background:
           "radial-gradient(140% 90% at 50% -10%, #2A1340 0%, #1D0F33 30%, #170B2B 60%, #10071D 100%)",

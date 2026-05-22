@@ -85,7 +85,7 @@ export default function ShuttleStopsSheet({
         </div>
 
         <div
-          className="overflow-y-auto px-4 pb-6 pt-4"
+          className="scrollbar-none overflow-y-auto px-4 pb-6 pt-4"
           style={{ paddingBottom: "max(env(safe-area-inset-bottom), 24px)" }}
         >
           <div className="space-y-3">

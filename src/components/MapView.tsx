@@ -25,6 +25,7 @@ import {
   DEMO_DATE,
 } from "@/lib/config";
 import { useApp } from "@/lib/AppContext";
+import { useDemoMode } from "@/lib/useDemoMode";
 import { allPois } from "@/lib/pois";
 import {
   buildMapSearchItems,
@@ -420,6 +421,7 @@ export default function MapView() {
 
   const searchParams = useSearchParams();
   const debugMode = searchParams.get("debug") === "1";
+  const demoMode = useDemoMode();
 
   const mapRef = useRef<MapRef | null>(null);
   const rafRef = useRef<number>(0);
@@ -745,6 +747,7 @@ export default function MapView() {
               marker={marker}
               isSelected={marker.poiId === selectedPoiId}
               onSelect={(poiId) => handleSelectPoi(poiId)}
+              demoArrived={demoMode && walkDone && marker.poiId === "aceb"}
             />
           </Marker>
         ))}
@@ -804,6 +807,7 @@ export default function MapView() {
             <button
               type="button"
               onClick={() => openControlSheet("filters")}
+              data-demo-target="map-filters"
               className="pointer-events-auto flex min-h-11 items-center gap-2 rounded-full bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[14px] font-semibold tracking-[-0.02em] text-[#4f2d7f] shadow-[0_18px_34px_rgba(79,45,127,0.12)] ring-1 ring-white/80 backdrop-blur-xl"
             >
               <svg
@@ -821,6 +825,7 @@ export default function MapView() {
             <button
               type="button"
               onClick={() => openControlSheet("search")}
+              data-demo-target="map-search"
               className="pointer-events-auto flex min-h-11 items-center gap-2 rounded-full bg-[rgba(255,255,255,0.9)] px-4 py-2.5 text-[14px] font-semibold tracking-[-0.02em] text-[#2a1f3b] shadow-[0_18px_34px_rgba(79,45,127,0.12)] ring-1 ring-white/80 backdrop-blur-xl"
             >
               <MapIcon name="search" className="h-4.5 w-4.5 text-[#6f48b2]" />
@@ -845,6 +850,10 @@ export default function MapView() {
               type="button"
               onClick={startWalk}
               disabled={walking || walkDone}
+              data-demo-target="simulate-walk"
+              data-demo-pulse={
+                demoMode && !walking && !walkDone ? "primary" : undefined
+              }
               className={[
                 "absolute right-4 z-30 flex min-h-11 items-center gap-2 rounded-full border border-white/70 px-4 py-2.5 text-[13px] font-semibold tracking-[-0.02em] shadow-[0_16px_30px_rgba(58,74,100,0.12)] backdrop-blur-xl transition",
                 walking

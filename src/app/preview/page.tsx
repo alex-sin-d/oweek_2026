@@ -12,6 +12,7 @@ const DEMO_STORAGE_KEYS = [
   "oweek_profile",
   "oweek_unlocked",
   "oweek_saved_events",
+  "oweek_demo_mode",
 ];
 
 export default function PreviewPage() {

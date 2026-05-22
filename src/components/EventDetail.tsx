@@ -48,7 +48,7 @@ export default function EventDetail({
           <div className="w-10 h-1 bg-gray-200 rounded-full" />
         </div>
 
-        <div className="overflow-y-auto px-5 pb-6" style={{ maxHeight: "calc(80vh - 30px)" }}>
+        <div className="scrollbar-none overflow-y-auto px-5 pb-6" style={{ maxHeight: "calc(80vh - 30px)" }}>
           {/* Header */}
           <div className="flex items-start justify-between gap-3 pb-3">
             <div className="flex-1 min-w-0">

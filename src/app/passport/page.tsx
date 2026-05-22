@@ -211,7 +211,7 @@ export default function PassportPage() {
 
   return (
     <div
-      className="h-full overflow-y-auto pb-10"
+      className="scrollbar-none h-full overflow-y-auto pb-10"
       style={{ backgroundColor: CREAM }}
     >
       <PassportHeader />

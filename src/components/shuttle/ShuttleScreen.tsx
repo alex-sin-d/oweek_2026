@@ -67,7 +67,7 @@ export default function ShuttleScreen() {
   };
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="scrollbar-none h-full overflow-y-auto">
       <div className="mx-auto flex min-h-full w-full max-w-lg flex-col px-4 pb-28" style={{ paddingTop: "max(env(safe-area-inset-top), 16px)" }}>
         <header className="relative flex min-h-[52px] items-center justify-center">
           <button

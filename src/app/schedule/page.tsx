@@ -199,7 +199,7 @@ export default function SchedulePage() {
       </div>
 
       {/* ── Event List ──────────────────────────────────────────────────────── */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="scrollbar-none flex-1 overflow-y-auto">
         {filteredEvents.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-8">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">

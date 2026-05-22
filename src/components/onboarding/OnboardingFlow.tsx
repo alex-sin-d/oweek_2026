@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useApp } from "@/lib/AppContext";
 import SplashScreen from "./SplashScreen";
 import IntroScreen from "./IntroScreen";
@@ -9,6 +9,11 @@ import ProfileSetupScreen, { type ProfileDraft } from "./ProfileSetupScreen";
 import FeatureIntroScreen from "./FeatureIntroScreen";
 
 type Step = "splash" | "intro" | "profile" | "features" | "done";
+
+// Routes that wrap the app in an iPhone preview frame and run their own
+// onboarding inside an iframe. The host page must NOT also render the
+// onboarding overlay — otherwise it covers the iPhone mockup.
+const SKIP_ONBOARDING_PATHS = new Set(["/demo", "/preview"]);
 
 /**
  * Full-screen onboarding flow. Mounted in the root layout. Renders nothing
@@ -22,6 +27,8 @@ type Step = "splash" | "intro" | "profile" | "features" | "done";
 export default function OnboardingFlow() {
   const { profile, setProfile, resetOnboarding } = useApp();
   const router = useRouter();
+  const pathname = usePathname();
+  const skipOnHost = SKIP_ONBOARDING_PATHS.has(pathname);
 
   // The flow starts at "splash" regardless of whether the user has onboarded.
   // After splash, if they're already onboarded we jump to "done".
@@ -124,6 +131,9 @@ export default function OnboardingFlow() {
 
   // Mounted but at "done" — render nothing so the real app shows through.
   if (step === "done") return null;
+  // Host preview routes embed the app in an iframe and run their own
+  // onboarding flow inside that iframe — suppress the host-level overlay.
+  if (skipOnHost) return null;
 
   // Note: we intentionally do NOT bail out here just because `profile` is
   // non-null. The user might be mid-flow with a freshly-saved profile, and

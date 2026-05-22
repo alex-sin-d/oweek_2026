@@ -3,6 +3,7 @@
 import { useState, type ReactElement } from "react";
 import OnboardingShell from "./OnboardingShell";
 import { FACULTY_TAGS, RESIDENCE_TAGS } from "@/lib/config";
+import { useDemoMode } from "@/lib/useDemoMode";
 
 export interface ProfileDraft {
   name: string;
@@ -127,6 +128,7 @@ const cardSelected: React.CSSProperties = {
 };
 
 export default function ProfileSetupScreen({ onContinue, onBack }: ProfileSetupScreenProps) {
+  const demoMode = useDemoMode();
   const [name, setName] = useState("");
   const [faculty, setFaculty] = useState<(typeof FACULTY_TAGS)[number] | null>(null);
   const [residence, setResidence] = useState<ResidenceChoice | null>(null);
@@ -248,12 +250,18 @@ export default function ProfileSetupScreen({ onContinue, onBack }: ProfileSetupS
         <div className="mt-3 grid grid-cols-2 gap-2.5">
           {FACULTY_PICKLIST.map((f) => {
             const selected = faculty?.tag === f.tag;
+            const isDemoSuggested = demoMode && f.tag === "SCI";
             return (
               <button
                 key={f.tag}
                 type="button"
                 onClick={() => setFaculty(f)}
-                className="relative flex items-center gap-2 rounded-2xl px-3.5 py-3 text-left text-[13px] font-medium text-[#F8F5FF] transition-all"
+                data-demo-target={f.tag === "SCI" ? "faculty-science" : undefined}
+                className={`relative flex items-center gap-2 rounded-2xl px-3.5 py-3 text-left text-[13px] font-medium text-[#F8F5FF] transition-all ${
+                  isDemoSuggested && !selected
+                    ? "ring-2 ring-[#C8B6FF]/70 ring-offset-0"
+                    : ""
+                }`}
                 style={selected ? cardSelected : cardBase}
               >
                 <span className="text-[#D8B4FE]">
@@ -283,12 +291,18 @@ export default function ProfileSetupScreen({ onContinue, onBack }: ProfileSetupS
         <div className="mt-3 flex flex-col gap-2.5">
           {RESIDENCE_PICKLIST.map((r) => {
             const selected = residence?.tag === r.tag;
+            const isDemoSuggested = demoMode && r.tag === "PERTH";
             return (
               <button
                 key={r.tag}
                 type="button"
                 onClick={() => setResidence(r)}
-                className="relative flex items-center gap-3 rounded-2xl px-4 py-3.5 text-left text-[14px] font-medium text-[#F8F5FF] transition-all"
+                data-demo-target={r.tag === "PERTH" ? "residence-perth" : undefined}
+                className={`relative flex items-center gap-3 rounded-2xl px-4 py-3.5 text-left text-[14px] font-medium text-[#F8F5FF] transition-all ${
+                  isDemoSuggested && !selected
+                    ? "ring-2 ring-[#C8B6FF]/70 ring-offset-0"
+                    : ""
+                }`}
                 style={selected ? cardSelected : cardBase}
               >
                 <span className="text-[#D8B4FE]">{HouseIcon}</span>

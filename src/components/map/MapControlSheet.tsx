@@ -194,7 +194,7 @@ export default function MapControlSheet({
         ) : null}
 
         <div
-          className="overflow-y-auto px-4 pb-2"
+          className="scrollbar-none overflow-y-auto px-4 pb-2"
           style={{ maxHeight: "calc(74vh - 220px)" }}
         >
           {activeTab === "filters" ? (

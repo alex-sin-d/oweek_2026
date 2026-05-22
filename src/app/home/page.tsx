@@ -262,7 +262,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="scrollbar-none h-full overflow-y-auto">
       <div
         aria-hidden={overlayActive}
         className={`home-screen-shell ${overlayActive ? "is-dimmed pointer-events-none" : ""}`}
@@ -296,6 +296,7 @@ export default function HomePage() {
             <button
               ref={cardRef}
               type="button"
+              data-demo-target="featured-card"
               aria-haspopup="dialog"
               aria-expanded={overlayActive}
               aria-label={`View details for ${FEATURED_EVENT.title}`}
@@ -351,6 +352,7 @@ export default function HomePage() {
                   </span>
                   <span
                     aria-hidden="true"
+                    data-demo-target="featured-view-details"
                     className="flex-1 rounded-full bg-[linear-gradient(180deg,#7d47d3_0%,#5e2ba6_100%)] px-4 py-3 text-center text-sm font-semibold text-white shadow-[0_16px_32px_rgba(73,29,127,0.42)]"
                   >
                     View Details
@@ -367,11 +369,12 @@ export default function HomePage() {
               </h2>
             </div>
 
-            <div className="grid grid-cols-3 gap-2">
+            <div data-demo-target="quick-access" className="grid grid-cols-3 gap-2">
               {QUICK_ACCESS_ITEMS.map((item) => (
                 <button
                   key={item.label}
                   type="button"
+                  data-demo-target={item.label === "Shuttle" ? "quick-access-shuttle" : undefined}
                   onClick={() => {
                     if (item.href) {
                       router.push(item.href);

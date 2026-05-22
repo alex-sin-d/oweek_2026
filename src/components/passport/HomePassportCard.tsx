@@ -22,7 +22,7 @@ export default function HomePassportCard({
   supportingText = "Keep exploring to fill your passport",
 }: HomePassportCardProps) {
   return (
-    <section className="home-card-shadow relative mb-5 overflow-hidden rounded-[32px] bg-[radial-gradient(circle_at_top_right,rgba(225,210,248,0.72),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.92),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,244,252,0.98)_100%)] px-5 py-5 ring-1 ring-white/85">
+    <section data-demo-target="passport-card" className="home-card-shadow relative mb-5 overflow-hidden rounded-[32px] bg-[radial-gradient(circle_at_top_right,rgba(225,210,248,0.72),transparent_26%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.92),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.98)_0%,rgba(248,244,252,0.98)_100%)] px-5 py-5 ring-1 ring-white/85">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),transparent_72%)]" />
       <div className="pointer-events-none absolute -right-7 top-8 h-28 w-28 rounded-full bg-[#e7daf8]/60 blur-2xl" />
       <div className="pointer-events-none absolute -left-8 bottom-3 h-24 w-24 rounded-full bg-[#f3ecfb] blur-2xl" />

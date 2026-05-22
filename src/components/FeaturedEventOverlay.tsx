@@ -155,12 +155,13 @@ export default function FeaturedEventOverlay({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
+        data-demo-target="event-detail-screen"
         className="featured-overlay-shell fixed overflow-hidden bg-[#fbf9ff] ring-1 ring-white/80"
         style={shellStyle}
       >
         <div className="featured-overlay-scroll scrollbar-none h-full overflow-y-auto">
           <div className="min-h-full bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.78),transparent_28%),linear-gradient(180deg,#fbf9ff_0%,#f8f4fc_40%,#f4eff9_100%)]">
-            <header className="relative min-h-[356px] overflow-hidden">
+            <header data-demo-target="event-detail-hero" className="relative min-h-[356px] overflow-hidden">
               <Image
                 src={detail.heroImage}
                 alt={event.title}
@@ -220,7 +221,7 @@ export default function FeaturedEventOverlay({
 
             <div className={`featured-overlay-body px-4 pb-8 pt-4 ${showBody ? "is-visible" : ""}`}>
               <div className="rounded-[30px] bg-white/92 p-4 shadow-[0_24px_48px_rgba(72,47,104,0.12)] ring-1 ring-white/85 backdrop-blur">
-                <div className="flex flex-col gap-3">
+                <div data-demo-target="event-detail-actions" className="flex flex-col gap-3">
                   <button
                     type="button"
                     onClick={onOpenInMap}
@@ -246,7 +247,7 @@ export default function FeaturedEventOverlay({
                   </button>
                 </div>
 
-                <div className="mt-4">
+                <div data-demo-target="event-detail-location-card" className="mt-4">
                   <MapPreviewCard
                     detail={detail}
                     resolved={resolved}
@@ -254,7 +255,7 @@ export default function FeaturedEventOverlay({
                 </div>
               </div>
 
-              <section className="mt-6 rounded-[30px] bg-white/90 px-5 py-6 shadow-[0_22px_48px_rgba(72,47,104,0.08)] ring-1 ring-white/80 backdrop-blur">
+              <section data-demo-target="event-detail-description" className="mt-6 rounded-[30px] bg-white/90 px-5 py-6 shadow-[0_22px_48px_rgba(72,47,104,0.08)] ring-1 ring-white/80 backdrop-blur">
                 <h3 className="text-[32px] font-semibold tracking-[-0.04em] text-[#1f1830]">
                   Description
                 </h3>
@@ -281,7 +282,7 @@ export default function FeaturedEventOverlay({
                 </ul>
               </section>
 
-              <section className="mt-5 rounded-[32px] bg-white/90 p-4 shadow-[0_24px_52px_rgba(72,47,104,0.1)] ring-1 ring-white/85 backdrop-blur">
+              <section data-demo-target="event-detail-last-year" className="mt-5 rounded-[32px] bg-white/90 p-4 shadow-[0_24px_52px_rgba(72,47,104,0.1)] ring-1 ring-white/85 backdrop-blur">
                 <div className="mb-3 flex items-center justify-between gap-3">
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#7e7296]">
